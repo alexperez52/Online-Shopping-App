@@ -1,4 +1,4 @@
-package TestPackage.TestApp;
+package shopping.app;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
