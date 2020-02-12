@@ -1,11 +1,11 @@
 package shopping.model;
 
 public class Address { //holds user's address for shipping purposes and tax
-	String houseNumber;
-	String streetAddress;
-	String city;
-	String state;
-	String country;
+	private String houseNumber;
+	private String streetAddress;
+	private String city;
+	private String state;
+	private String country;
 
 	public Address(String houseNumber, String streetAddress, String city, String state, String country) {
 		this.houseNumber = houseNumber;

@@ -1,9 +1,9 @@
 package shopping.model;
 
 public class Payment {
-	Boolean isPaypal;
-	Boolean isCard;
-	String information;
+	private Boolean isPaypal;
+	private Boolean isCard;
+	private String information;
 
 	public Payment(Boolean isPaypal, Boolean isCard, String information) {
 		this.isPaypal = isPaypal; //payment will either be paypal or card at any given time

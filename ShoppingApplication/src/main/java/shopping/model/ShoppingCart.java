@@ -3,7 +3,7 @@ package shopping.model;
 import java.util.ArrayList;
 
 public class ShoppingCart {
-	ArrayList<ShoppingCartItem> cart; //holds ShoppingCartItems as user shops
+	private ArrayList<ShoppingCartItem> cart; //holds ShoppingCartItems as user shops
 	
 	public ShoppingCart() {
 		cart = new ArrayList<ShoppingCartItem>();

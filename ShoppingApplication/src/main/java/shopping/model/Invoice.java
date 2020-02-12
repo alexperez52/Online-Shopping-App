@@ -1,11 +1,11 @@
 package shopping.model;
 
 public class Invoice {// holds user's billing information such as address/amount due
-	User user; 
-	Integer id; //each invoice has an id so it can be searched in user's invoice log.
-	static Integer uniqueNumber = 0;
-	double bill; //total of purchased goods
-	String information; //list of purchased goods
+	private User user; 
+	private Integer id; //each invoice has an id so it can be searched in user's invoice log.
+	private static Integer uniqueNumber = 0;
+	private double bill; //total of purchased goods
+	private String information; //list of purchased goods
 
 	public Invoice(User user, double bill) {
 		super();

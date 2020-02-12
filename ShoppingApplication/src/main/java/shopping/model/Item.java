@@ -2,12 +2,12 @@ package shopping.model;
 
 public class Item {// item that actually exists in inventory. Exists in limited amount and each's id
 					// is used in user's shopping cart to search for item in inventory @checkout
-	String name;
-	Integer id;
-	static Integer uniqueNumber = 0; //each item has a unique id for searching
-	double price; //price of 1 quantity of the item
-	String description; //item details
-	Integer quantity; //how many are in stock
+	private String name;
+	private Integer id;
+	private static Integer uniqueNumber = 0; //each item has a unique id for searching
+	private double price; //price of 1 quantity of the item
+	private String description; //item details
+	private Integer quantity; //how many are in stock
 
 	public Item(String name, double price, String description, Integer quantity) {
 		super();

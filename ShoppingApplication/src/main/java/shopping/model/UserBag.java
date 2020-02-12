@@ -3,7 +3,7 @@ package shopping.model;
 import java.util.TreeMap;
 
 public class UserBag { // log of users that admins can access to view each's data
-	TreeMap<String, User> users;
+	private TreeMap<String, User> users;
 
 	public UserBag() {
 		super();

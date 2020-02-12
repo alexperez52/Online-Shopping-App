@@ -3,33 +3,32 @@ package shopping.model;
 import java.util.TreeMap;
 
 public class User {
-	Name name;
-	Address address;//holds user's address info for shipping
-	String username;
-	String email;
-	Payment payment; //payment method as either card or paypal and holds financial information
-	ShoppingCart cart; //user's unique shopping cart
-	boolean isAdmin; //decides if user has admin access
-	TreeMap<Integer, Invoice> invoiceLog; //holds log of user's invoices
+	private Name name;
+	private Address address;// holds user's address info for shipping
+	private String username;
+	private String email;
+	private Payment payment; // payment method as either card or paypal and holds financial information
+	private ShoppingCart cart; // user's unique shopping cart
+	private boolean isAdmin; // decides if user has admin access
+	private TreeMap<Integer, Invoice> invoiceLog; // holds log of user's invoices
 
-	
 	public User(Name name, Address address, String username, String email) {
 		this.name = name;
 		this.address = address;
 		this.username = username;
 		this.email = email;
 		this.cart = new ShoppingCart(); // each user gets a new shopping cart
-		this.isAdmin = false; //user is not admin, by default
+		this.isAdmin = false; // user is not admin, by default
 		this.invoiceLog = new TreeMap<Integer, Invoice>(); // each user gets a new invoice log
 	}
-	
+
 	public User(Name name, Address address, String username, String email, Boolean isAdmin) {
 		this.name = name;
 		this.address = address;
 		this.username = username;
 		this.email = email;
 		this.cart = new ShoppingCart(); // each user gets a new shopping cart
-		this.isAdmin = isAdmin; //constructor to make admins
+		this.isAdmin = isAdmin; // constructor to make admins
 		this.invoiceLog = new TreeMap<Integer, Invoice>(); // each user gets a new invoice log
 	}
 
