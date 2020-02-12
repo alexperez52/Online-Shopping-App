@@ -1,6 +1,7 @@
 package shopping.model;
 
 public class Name {
+
 	private String firstName;
 	private String middleName;
 	private String lastName;
@@ -33,6 +34,11 @@ public class Name {
 
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
+	}
+	
+	@Override
+	public String toString() {
+		return "Name [firstName=" + firstName + ", middleName=" + middleName + ", lastName=" + lastName + "]";
 	}
 
 }

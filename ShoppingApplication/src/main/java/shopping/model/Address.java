@@ -54,4 +54,12 @@ public class Address { //holds user's address for shipping purposes and tax
 	public void setCountry(String country) {
 		this.country = country;
 	}
+
+	@Override
+	public String toString() {
+		return "Address [houseNumber=" + houseNumber + ", streetAddress=" + streetAddress + ", city=" + city
+				+ ", state=" + state + ", country=" + country + "]";
+	}
+	
+	
 }

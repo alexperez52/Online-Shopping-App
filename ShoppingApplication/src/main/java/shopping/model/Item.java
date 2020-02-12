@@ -53,4 +53,12 @@ public class Item {// item that actually exists in inventory. Exists in limited 
 	public void setQuantity(Integer quantity) {
 		this.quantity = quantity;
 	}
+
+	@Override
+	public String toString() {
+		return "Item [name=" + name + ", id=" + id + ", price=" + price + ", description=" + description + ", quantity="
+				+ quantity + "]";
+	}
+	
+	
 }

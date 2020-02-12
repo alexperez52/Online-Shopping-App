@@ -95,5 +95,12 @@ public class User {
 	public void setInvoiceLog(TreeMap<Integer, Invoice> invoiceLog) {
 		this.invoiceLog = invoiceLog;
 	}
+	
+	@Override
+	public String toString() {
+		return "User [name=" + name + ", address=" + address + ", username=" + username + ", email=" + email
+				+ ", payment=" + payment + ", cart=" + cart + ", isAdmin=" + isAdmin + ", invoiceLog=" + invoiceLog
+				+ "]";
+	}
 
 }
