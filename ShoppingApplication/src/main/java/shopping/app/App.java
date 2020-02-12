@@ -1,13 +1,16 @@
 package shopping.app;
 
-/**
- * Hello world!
- *
- */
-public class App 
-{
-    public static void main( String[] args )
-    {
-        System.out.println( "Hello World!" );
-    }
+import javafx.application.Application;
+import javafx.stage.Stage;
+
+public class App extends Application {
+
+	@Override
+	public void start(Stage primaryStage) {
+		
+	}
+
+	public static void main(String[] args) {
+		launch(args);
+	}
 }
