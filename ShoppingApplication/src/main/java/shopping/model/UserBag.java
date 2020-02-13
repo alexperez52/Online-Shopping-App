@@ -1,8 +1,9 @@
 package shopping.model;
 
+import java.io.Serializable;
 import java.util.TreeMap;
 
-public class UserBag { // log of users that admins can access to view each's data
+public class UserBag implements Serializable { // log of users that admins can access to view each's data
 	private TreeMap<String, User> users;
 
 	public UserBag() {

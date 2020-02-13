@@ -1,8 +1,9 @@
 package shopping.model;
 
+import java.io.Serializable;
 import java.util.TreeMap;
 
-public class User {
+public class User implements Serializable{
 	private Name name;
 	private Address address;// holds user's address info for shipping
 	private String username;

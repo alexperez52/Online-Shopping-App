@@ -1,10 +1,12 @@
 package shopping.model;
 
-public class Item {// item that actually exists in inventory. Exists in limited amount and each's id
+import java.io.Serializable;
+
+public class Item implements Serializable {// item that actually exists in inventory. Exists in limited amount and each's id
 					// is used in user's shopping cart to search for item in inventory @checkout
 	private String name;
 	private Integer id;
-	private static Integer uniqueNumber = 0; //each item has a unique id for searching
+	private static Integer uniqueNumber = shopping.utils.DataSaver.restoreItemId(); //each item has a unique id for searching
 	private double price; //price of 1 quantity of the item
 	private String description; //item details
 	private Integer quantity; //how many are in stock
@@ -52,6 +54,10 @@ public class Item {// item that actually exists in inventory. Exists in limited 
 
 	public void setQuantity(Integer quantity) {
 		this.quantity = quantity;
+	}
+	
+	public static Integer getUniqueNumber() {
+		return uniqueNumber;
 	}
 
 	@Override

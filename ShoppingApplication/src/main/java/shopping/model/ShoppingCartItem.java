@@ -1,6 +1,8 @@
 package shopping.model;
 
-public class ShoppingCartItem { // holds the id and amount of an inventory item to be held in user's cart and
+import java.io.Serializable;
+
+public class ShoppingCartItem implements Serializable{ // holds the id and amount of an inventory item to be held in user's cart and
 								// for reference to inventory at checkout
 	private Integer id = 0;
 	private Integer itemQuantity = 0;

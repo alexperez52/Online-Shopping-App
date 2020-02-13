@@ -1,6 +1,8 @@
 package shopping.model;
 
-public class Payment {
+import java.io.Serializable;
+
+public class Payment implements Serializable {
 	private Boolean isPaypal;
 	private Boolean isCard;
 	private String information;

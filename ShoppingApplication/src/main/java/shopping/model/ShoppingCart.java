@@ -1,8 +1,9 @@
 package shopping.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class ShoppingCart {
+public class ShoppingCart implements Serializable {
 	private ArrayList<ShoppingCartItem> cart; //holds ShoppingCartItems as user shops
 	
 	public ShoppingCart() {

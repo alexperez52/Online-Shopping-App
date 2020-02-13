@@ -1,8 +1,9 @@
 package shopping.model;
 
+import java.io.Serializable;
 import java.util.HashMap;
 
-public class Inventory { //holds all store's items
+public class Inventory implements Serializable{ //holds all store's items
 	private HashMap<Integer, Item> inventory;
 	
 	public Inventory() {

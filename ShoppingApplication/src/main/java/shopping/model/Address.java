@@ -1,6 +1,8 @@
 package shopping.model;
 
-public class Address { //holds user's address for shipping purposes and tax
+import java.io.Serializable;
+
+public class Address implements Serializable{ //holds user's address for shipping purposes and tax
 	private String houseNumber;
 	private String streetAddress;
 	private String city;
