@@ -1,8 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
 
-<BorderPane xmlns:fx="http://javafx.com/fxml/1">
-	<!-- For root of view --> 
+
+<BorderPane maxHeight="400.0" maxWidth="600.0" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1">
+   <top>
+      <HBox prefHeight="48.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button mnemonicParsing="false" prefHeight="61.0" prefWidth="150.0" text="Account" />
+            <Button minWidth="150.0" mnemonicParsing="false" prefHeight="71.0" prefWidth="150.0" text="Catalog" />
+            <Button mnemonicParsing="false" prefHeight="64.0" prefWidth="150.0" text="User Log" />
+            <Button mnemonicParsing="false" prefHeight="64.0" prefWidth="150.0" text="Checkout" />
+         </children>
+      </HBox>
+   </top>
 </BorderPane>
-

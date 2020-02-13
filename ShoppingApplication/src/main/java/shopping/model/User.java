@@ -7,25 +7,28 @@ public class User {
 	private Address address;// holds user's address info for shipping
 	private String username;
 	private String email;
+	private String password;
 	private Payment payment; // payment method as either card or paypal and holds financial information
 	private ShoppingCart cart; // user's unique shopping cart
 	private boolean isAdmin; // decides if user has admin access
 	private TreeMap<Integer, Invoice> invoiceLog; // holds log of user's invoices
 
-	public User(Name name, Address address, String username, String email) {
+	public User(Name name, Address address, String username, String password, String email) {
 		this.name = name;
 		this.address = address;
 		this.username = username;
+		this.password = password;
 		this.email = email;
 		this.cart = new ShoppingCart(); // each user gets a new shopping cart
 		this.isAdmin = false; // user is not admin, by default
 		this.invoiceLog = new TreeMap<Integer, Invoice>(); // each user gets a new invoice log
 	}
 
-	public User(Name name, Address address, String username, String email, Boolean isAdmin) {
+	public User(Name name, Address address, String username, String password, String email, Boolean isAdmin) {
 		this.name = name;
 		this.address = address;
 		this.username = username;
+		this.password = password;
 		this.email = email;
 		this.cart = new ShoppingCart(); // each user gets a new shopping cart
 		this.isAdmin = isAdmin; // constructor to make admins
@@ -54,6 +57,16 @@ public class User {
 
 	public void setUsername(String username) {
 		this.username = username;
+	}
+	
+	
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public String getEmail() {
@@ -95,12 +108,14 @@ public class User {
 	public void setInvoiceLog(TreeMap<Integer, Invoice> invoiceLog) {
 		this.invoiceLog = invoiceLog;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "User [name=" + name + ", address=" + address + ", username=" + username + ", email=" + email
-				+ ", payment=" + payment + ", cart=" + cart + ", isAdmin=" + isAdmin + ", invoiceLog=" + invoiceLog
-				+ "]";
+				+ ", password=" + password + ", payment=" + payment + ", cart=" + cart + ", isAdmin=" + isAdmin
+				+ ", invoiceLog=" + invoiceLog + "]";
 	}
+	
+	
 
 }

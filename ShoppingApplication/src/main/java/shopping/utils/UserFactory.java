@@ -36,10 +36,11 @@ public class UserFactory {
 						addressTokens[randNumber.nextInt(addressTokens.length)]);
 				String username = nameTokens[0] + "" + randNumber.nextInt(99); // just using firstname and digit for
 																				// username
+				String password = nameTokens[1] + "" + randNumber.nextInt(99);//uses lastname and digit for password
 				String email = nameTokens[nameTokens.length - 1] + "@gmail.com"; // formatting emails with lastnames
 																					// just for display purpose
 
-				User user = new User(name, address, username, email);
+				User user = new User(name, address, username, password, email);
 				testUserBag.getUsers().put(username, user);
 				// invoiceLog, shoopingCart, payment, and admin status are all predetermined for
 				// each user until they add payment info, buy items, etc.
