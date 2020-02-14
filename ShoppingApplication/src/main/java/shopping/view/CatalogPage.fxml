@@ -6,8 +6,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -87,11 +85,6 @@
                               </Label>
                            </children>
                         </HBox>
-                        <ImageView fitHeight="77.0" fitWidth="125.0" pickOnBounds="true">
-                           <image>
-                              <Image url="@../../../../../../../../Pictures/asasaasass.gif" />
-                           </image>
-                        </ImageView>
                      </children>
                   </HBox>
                </children>
