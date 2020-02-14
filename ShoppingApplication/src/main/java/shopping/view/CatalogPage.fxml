@@ -1,8 +1,102 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane xmlns:fx="http://javafx.com/fxml/1">
-	<!-- TODO Add Nodes -->
+<BorderPane maxHeight="400.0" maxWidth="600.0" minHeight="600.0" minWidth="1000.0" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: beige;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+      <VBox alignment="BOTTOM_LEFT" prefHeight="84.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="70.0" prefWidth="1056.0" text="Inventory">
+                     <font>
+                        <Font size="48.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox prefHeight="23.0" prefWidth="1000.0">
+               <children>
+                  <HBox prefHeight="27.0" prefWidth="295.0" style="-fx-border-color: black;">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="31.0" prefWidth="41.0" text="Search" />
+                        <TextField prefHeight="25.0" prefWidth="157.0">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </TextField>
+                        <ComboBox prefHeight="25.0" prefWidth="106.0" promptText="Category" />
+                     </children>
+                     <HBox.margin>
+                        <Insets left="50.0" />
+                     </HBox.margin>
+                  </HBox>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </top>
+   <center>
+      <VBox prefHeight="345.0" prefWidth="600.0" spacing="10.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox alignment="CENTER" prefHeight="276.0" prefWidth="1000.0">
+               <children>
+                  <ListView orientation="HORIZONTAL" prefHeight="240.0" prefWidth="901.0" style="-fx-border-color: black;" />
+               </children>
+            </HBox>
+            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="116.0" style="-fx-background-color: orange; -fx-border-color: black;" text="Add to cart">
+               <VBox.margin>
+                  <Insets left="835.0" />
+               </VBox.margin>
+            </Button>
+            <VBox prefHeight="167.0" prefWidth="1000.0" style="-fx-border-color: black;">
+               <VBox.margin>
+                  <Insets left="50.0" right="50.0" />
+               </VBox.margin>
+               <children>
+                  <HBox prefHeight="67.0" prefWidth="898.0">
+                     <children>
+                        <Label prefHeight="77.0" prefWidth="182.0" text="Name:">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label prefHeight="67.0" prefWidth="183.0" text="Price:" />
+                        <Label prefHeight="72.0" prefWidth="121.0" text="Quantity:" />
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="99.0" prefWidth="898.0">
+                     <children>
+                        <HBox prefHeight="76.0" prefWidth="420.0">
+                           <children>
+                              <Label prefHeight="85.0" prefWidth="260.0" text="Description">
+                                 <HBox.margin>
+                                    <Insets left="20.0" />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <ImageView fitHeight="77.0" fitWidth="125.0" pickOnBounds="true">
+                           <image>
+                              <Image url="@../../../../../../../../Pictures/asasaasass.gif" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+   </center>
 </BorderPane>
-

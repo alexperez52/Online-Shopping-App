@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane prefHeight="190.0" prefWidth="1000.0" style="-fx-background-color: #505050;">
+         <children>
+            <Label layoutX="47.0" layoutY="14.0" prefHeight="89.0" prefWidth="114.0" text="LOGO HERE" textFill="#fff9f9">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="771.0" layoutY="33.0" text="INVOICE" textFill="#ff9909">
+               <font>
+                  <Font size="48.0" />
+               </font>
+            </Label>
+            <Separator layoutX="8.0" layoutY="121.0" prefHeight="9.0" prefWidth="988.0" />
+            <Label layoutX="26.0" layoutY="130.0" text="Invoice #:" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="26.0" layoutY="158.0" text="Date:" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="-6.0" layoutY="209.0" prefHeight="23.0" prefWidth="1008.0" style="-fx-background-color: ORANGE;">
+         <children>
+            <Label layoutX="23.0" layoutY="3.0" text="Bill to: ">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <Label layoutX="14.0" layoutY="266.0" text="name here">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="14.0" layoutY="322.0" text="address here">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <AnchorPane layoutX="266.0" layoutY="366.0" prefHeight="30.0" prefWidth="213.0" style="-fx-background-color: orange;">
+         <children>
+            <Label layoutX="25.0" layoutY="1.0" text="Item">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="531.0" layoutY="366.0" prefHeight="30.0" prefWidth="213.0" style="-fx-background-color: orange;">
+         <children>
+            <Label layoutX="14.0" layoutY="1.0" text="Price">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="792.0" layoutY="366.0" prefHeight="30.0" prefWidth="213.0" style="-fx-background-color: orange;">
+         <children>
+            <Label layoutX="14.0" layoutY="1.0" text="Summary">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <ImageView blendMode="DARKEN" fitHeight="27.0" fitWidth="64.0" layoutX="119.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../../../Pictures/che1.jpg" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="-3.0" layoutY="396.0" prefHeight="9.0" prefWidth="1000.0" style="-fx-background-color: grey;" />
+      <AnchorPane layoutX="-6.0" layoutY="366.0" prefHeight="30.0" prefWidth="213.0" style="-fx-background-color: orange;">
+         <children>
+            <Label layoutX="14.0" layoutY="3.0" text="Quantity">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <Separator layoutX="757.0" layoutY="209.0" orientation="VERTICAL" prefHeight="395.0" prefWidth="0.0" style="-fx-background-color: black;" />
+      <ListView layoutX="2.0" layoutY="414.0" prefHeight="172.0" prefWidth="749.0" />
+      <Label layoutX="795.0" layoutY="436.0" text="SubTotal:" />
+      <Label layoutX="795.0" layoutY="472.0" text="Tax:" />
+      <Label layoutX="791.0" layoutY="514.0" text="Total:" />
+   </children>
+</AnchorPane>

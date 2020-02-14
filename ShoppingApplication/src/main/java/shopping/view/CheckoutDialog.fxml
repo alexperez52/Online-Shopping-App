@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox layoutX="111.0" layoutY="22.0" prefHeight="578.0" prefWidth="466.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="111.0" AnchorPane.rightAnchor="423.0" AnchorPane.topAnchor="22.0">
+         <children>
+            <VBox prefHeight="158.0" prefWidth="466.0">
+               <children>
+                  <Label prefHeight="51.0" prefWidth="239.0" text="Checkout">
+                     <font>
+                        <Font name="Arial Black" size="34.0" />
+                     </font>
+                     <padding>
+                        <Insets left="30.0" top="10.0" />
+                     </padding>
+                  </Label>
+                  <RadioButton mnemonicParsing="false" prefHeight="42.0" prefWidth="91.0" text="PayPal">
+                     <padding>
+                        <Insets left="30.0" top="10.0" />
+                     </padding>
+                  </RadioButton>
+                  <RadioButton mnemonicParsing="false" text="Card">
+                     <padding>
+                        <Insets left="30.0" top="10.0" />
+                     </padding>
+                  </RadioButton>
+               </children>
+            </VBox>
+            <VBox prefHeight="162.0" prefWidth="537.0">
+               <children>
+                  <Label text="Paypal Email Address">
+                     <padding>
+                        <Insets top="20.0" />
+                     </padding>
+                  </Label>
+                  <TextField maxWidth="200.0" prefHeight="27.0" prefWidth="255.0" promptText="johndoe@gmail.com" />
+                  <Label text="Password">
+                     <padding>
+                        <Insets top="10.0" />
+                     </padding>
+                  </Label>
+                  <TextField maxWidth="200.0" />
+               </children>
+               <VBox.margin>
+                  <Insets left="30.0" />
+               </VBox.margin>
+            </VBox>
+            <VBox prefHeight="171.0" prefWidth="425.0" spacing="10.0">
+               <children>
+                  <VBox prefHeight="28.0" prefWidth="507.0">
+                     <children>
+                        <Label text="Card Number">
+                           <padding>
+                              <Insets top="10.0" />
+                           </padding>
+                        </Label>
+                        <TextField maxWidth="400.0" prefHeight="40.0" prefWidth="400.0" promptText="####-####-####-####" />
+                     </children>
+                  </VBox>
+                  <HBox prefHeight="30.0" prefWidth="597.0" spacing="20.0">
+                     <children>
+                        <ComboBox prefHeight="27.0" prefWidth="95.0" promptText="Month" />
+                        <ComboBox prefHeight="27.0" prefWidth="95.0" promptText="Year" />
+                        <TextField prefHeight="27.0" prefWidth="169.0" promptText="Security Code" />
+                     </children>
+                  </HBox>
+                  <TextField maxWidth="400.0" promptText="Card Holder" />
+               </children>
+               <padding>
+                  <Insets left="30.0" right="30.0" />
+               </padding>
+            </VBox>
+         </children>
+      </VBox>
+      <VBox layoutX="753.0" layoutY="25.0" prefHeight="600.0" prefWidth="247.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="753.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <HBox>
+               <children>
+                  <Label prefHeight="42.0" prefWidth="92.0" text="Total:">
+                     <font>
+                        <Font name="Avenir Book" size="36.0" />
+                     </font>
+                     <padding>
+                        <Insets top="10.0" />
+                     </padding>
+                  </Label>
+                  <Label text="\$100.00">
+                     <padding>
+                        <Insets top="30.0" />
+                     </padding>
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox>
+               <children>
+                  <Label text="after Tax:">
+                     <font>
+                        <Font name="Avenir Book" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label text=" $120.00">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <padding>
+                        <Insets top="3.0" />
+                     </padding>
+                  </Label>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <Button layoutX="577.0" layoutY="359.0" mnemonicParsing="false" style="-fx-background-color: orange;" text="Checkout" />
+      <Button layoutX="577.0" layoutY="399.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="66.0" style="-fx-background-color: pink;" text="Cancel" />
+   </children>
+</AnchorPane>

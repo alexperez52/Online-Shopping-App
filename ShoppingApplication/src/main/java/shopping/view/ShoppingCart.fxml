@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TableView layoutX="453.0" layoutY="62.0" prefHeight="449.0" prefWidth="532.0">
+        <columns>
+          <TableColumn prefWidth="96.0" text="Quantity" />
+          <TableColumn prefWidth="261.0" text="Item" />
+            <TableColumn prefWidth="174.0" text="Price" />
+        </columns>
+      </TableView>
+      <Button layoutX="849.0" layoutY="523.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="137.0" style="-fx-background-color: orange;" text="Order" />
+      <Button layoutX="453.0" layoutY="534.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="35.0" text="+">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Button>
+      <Button layoutX="494.0" layoutY="534.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="39.0" text="-">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Button>
+      <Label layoutX="121.0" layoutY="71.0" text="Shopping Cart" textFill="#ff5100">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Label>
+      <ImageView blendMode="DARKEN" fitHeight="150.0" fitWidth="200.0" layoutX="145.0" layoutY="150.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../../../Pictures/shopping%20cart.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="73.0" layoutY="381.0" text="Here you can ">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="159.0" layoutY="381.0" text="order" textFill="#4139d6">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="193.0" layoutY="381.0" text=" or ">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="214.0" layoutY="381.0" text="modify quantity" textFill="#4139d6">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="73.0" layoutY="417.0" text="Make sure you enter a ">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="73.0" layoutY="447.0" text="method!">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Hyperlink layoutX="215.0" layoutY="413.0" text="valid payment">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Hyperlink>
+   </children>
+</AnchorPane>
