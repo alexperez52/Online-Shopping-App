@@ -12,11 +12,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.makery.address.view.PersonEditDialogController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.makery.address.view.PersonEditDialogController">
    <children>
-      <ScrollPane layoutX="14.0" layoutY="20.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="75.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="40.0">
+      <ScrollPane layoutX="14.0" layoutY="20.0" prefHeight="550.0" prefWidth="960.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="40.0">
          <content>
-            <VBox prefHeight="314.0" prefWidth="540.0">
+            <VBox prefHeight="494.0" prefWidth="515.0">
                <children>
                   <HBox prefHeight="22.0" prefWidth="558.0" spacing="50.0">
                      <children>
@@ -45,7 +45,7 @@
                         <Insets left="50.0" top="10.0" />
                      </padding>
                   </HBox>
-                  <HBox prefHeight="22.0" prefWidth="558.0" spacing="50.0">
+                  <HBox prefHeight="136.0" prefWidth="540.0" spacing="50.0">
                      <children>
                         <Label prefWidth="200.0" text="House Number" />
                         <TextField prefWidth="200.0" />
@@ -117,7 +117,7 @@
             </VBox>
          </content>
       </ScrollPane>
-      <ButtonBar layoutX="363.0" layoutY="325.0" prefHeight="40.0" prefWidth="200.0">
+      <ButtonBar layoutX="363.0" layoutY="325.0" prefHeight="309.0" prefWidth="358.0">
         <buttons>
             <Button mnemonicParsing="false" onAction="#handleOk" text="OK" />
           <Button mnemonicParsing="false" onAction="#handleCancel" text="Cancel" />
