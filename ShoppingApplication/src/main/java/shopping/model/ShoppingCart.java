@@ -10,7 +10,7 @@ public class ShoppingCart implements Serializable {
 		cart = new ArrayList<ShoppingCartItem>();
 	}
 
-	public ArrayList<ShoppingCartItem> getCart() {
+	public ArrayList<ShoppingCartItem> getCartItems() {
 		return cart;
 	}
 

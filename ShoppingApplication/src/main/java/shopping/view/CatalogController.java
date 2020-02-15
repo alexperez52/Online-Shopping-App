@@ -82,19 +82,18 @@ public class CatalogController {
 	private void handleAddToCart() {// gives cart adding function. Takes item's unique info for checkout to search
 									// in inventory
 		ShoppingCart cart = new ShoppingCart();
-		cart.setCart(app.getCurrentUser().getCart().getCart()); // current user's cart
+		cart.setCart(app.getCurrentUser().getCart().getCartItems()); // current user's cart
 		int selectedIndex = itemsView.getSelectionModel().getSelectedIndex();
 		if (selectedIndex >= 0) {// if user clicks on an item
 			Integer itemId = app.getLiveInventory().getInventory().get(selectedIndex + 1).getId(); // obtains item's id
 			ShoppingCartItem cartItem = new ShoppingCartItem(itemId, 1);// makes shopping cart item
-			if (cart.getCart().contains(cartItem)) {// if cart item exists already
-				int index = cart.getCart().indexOf(cartItem);
-				ShoppingCartItem existingCartItem = cart.getCart().get(index);
+			if (cart.getCartItems().contains(cartItem)) {// if cart item exists already
+				int index = cart.getCartItems().indexOf(cartItem);
+				ShoppingCartItem existingCartItem = cart.getCartItems().get(index);
 				existingCartItem.setItemQuantity(existingCartItem.getItemQuantity() + 1);// just increase quantity
 			} else {
-				cart.getCart().add(cartItem);
+				cart.getCartItems().add(cartItem);
 			}
-			System.out.println(cart.getCart());
 		} else {
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("No Selection");

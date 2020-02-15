@@ -2,16 +2,18 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="shopping.view.CheckoutController">
    <children>
       <VBox layoutX="111.0" layoutY="22.0" prefHeight="578.0" prefWidth="466.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="111.0" AnchorPane.rightAnchor="423.0" AnchorPane.topAnchor="22.0">
          <children>
@@ -25,12 +27,15 @@
                         <Insets left="30.0" top="10.0" />
                      </padding>
                   </Label>
-                  <RadioButton mnemonicParsing="false" prefHeight="42.0" prefWidth="91.0" text="PayPal">
+                  <RadioButton fx:id="paypalRadBtn" mnemonicParsing="false" onAction="#handlePaypalRadio" prefHeight="42.0" prefWidth="91.0" text="PayPal">
                      <padding>
                         <Insets left="30.0" top="10.0" />
                      </padding>
+                     <toggleGroup>
+                        <ToggleGroup fx:id="toggGroup1" />
+                     </toggleGroup>
                   </RadioButton>
-                  <RadioButton mnemonicParsing="false" text="Card">
+                  <RadioButton fx:id="cardRadBtn" mnemonicParsing="false" onAction="#handleCardRadio" text="Card" toggleGroup="$toggGroup1">
                      <padding>
                         <Insets left="30.0" top="10.0" />
                      </padding>
@@ -44,13 +49,13 @@
                         <Insets top="20.0" />
                      </padding>
                   </Label>
-                  <TextField maxWidth="200.0" prefHeight="27.0" prefWidth="255.0" promptText="johndoe@gmail.com" />
+                  <TextField fx:id="paypalEmailField" maxWidth="200.0" prefHeight="27.0" prefWidth="255.0" promptText="johndoe@gmail.com" />
                   <Label text="Password">
                      <padding>
                         <Insets top="10.0" />
                      </padding>
                   </Label>
-                  <TextField maxWidth="200.0" />
+                  <TextField fx:id="paypalPasswordField" maxWidth="200.0" />
                </children>
                <VBox.margin>
                   <Insets left="30.0" />
@@ -65,17 +70,17 @@
                               <Insets top="10.0" />
                            </padding>
                         </Label>
-                        <TextField maxWidth="400.0" prefHeight="40.0" prefWidth="400.0" promptText="####-####-####-####" />
+                        <TextField fx:id="cardNumberField" maxWidth="400.0" prefHeight="40.0" prefWidth="400.0" promptText="####-####-####-####" />
                      </children>
                   </VBox>
                   <HBox prefHeight="30.0" prefWidth="597.0" spacing="20.0">
                      <children>
-                        <ComboBox prefHeight="27.0" prefWidth="95.0" promptText="Month" />
-                        <ComboBox prefHeight="27.0" prefWidth="95.0" promptText="Year" />
-                        <TextField prefHeight="27.0" prefWidth="169.0" promptText="Security Code" />
+                        <ComboBox fx:id="monthBox" prefHeight="27.0" prefWidth="95.0" promptText="Month" />
+                        <ComboBox fx:id="yearBox" prefHeight="27.0" prefWidth="95.0" promptText="Year" />
+                        <TextField fx:id="cardSecurityField" prefHeight="27.0" prefWidth="169.0" promptText="CVV" />
                      </children>
                   </HBox>
-                  <TextField maxWidth="400.0" promptText="Card Holder" />
+                  <TextField fx:id="cardHolderField" maxWidth="400.0" promptText="Card Holder" />
                </children>
                <padding>
                   <Insets left="30.0" right="30.0" />
@@ -83,11 +88,11 @@
             </VBox>
          </children>
       </VBox>
-      <VBox layoutX="753.0" layoutY="25.0" prefHeight="600.0" prefWidth="247.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="753.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox layoutX="654.0" layoutY="87.0" prefHeight="513.0" prefWidth="354.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="654.0" AnchorPane.rightAnchor="-8.0" AnchorPane.topAnchor="0.0">
          <children>
-            <HBox>
+            <HBox prefHeight="61.0" prefWidth="243.0">
                <children>
-                  <Label prefHeight="42.0" prefWidth="92.0" text="Total:">
+                  <Label fx:id="totalLabel" prefHeight="62.0" prefWidth="271.0" text="Total:">
                      <font>
                         <Font name="Avenir Book" size="36.0" />
                      </font>
@@ -95,36 +100,24 @@
                         <Insets top="10.0" />
                      </padding>
                   </Label>
-                  <Label text="\$100.00">
-                     <padding>
-                        <Insets top="30.0" />
-                     </padding>
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Label>
                </children>
             </HBox>
             <HBox>
                <children>
-                  <Label text="after Tax:">
+                  <Label fx:id="afterTaxLabel" prefHeight="27.0" prefWidth="280.0" text="after Tax:">
                      <font>
                         <Font name="Avenir Book" size="18.0" />
                      </font>
-                  </Label>
-                  <Label text=" $120.00">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                     <padding>
-                        <Insets top="3.0" />
-                     </padding>
                   </Label>
                </children>
             </HBox>
          </children>
       </VBox>
-      <Button layoutX="577.0" layoutY="359.0" mnemonicParsing="false" style="-fx-background-color: orange;" text="Checkout" />
-      <Button layoutX="577.0" layoutY="399.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="66.0" style="-fx-background-color: pink;" text="Cancel" />
+      <ButtonBar layoutX="577.0" layoutY="359.0">
+         <buttons>
+            <Button fx:id="checkoutBtn" mnemonicParsing="false" onAction="#handleCheckoutButton" prefHeight="37.0" style="-fx-background-color: orange;" text="Checkout" />
+            <Button fx:id="cancelBtn" mnemonicParsing="false" onAction="#handleCancelButton" prefHeight="35.0" prefWidth="72.0" style="-fx-background-color: pink;" text="Cancel" />
+         </buttons>
+      </ButtonBar>
    </children>
 </AnchorPane>

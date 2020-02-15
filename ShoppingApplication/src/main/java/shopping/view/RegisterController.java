@@ -56,7 +56,7 @@ public class RegisterController {
 	@FXML
 	private void handleRegister() { // will take info and make user
 		if (fieldCheck()) {
-			Name name = new Name(firstName.getText(), middleName.getText(), lastName.getText());
+			Name name = new Name(firstName.getText().trim(), middleName.getText().trim(), lastName.getText().trim());
 			Address address = new Address(houseNumber.getText(), streetName.getText(), city.getText(), state.getText(),
 					country.getText());
 			User newUser = new User(name, address, username.getText(), password.getText(), email.getText());
@@ -122,7 +122,7 @@ public class RegisterController {
 			alert.showAndWait();
 			return false;
 		}
-		if (houseNumber.getText().matches(".*\\w.*")) {//house number must be a number
+		if (houseNumber.getText().matches(".*\\D.*")) {//house number must be a number
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("Error");
 			alert.setHeaderText("Issues with certain field(s)");
@@ -141,7 +141,7 @@ public class RegisterController {
 			return false;
 		}
 
-		if (app.getLiveUserBag().getUsers().containsKey(username.getText())) {//if username exists already, can't register
+		if (app.getLiveUserBag().getUsers().containsKey(username.getText().trim())) {//if username exists already, can't register
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("Error");
 			alert.setHeaderText("Issues with certain field(s)");
