@@ -4,7 +4,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import shopping.app.App;
 import shopping.model.Address;
@@ -55,7 +54,7 @@ public class RegisterController {
 	}
 
 	@FXML
-	private void handleRegister() {  //will take info and make user
+	private void handleRegister() { // will take info and make user
 		if (fieldCheck()) {
 			Name name = new Name(firstName.getText(), middleName.getText(), lastName.getText());
 			Address address = new Address(houseNumber.getText(), streetName.getText(), city.getText(), state.getText(),
@@ -75,7 +74,6 @@ public class RegisterController {
 			state.clear();
 			country.clear();
 
-			
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Account Created");
 			alert.setHeaderText("Success!");
@@ -83,46 +81,73 @@ public class RegisterController {
 
 			alert.showAndWait();
 
+			app.showLoginPage();
 		}
-		
-		else {
+
+	}
+
+	public boolean fieldCheck() {// checks inefficient field data
+
+		if (firstName.getText().isEmpty() || lastName.getText().isEmpty() || email.getText().isEmpty()
+				|| username.getText().isEmpty() || password.getText().isEmpty() || confirmPassword.getText().isEmpty()
+				|| streetName.getText().isEmpty() || houseNumber.getText().isEmpty() || city.getText().isEmpty()
+				|| state.getText().isEmpty() || country.getText().isEmpty()) {
+			
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("Error");
 			alert.setHeaderText("Issues with certain field(s)");
-			alert.setContentText("Please correct");
+			alert.setContentText("Please fill each field");
 
 			alert.showAndWait();
-		}
-	}
-
-	public boolean fieldCheck() {//checks inefficient field data
-		if (firstName.getText().isEmpty() ||lastName.getText().isEmpty()
-				|| email.getText().isEmpty() || username.getText().isEmpty() || password.getText().isEmpty()
-				|| confirmPassword.getText().isEmpty() || streetName.getText().isEmpty()
-				|| houseNumber.getText().isEmpty() || city.getText().isEmpty() || state.getText().isEmpty()
-				|| country.getText().isEmpty()) {
 			return false;
 		}
-		if (!(city.getText().split("([\\d]+)")[0].contentEquals(city.getText()))
-				|| !(state.getText().split("([\\d]+)")[0].contentEquals(state.getText()))
-				|| !(country.getText().split("([\\d]+)")[0].contentEquals(country.getText()))
-				|| !(firstName.getText().split("([\\d]+)")[0].contentEquals(firstName.getText()))
-				|| !(middleName.getText().split("([\\d]+)")[0].contentEquals(middleName.getText()))
-				|| !(lastName.getText().split("([\\d]+)")[0].contentEquals(lastName.getText()))) {
+		if (firstName.getText().matches(".*\\d.*") || middleName.getText().matches(".*\\d.*")
+				|| lastName.getText().matches(".*\\d.*") || city.getText().matches(".*\\d.*")
+				|| state.getText().matches(".*\\d.*") || country.getText().matches(".*\\d.*")) { //handles numbers in inappropriate fields
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("Error");
+			alert.setHeaderText("Issues with certain field(s)");
+			alert.setContentText("Numbers in an inappropriate field!");
+
+			alert.showAndWait();
 			return false;
 		}
 
-		if (!readTerms) {
+		if (!readTerms) { //user must agree to terms
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("Error");
+			alert.setHeaderText("Issues with certain field(s)");
+			alert.setContentText("Please agree to terms and conditions!");
+
+			alert.showAndWait();
 			return false;
 		}
-		if (!Character.isDigit(houseNumber.getText().charAt(0))) {
+		if (houseNumber.getText().matches(".*\\w.*")) {//house number must be a number
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("Error");
+			alert.setHeaderText("Issues with certain field(s)");
+			alert.setContentText("Please input a number for house number!");
+
+			alert.showAndWait();
 			return false;
 		}
-		if (!(password.getText().contentEquals(confirmPassword.getText()))) {
+		if (!(password.getText().contentEquals(confirmPassword.getText()))) {//password fields must match
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("Error");
+			alert.setHeaderText("Issues with certain field(s)");
+			alert.setContentText("Passwords must match!");
+
+			alert.showAndWait();
 			return false;
 		}
 
-		if (app.getLiveUserBag().getUsers().containsKey(username.getText())) {
+		if (app.getLiveUserBag().getUsers().containsKey(username.getText())) {//if username exists already, can't register
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("Error");
+			alert.setHeaderText("Issues with certain field(s)");
+			alert.setContentText("Username is taken!");
+
+			alert.showAndWait();
 			return false;
 		}
 

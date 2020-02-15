@@ -29,7 +29,7 @@
                   <HBox prefHeight="27.0" prefWidth="295.0" style="-fx-border-color: black;">
                      <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" minWidth="100.0" prefHeight="31.0" prefWidth="41.0" text="Search" />
-                        <TextField fx:id="searchField" minWidth="150.0" prefHeight="25.0" prefWidth="157.0">
+                        <TextField fx:id="searchField" minWidth="150.0" onAction="#handleSearchField" prefHeight="25.0" prefWidth="157.0">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>

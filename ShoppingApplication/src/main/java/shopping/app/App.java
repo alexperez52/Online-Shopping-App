@@ -3,6 +3,7 @@ package shopping.app;
 import java.io.IOException;
 
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -11,6 +12,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import shopping.model.Inventory;
 import shopping.model.User;
 import shopping.model.UserBag;
@@ -28,10 +30,7 @@ public class App extends Application {
 
 	@Override
 	public void start(Stage primaryStage) {
-		shopping.utils.DataSaver.restore(liveUserBag, liveInventory); //restores data on start up
-		liveUserBag.getUsers().entrySet().forEach(entry -> {
-			System.out.println(entry.getValue());
-		});
+		shopping.utils.DataSaver.restore(liveUserBag, liveInventory); // restores data on start up
 		initRootLayout();
 	}
 
@@ -42,55 +41,67 @@ public class App extends Application {
 	public void initRootLayout() {
 		try {
 			FXMLLoader loaderRoot = new FXMLLoader();
-			loaderRoot.setLocation(App.class.getClass().getResource("/shopping/view/RootLayout.fxml"));
+			loaderRoot.setLocation(App.class.getClass().getResource("/shopping/view/RootLayout.fxml")); // loads root																					// pane
 			rootLayout = (BorderPane) loaderRoot.load();
 
-			FXMLLoader loaderLogin = new FXMLLoader();
-			loaderLogin.setLocation(App.class.getClass().getResource("/shopping/view/LoginPage.fxml"));
-			Pane loginPage = (Pane) loaderLogin.load();
-			rootLayout.setCenter(loginPage);
-			
-			LoginController loginController = loaderLogin.getController();
-			loginController.setApp(this);
-
 			Scene scene = new Scene(rootLayout);
+			showLoginPage();
 
 			primaryStage.setScene(scene);
 			primaryStage.show();
-			shopping.utils.DataSaver.backup(liveUserBag, liveInventory); //will save data on exit
+			
+			primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() { //saves bags on exit
+				public void handle(WindowEvent we) {
+					shopping.utils.DataSaver.backup(liveUserBag, liveInventory);
+				}
+			});
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void showLoginPage() {// pulls main page
+		try {
+			FXMLLoader loaderLogin = new FXMLLoader();
+			loaderLogin.setLocation(App.class.getClass().getResource("/shopping/view/LoginPage.fxml")); // loads login
+			Pane loginPage = (Pane) loaderLogin.load();
+			rootLayout.setCenter(loginPage);
+
+			LoginController loginController = loaderLogin.getController();
+			loginController.setApp(this);
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 
-	public void showCatalogPage() {//pulls main page 
+	public void showCatalogPage() {// pulls main page
 		try {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(App.class.getResource("/shopping/view/CatalogPage.fxml"));
 			Pane page = (Pane) loader.load();
 			rootLayout.setCenter(page);
-			
+
 			CatalogController catalogController = loader.getController();
 			catalogController.setApp(this);
-			
+
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-	
-	public void showRegisterPage() {//pulls main page 
+
+	public void showRegisterPage() {// pulls register page
 		try {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(App.class.getResource("/shopping/view/RegisterPage.fxml"));
 			Pane page = (Pane) loader.load();
 			rootLayout.setCenter(page);
-			
+
 			RegisterController registerController = loader.getController();
 			registerController.setApp(this);
-			
+
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

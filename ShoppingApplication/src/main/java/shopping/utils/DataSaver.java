@@ -114,6 +114,7 @@ public class DataSaver {
 			FileOutputStream fos = new FileOutputStream("src/main/java/backups/inventory.dat");
 			ObjectOutputStream oos = new ObjectOutputStream(fos);
 			oos.writeObject(inventory);
+			oos.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -126,11 +127,13 @@ public class DataSaver {
 			FileOutputStream fos = new FileOutputStream("src/main/java/backups/userBag.dat");
 			ObjectOutputStream oos = new ObjectOutputStream(fos);
 			oos.writeObject(userBag);
+			oos.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	
 	}
 	
 	private static void backupItemId(Integer id) {
@@ -138,6 +141,7 @@ public class DataSaver {
 			FileOutputStream fos = new FileOutputStream("src/main/java/backups/lastItemId.dat");
 			DataOutputStream dos = new DataOutputStream(fos);
 			dos.writeInt(id);
+			dos.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -150,6 +154,7 @@ public class DataSaver {
 			FileOutputStream fos = new FileOutputStream("src/main/java/backups/lastInvoiceId.dat");
 			DataOutputStream dos = new DataOutputStream(fos);
 			dos.writeInt(id);
+			dos.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {

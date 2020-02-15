@@ -23,6 +23,7 @@ import shopping.model.ShoppingCartItem;
 
 public class CatalogController {
 	private App app;
+	private ListView<Item> fullItemsView = new ListView<Item>();
 	@FXML
 	private TextField searchField;
 	@FXML
@@ -67,6 +68,7 @@ public class CatalogController {
 		this.app = app;
 		ObservableList<Item> items = FXCollections.observableArrayList(app.getLiveInventory().getInventory().values());
 		itemsView.getItems().setAll(items);
+		fullItemsView.getItems().setAll(items);
 
 	}
 
@@ -88,11 +90,11 @@ public class CatalogController {
 			if (cart.getCart().contains(cartItem)) {// if cart item exists already
 				int index = cart.getCart().indexOf(cartItem);
 				ShoppingCartItem existingCartItem = cart.getCart().get(index);
-				existingCartItem.setItemQuantity(existingCartItem.getItemQuantity() + 1);// just increase quanity
+				existingCartItem.setItemQuantity(existingCartItem.getItemQuantity() + 1);// just increase quantity
 			} else {
 				cart.getCart().add(cartItem);
 			}
-		System.out.println(cart.getCart());
+			System.out.println(cart.getCart());
 		} else {
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("No Selection");
@@ -100,6 +102,17 @@ public class CatalogController {
 			alert.setContentText("Please select an item in the catalog.");
 
 			alert.showAndWait();
+		}
+	}
+
+	@FXML
+	private void handleSearchField() { //finds specific item in list by name
+		int index = -1;
+		for (Item item : fullItemsView.getItems()) {
+			index++;
+			if (item.getName() != null && item.getName().contains(searchField.getText())) {
+				displaySubList(index, index + 1);
+			}
 		}
 	}
 
