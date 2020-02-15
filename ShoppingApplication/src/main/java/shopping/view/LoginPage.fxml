@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane minHeight="600.0" minWidth="1000.0" prefHeight="390.0" prefWidth="433.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane minHeight="600.0" minWidth="1000.0" prefHeight="390.0" prefWidth="433.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="shopping.view.LoginController">
    <center>
       <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <top>
@@ -41,7 +41,7 @@
                   </HBox>
                   <HBox prefHeight="28.0" prefWidth="600.0">
                      <children>
-                        <TextField alignment="TOP_LEFT" nodeOrientation="LEFT_TO_RIGHT" prefHeight="25.0" prefWidth="204.0">
+                        <TextField fx:id="username" alignment="TOP_LEFT" nodeOrientation="LEFT_TO_RIGHT" prefHeight="25.0" prefWidth="204.0">
                            <HBox.margin>
                               <Insets left="190.0" />
                            </HBox.margin>
@@ -61,7 +61,7 @@
                   </HBox>
                   <HBox prefHeight="63.0" prefWidth="600.0">
                      <children>
-                        <PasswordField prefHeight="25.0" prefWidth="206.0">
+                        <PasswordField fx:id="password" prefHeight="25.0" prefWidth="206.0">
                            <HBox.margin>
                               <Insets left="190.0" />
                            </HBox.margin>
@@ -71,7 +71,7 @@
                         <Insets left="200.0" />
                      </VBox.margin>
                   </HBox>
-                  <Button mnemonicParsing="false" prefHeight="21.0" prefWidth="205.0" style="-fx-background-color: orange; -fx-border-color: black;" text="Login" textFill="#612f1a">
+                  <Button mnemonicParsing="false" onAction="#handleLogin" prefHeight="21.0" prefWidth="205.0" style="-fx-background-color: orange; -fx-border-color: black;" text="Login" textFill="#612f1a">
                      <VBox.margin>
                         <Insets left="390.0" />
                      </VBox.margin>

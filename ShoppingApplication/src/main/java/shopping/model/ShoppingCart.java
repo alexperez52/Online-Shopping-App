@@ -21,6 +21,11 @@ public class ShoppingCart implements Serializable {
 	public void clearCart() { //takes out items from cart
 		cart.clear();
 	}
+
+	@Override
+	public String toString() {
+		return "ShoppingCart [cart=" + cart + "]";
+	}
 	
 	
 }

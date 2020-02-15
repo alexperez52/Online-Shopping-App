@@ -49,6 +49,11 @@ public class UserFactory {
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
+		
+		testUserBag.getUsers().entrySet().forEach(entry -> {
+			System.out.println(entry.getValue());
+		});
+		
 		return testUserBag;
 	}
 

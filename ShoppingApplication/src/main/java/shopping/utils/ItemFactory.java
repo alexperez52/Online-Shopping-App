@@ -29,6 +29,10 @@ public class ItemFactory {
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
+		
+		inventory.getInventory().entrySet().forEach(entry -> {
+			System.out.println(entry.getValue());
+		});
 		return testInventory;
 	}
 }

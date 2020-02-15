@@ -62,8 +62,7 @@ public class Item implements Serializable {// item that actually exists in inven
 
 	@Override
 	public String toString() {
-		return "Item [name=" + name + ", id=" + id + ", price=" + price + ", description=" + description + ", quantity="
-				+ quantity + "]";
+		return name;
 	}
 	
 	
