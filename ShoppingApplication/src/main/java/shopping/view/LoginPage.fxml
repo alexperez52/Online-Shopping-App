@@ -86,7 +86,7 @@
                         </Label>
                      </children>
                   </HBox>
-                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="206.0" text="Create your Account">
+                  <Button mnemonicParsing="false" onAction="#handleRegister" prefHeight="25.0" prefWidth="206.0" text="Create your Account">
                      <VBox.margin>
                         <Insets left="390.0" />
                      </VBox.margin>

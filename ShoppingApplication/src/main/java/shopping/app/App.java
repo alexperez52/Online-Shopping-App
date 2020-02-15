@@ -16,6 +16,7 @@ import shopping.model.User;
 import shopping.model.UserBag;
 import shopping.view.CatalogController;
 import shopping.view.LoginController;
+import shopping.view.RegisterController;
 
 public class App extends Application {
 
@@ -28,6 +29,9 @@ public class App extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		shopping.utils.DataSaver.restore(liveUserBag, liveInventory); //restores data on start up
+		liveUserBag.getUsers().entrySet().forEach(entry -> {
+			System.out.println(entry.getValue());
+		});
 		initRootLayout();
 	}
 
@@ -68,6 +72,22 @@ public class App extends Application {
 			
 			CatalogController catalogController = loader.getController();
 			catalogController.setApp(this);
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void showRegisterPage() {//pulls main page 
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(App.class.getResource("/shopping/view/RegisterPage.fxml"));
+			Pane page = (Pane) loader.load();
+			rootLayout.setCenter(page);
+			
+			RegisterController registerController = loader.getController();
+			registerController.setApp(this);
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

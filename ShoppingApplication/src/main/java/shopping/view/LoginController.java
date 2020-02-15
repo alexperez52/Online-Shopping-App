@@ -38,7 +38,6 @@ public class LoginController {
 			// if username and password correct
 			app.setCurrentUser(app.getLiveUserBag().getUsers().get(username.getText()));
 			app.showCatalogPage();
-			System.out.println(app.getCurrentUser().getCart().getCart().toString());
 		}
 
 		else {
@@ -54,7 +53,7 @@ public class LoginController {
 	
 	@FXML
 	private void handleRegister() {
-		
+		app.showRegisterPage();
 	}
 
 }
