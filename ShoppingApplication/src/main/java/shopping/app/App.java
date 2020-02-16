@@ -33,6 +33,9 @@ public class App extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		shopping.utils.DataSaver.restore(liveUserBag, liveInventory); // restores data on start up
+		liveUserBag.getUsers().entrySet().forEach(entry -> {
+			System.out.println(entry.getValue());
+		});
 		initRootLayout();
 	}
 
@@ -43,9 +46,10 @@ public class App extends Application {
 	public void initRootLayout() {
 		try {
 			FXMLLoader loaderRoot = new FXMLLoader();
-			loaderRoot.setLocation(App.class.getClass().getResource("/shopping/view/RootLayout.fxml")); // loads root																					// pane
+			loaderRoot.setLocation(App.class.getClass().getResource("/shopping/view/RootLayout.fxml")); // loads root //
+																										// pane
 			rootLayout = (BorderPane) loaderRoot.load();
-			
+
 			RootController rootController = loaderRoot.getController();
 			rootController.setApp(this);
 
@@ -54,26 +58,24 @@ public class App extends Application {
 
 			primaryStage.setScene(scene);
 			primaryStage.show();
-			
-			primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() { //saves bags on exit
+
+			primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() { // saves bags on exit
 				public void handle(WindowEvent we) {
 					shopping.utils.DataSaver.backup(liveUserBag, liveInventory);
 				}
 			});
-			
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void showLoginPage() {// pulls main page
 		try {
 			FXMLLoader loaderLogin = new FXMLLoader();
 			loaderLogin.setLocation(App.class.getClass().getResource("/shopping/view/LoginPage.fxml")); // loads login
 			Pane loginPage = (Pane) loaderLogin.load();
 			rootLayout.setCenter(loginPage);
-			
-			
 
 			LoginController loginController = loaderLogin.getController();
 			loginController.setApp(this);
@@ -112,7 +114,7 @@ public class App extends Application {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void showCheckoutPage() {// pulls checkout page
 		try {
 			FXMLLoader loader = new FXMLLoader();

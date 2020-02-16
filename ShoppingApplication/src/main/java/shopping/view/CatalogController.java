@@ -85,14 +85,27 @@ public class CatalogController {
 		cart.setCart(app.getCurrentUser().getCart().getCartItems()); // current user's cart
 		int selectedIndex = itemsView.getSelectionModel().getSelectedIndex();
 		if (selectedIndex >= 0) {// if user clicks on an item
-			Integer itemId = app.getLiveInventory().getInventory().get(selectedIndex + 1).getId(); // obtains item's id
-			ShoppingCartItem cartItem = new ShoppingCartItem(itemId, 1);// makes shopping cart item
-			if (cart.getCartItems().contains(cartItem)) {// if cart item exists already
-				int index = cart.getCartItems().indexOf(cartItem);
-				ShoppingCartItem existingCartItem = cart.getCartItems().get(index);
-				existingCartItem.setItemQuantity(existingCartItem.getItemQuantity() + 1);// just increase quantity
-			} else {
-				cart.getCartItems().add(cartItem);
+			Item clickedItem = app.getLiveInventory().getInventory().get(selectedIndex + 1);
+			if (clickedItem.getQuantity() != 0) { //checks if item is in stock
+				Integer itemId = app.getLiveInventory().getInventory().get(selectedIndex + 1).getId(); // obtains item's
+																										// id
+				ShoppingCartItem cartItem = new ShoppingCartItem(itemId, 1);// makes shopping cart item
+				if (cart.getCartItems().contains(cartItem)) {// if cart item exists already
+					int index = cart.getCartItems().indexOf(cartItem);
+					ShoppingCartItem existingCartItem = cart.getCartItems().get(index);
+					existingCartItem.setItemQuantity(existingCartItem.getItemQuantity() + 1);// just increase quantity
+				} else {
+					cart.getCartItems().add(cartItem);
+				}
+			}
+			
+			else {
+				Alert alert = new Alert(AlertType.WARNING);
+				alert.setTitle("Warning");
+				alert.setHeaderText("Item not in stock!");
+				alert.setContentText("Can't add to cart");
+
+				alert.showAndWait();
 			}
 		} else {
 			Alert alert = new Alert(AlertType.WARNING);
@@ -105,7 +118,7 @@ public class CatalogController {
 	}
 
 	@FXML
-	private void handleSearchField() { //finds specific item in list by name
+	private void handleSearchField() { // finds specific item in list by name
 		int index = -1;
 		for (Item item : fullItemsView.getItems()) {
 			index++;

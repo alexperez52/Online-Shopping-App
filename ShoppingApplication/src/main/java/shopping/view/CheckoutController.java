@@ -15,6 +15,7 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.VBox;
 import shopping.app.App;
+import shopping.model.Item;
 import shopping.model.Month;
 import shopping.model.Payment;
 import shopping.model.ShoppingCart;
@@ -71,40 +72,54 @@ public class CheckoutController {
 
 	}
 
-	private double calculateItemTotal() { //totals user's bill
+	private double calculateItemTotal() { // totals user's bill
 		double totalPrice = 0;
 		for (ShoppingCartItem item : app.getCurrentUser().getCart().getCartItems()) {
-				totalPrice = app.getLiveInventory().getInventory().get(item.getId()).getPrice() * item.getItemQuantity();
-			}
-		
+			totalPrice = app.getLiveInventory().getInventory().get(item.getId()).getPrice() * item.getItemQuantity();
+		}
+
 		return totalPrice;
 	}
 
 	@FXML
-	private void handleCheckoutButton() { //will confirm purchase, need to add invoice generation
+	private void handleCheckoutButton() { // will confirm purchase, need to add invoice generation
 		if (fieldCheck()) {
 			Payment userPayment = new Payment(isPaypal, isCard, extractPayment(isPaypal, isCard));
 			app.getCurrentUser().setPayment(userPayment);
+			updateInventory(app.getCurrentUser().getCart()); //updates inventory after purchase
 			app.getCurrentUser().getCart().clearCart();
-			
+
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Checkout");
 			alert.setHeaderText("Items purchased!");
 			alert.setContentText("");
 
 			alert.showAndWait();
+			
+			System.out.println(app.getCurrentUser().getPayment());
+
+			app.showCatalogPage();
+
+		}
+	}
+	
+	
+	private void updateInventory(ShoppingCart cart) { //adjust stock after purchase is made
+		for (ShoppingCartItem item : app.getCurrentUser().getCart().getCartItems()) {
+			Item inventoryItem = app.getLiveInventory().getInventory().get(item.getId());
+			inventoryItem.setQuantity(inventoryItem.getQuantity() - item.getItemQuantity());
 		}
 	}
 
 	@FXML
-	private void handleCancelButton() { //cancels checkout, takes user to catalog
+	private void handleCancelButton() { // cancels checkout, takes user to catalog
 		app.showCatalogPage();
 	}
 
-	private String extractPayment(boolean isPaypal, boolean isCard) { //payment gets stored differently for paypal/card
+	private String extractPayment(boolean isPaypal, boolean isCard) { // payment gets stored differently for paypal/card
 		String paymentInfo;
 		if (isPaypal) {
-			paymentInfo = "Paypal Email: " + paypalEmailField.getText() + "\nPayPal Passwod: "
+			paymentInfo = "Paypal Email: " + paypalEmailField.getText() + "\nPayPal Password: "
 					+ paypalPasswordField.getText();
 		} else {
 			paymentInfo = "Card Number: " + cardNumberField.getText() + "\nExpires: "
@@ -117,7 +132,7 @@ public class CheckoutController {
 	}
 
 	@FXML
-	private void handlePaypalRadio() {//paypal button will only allow payapl info
+	private void handlePaypalRadio() {// paypal button will only allow payapl info
 		paypalVbox.setDisable(false);
 		cardVbox.setDisable(true);
 		isPaypal = true;
@@ -125,7 +140,7 @@ public class CheckoutController {
 	}
 
 	@FXML
-	private void handleCardRadio() { //card button will only allow card info
+	private void handleCardRadio() { // card button will only allow card info
 		paypalVbox.setDisable(true);
 		cardVbox.setDisable(false);
 		isPaypal = false;
@@ -134,14 +149,50 @@ public class CheckoutController {
 
 	public boolean fieldCheck() {// checks inefficient field data
 		if (!(paypalEmailField.getText().isEmpty()) && !(paypalPasswordField.getText().isEmpty())) {
-			return true;
+			if (paypalEmailField.getText().matches("([\\w]+@[\\w]+[.][\\w]+)+")) { // checks if email is invalid
+				return true;
+			} else {
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setTitle("Warning");
+				alert.setHeaderText("Please enter a valid email!");
+				alert.setContentText("");
+
+				alert.showAndWait();
+
+				return false;
+			}
 		}
-		if (!(cardNumberField.getText().isEmpty()) && !(cardSecurityField.getText().isEmpty())
+		if (!(cardNumberField.getText().isEmpty()) && !(cardSecurityField.getText().isEmpty()) // first checks if fields
+																								// aren't empty
 				&& !(cardHolderField.getText().isEmpty())
-				&& monthBox.getSelectionModel().getSelectedItem() != Month.MONTH
+				&& monthBox.getSelectionModel().getSelectedItem() != null
 				&& yearBox.getSelectionModel().getSelectedItem() != null) {
-			return true;
+			if (cardNumberField.getText().replaceAll("[^\\d]+", "").matches("[\\d]{16}")
+					&& cardSecurityField.getText().matches("[\\d]{3}")
+					&& cardHolderField.getText().matches("[a-zA-Z\\s]+")) {
+				return true;
+				// extracts digits
+				// from card #, and cvv and extracts letters from card holder
+				// checks if there's
+				// proper amount of digits, or valid input for a name
+			} else {
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setTitle("Warning");
+				alert.setHeaderText("Please enter a valid input for field(s)");
+				alert.setContentText("");
+
+				alert.showAndWait();
+
+				return false;
+			}
 		}
+
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle("Warning");
+		alert.setHeaderText("Certain Field(s) incomplete!");
+		alert.setContentText("");
+
+		alert.showAndWait();
 
 		return false;
 	}
@@ -149,7 +200,7 @@ public class CheckoutController {
 	public void setApp(App app) { // gives controller access to databases
 		this.app = app;
 		double bill = calculateItemTotal();
-		totalLabel.setText("Total: $"+ (Math.round(bill * 100.0) / 100.0f));
-		afterTaxLabel.setText("After Tax: $"+ (Math.round((bill * 1.04) * 100.0) / 100.0f));
+		totalLabel.setText("Total: $" + (Math.round(bill * 100.0) / 100.0f));
+		afterTaxLabel.setText("After Tax: $" + (Math.round((bill * 1.04) * 100.0) / 100.0f));
 	}
 }

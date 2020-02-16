@@ -37,4 +37,11 @@ public class Payment implements Serializable {
 		this.information = information;
 	}
 
+	@Override
+	public String toString() {
+		return "Payment [isPaypal=" + isPaypal + ", isCard=" + isCard + ", information=" + information + "]";
+	}
+	
+	
+
 }
