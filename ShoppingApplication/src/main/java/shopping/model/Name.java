@@ -38,6 +38,10 @@ public class Name implements Serializable {
 		this.lastName = lastName;
 	}
 	
+	public String getFullName() {
+		return firstName + " " + middleName + " " + lastName;
+	}
+	
 	@Override
 	public String toString() {
 		return "Name [firstName=" + firstName + ", middleName=" + middleName + ", lastName=" + lastName + "]";

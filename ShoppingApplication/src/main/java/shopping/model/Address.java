@@ -56,6 +56,10 @@ public class Address implements Serializable{ //holds user's address for shippin
 	public void setCountry(String country) {
 		this.country = country;
 	}
+	
+	public String getFullAddress() {
+		return houseNumber + " " + streetAddress + " " + city + " " + state + " " + country;
+	}
 
 	@Override
 	public String toString() {

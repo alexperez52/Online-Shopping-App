@@ -14,16 +14,23 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import shopping.model.Inventory;
+import shopping.model.Invoice;
 import shopping.model.User;
 import shopping.model.UserBag;
 import shopping.view.CatalogController;
 import shopping.view.CheckoutController;
+import shopping.view.InvoiceDialogController;
 import shopping.view.LoginController;
 import shopping.view.RegisterController;
 import shopping.view.RootController;
 
 public class App extends Application {
-
+	
+	/*
+	 * This project was created with inspiration from current shopping apps (amazon, etc.) along with help from scene builder tutorials
+	 * by author Marco Jakob (https://code.makery.ch/library/javafx-tutorial/)
+	 */
+	
 	private Stage primaryStage = new Stage();
 	private BorderPane rootLayout = new BorderPane();
 	private Inventory liveInventory = new Inventory();
@@ -33,9 +40,11 @@ public class App extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		shopping.utils.DataSaver.restore(liveUserBag, liveInventory); // restores data on start up
+		
 		liveUserBag.getUsers().entrySet().forEach(entry -> {
 			System.out.println(entry.getValue());
 		});
+		
 		initRootLayout();
 	}
 
@@ -130,6 +139,31 @@ public class App extends Application {
 		}
 	}
 
+	public void showInvoiceDialog(Invoice invoice) {// pulls invoice dialog
+		Stage dialogStage;
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(App.class.getResource("/shopping/view/Invoice.fxml"));
+			Pane page = (Pane) loader.load();
+
+			dialogStage = new Stage();
+			dialogStage.setTitle("Invoice");
+			Scene scene = new Scene(page);
+			dialogStage.setScene(scene);
+
+			InvoiceDialogController controller = loader.getController();
+			controller.setDialogStage(dialogStage);
+			controller.setApp(this);
+			controller.setCurrentInvoice(invoice);
+
+			dialogStage.showAndWait();
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+	}
+
 	public Stage getPrimaryStage() {
 		return primaryStage;
 	}
@@ -168,6 +202,11 @@ public class App extends Application {
 
 	public void setCurrentUser(User user) {
 		this.currentUser = user;
+	}
+	
+	private void regenerateData(Inventory inventory, UserBag userBag) {
+		inventory = shopping.utils.ItemFactory.importItemData(inventory);
+		userBag = shopping.utils.UserFactory.importUserData(userBag);
 	}
 
 }
