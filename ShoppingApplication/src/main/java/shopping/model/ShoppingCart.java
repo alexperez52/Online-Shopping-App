@@ -27,8 +27,8 @@ public class ShoppingCart implements Serializable {
 		String cartSummary = "";
 		for (ShoppingCartItem item : this.getCartItems()) {
 			Item inventoryItem = inventory.getInventory().get(item.getId());
-			cartSummary = "\nItem: " + inventoryItem.getName() + " Quantity: " + inventoryItem.getQuantity() + "Price: "
-					+ Math.round(((item.getItemQuantity() * inventoryItem.getPrice() * 100.0) / 100.0f)); //rounds to $ .##
+			cartSummary += "\nItem: " + inventoryItem.getName() + "\t\t\tQuantity: " + item.getItemQuantity() + "\t\t\tPrice: $"
+					+ shopping.utils.DataFormatter.formatAmount(item.getItemQuantity() * inventoryItem.getPrice()); //rounds to $ 0.##
 		}
 		return cartSummary;
 

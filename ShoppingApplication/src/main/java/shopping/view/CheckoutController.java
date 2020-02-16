@@ -78,7 +78,7 @@ public class CheckoutController {
 	private double calculateItemTotal() { // totals user's bill
 		double totalPrice = 0;
 		for (ShoppingCartItem item : app.getCurrentUser().getCart().getCartItems()) {
-			totalPrice = app.getLiveInventory().getInventory().get(item.getId()).getPrice() * item.getItemQuantity();
+			totalPrice += app.getLiveInventory().getInventory().get(item.getId()).getPrice() * item.getItemQuantity();
 		}
 
 		return totalPrice;
@@ -233,7 +233,7 @@ public class CheckoutController {
 	public void setApp(App app) { // gives controller access to databases
 		this.app = app;
 		double bill = calculateItemTotal();
-		totalLabel.setText("Total: $" + (Math.round(bill * 100.0) / 100.0f));
-		afterTaxLabel.setText("After Tax: $" + (Math.round((bill * 1.04) * 100.0) / 100.0f));
+		totalLabel.setText("Total: $" + shopping.utils.DataFormatter.formatAmount(bill));
+		afterTaxLabel.setText("After Tax: $" + shopping.utils.DataFormatter.formatAmount(bill));
 	}
 }

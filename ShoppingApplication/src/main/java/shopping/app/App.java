@@ -40,7 +40,7 @@ public class App extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		shopping.utils.DataSaver.restore(liveUserBag, liveInventory); // restores data on start up
-		
+		//regenerateData();
 		liveUserBag.getUsers().entrySet().forEach(entry -> {
 			System.out.println(entry.getValue());
 		});
@@ -204,9 +204,9 @@ public class App extends Application {
 		this.currentUser = user;
 	}
 	
-	private void regenerateData(Inventory inventory, UserBag userBag) {
-		inventory = shopping.utils.ItemFactory.importItemData(inventory);
-		userBag = shopping.utils.UserFactory.importUserData(userBag);
+	private void regenerateData() {
+		liveInventory = shopping.utils.ItemFactory.importItemData(liveInventory);
+		liveUserBag = shopping.utils.UserFactory.importUserData(liveUserBag);
 	}
 
 }

@@ -132,7 +132,7 @@ public class CatalogController {
 	private void displayItemInformation(Item item) {
 		if (item != null) {
 			name.setText("Name: " + item.getName());
-			price.setText("Price: $" + Math.round(item.getPrice() * 100.0) / 100.0f);
+			price.setText("Price: $" + shopping.utils.DataFormatter.formatAmount(item.getPrice())); //#.00
 			quantity.setText("Quantity: " + String.valueOf(item.getQuantity()));
 			description.setText("Description: " + item.getDescription());
 		}

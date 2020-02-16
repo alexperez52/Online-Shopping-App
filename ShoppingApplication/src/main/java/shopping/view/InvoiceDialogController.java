@@ -49,19 +49,31 @@ public class InvoiceDialogController {
 		return currentInvoice;
 	}
 
-	public void setCurrentInvoice(Invoice currentInvoice) { //gets user's purchase information and displays onto invoice
+	public void setCurrentInvoice(Invoice currentInvoice) { // gets user's purchase information and displays onto
+															// invoice
 		this.currentInvoice = currentInvoice;
 
-		nameLabel.setText(app.getCurrentUser().getName().getFullName());
-		addressLabel.setText(app.getCurrentUser().getAddress().getFullAddress());
-		invoiceId.setText("Invoice Number: " + currentInvoice.getId().toString());
+		nameLabel.setText(currentInvoice.getUser().getName().getFullName());
+		addressLabel.setText(currentInvoice.getUser().getAddress().getFullAddress());
+		invoiceId.setText("Invoice ID: x0000" + currentInvoice.getId().toString());
 		invoiceDateCreatedLabel.setText("Date of purchase: " + currentInvoice.getDateCreated());
-		subtotalLabel.setText("Subtotal: $" + formatAmount(currentInvoice.getBill() / 1.04));
-		taxLabel.setText("Tax: $" + formatAmount(currentInvoice.getBill() * .04));
-		totalLabel.setText("Total: $" + currentInvoice.getBill());
+		subtotalLabel.setText("Subtotal: $" + shopping.utils.DataFormatter.formatAmount(currentInvoice.getBill() / 1.04));
+		taxLabel.setText("Tax: $" + shopping.utils.DataFormatter.formatAmount(currentInvoice.getBill() * .04));
+		totalLabel.setText("Total: $" + shopping.utils.DataFormatter.formatAmount(currentInvoice.getBill()));
+		purchaseSummaryLabel
+				.setText(currentInvoice.getUser().getCart().lookUpShoppingCartItems(app.getLiveInventory())); // generate
+																												// purchase
+																												// summary
+																												// based
+																												// on
+																												// purchases
+																												// and
+																												// inventory
+																												// item
+																												// info
 	}
 
-	public double formatAmount(double amount) { //formats amounts to 2 decimal places
+	public double formatAmount(double amount) { // formats amounts to 2 decimal places
 		return Math.round(((amount) * 100.0) / 100.0f);
 	}
 

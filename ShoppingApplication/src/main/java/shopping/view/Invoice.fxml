@@ -53,24 +53,6 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <AnchorPane layoutX="266.0" layoutY="366.0" prefHeight="30.0" prefWidth="213.0" style="-fx-background-color: orange;">
-         <children>
-            <Label layoutX="25.0" layoutY="1.0" text="Item">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-            </Label>
-         </children>
-      </AnchorPane>
-      <AnchorPane layoutX="531.0" layoutY="366.0" prefHeight="30.0" prefWidth="213.0" style="-fx-background-color: orange;">
-         <children>
-            <Label layoutX="14.0" layoutY="1.0" text="Price">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-            </Label>
-         </children>
-      </AnchorPane>
       <AnchorPane layoutX="792.0" layoutY="366.0" prefHeight="30.0" prefWidth="213.0" style="-fx-background-color: orange;">
          <children>
             <Label layoutX="14.0" layoutY="1.0" text="Summary">
@@ -88,7 +70,7 @@
       <AnchorPane layoutX="-3.0" layoutY="396.0" prefHeight="9.0" prefWidth="1000.0" style="-fx-background-color: grey;" />
       <AnchorPane layoutX="-6.0" layoutY="366.0" prefHeight="30.0" prefWidth="213.0" style="-fx-background-color: orange;">
          <children>
-            <Label layoutX="14.0" layoutY="3.0" text="Quantity">
+            <Label layoutX="14.0" layoutY="3.0" text="Purchase Information">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -96,7 +78,10 @@
          </children>
       </AnchorPane>
       <Separator layoutX="757.0" layoutY="209.0" orientation="VERTICAL" prefHeight="395.0" prefWidth="0.0" style="-fx-background-color: black;" />
-      <Label fx:id="purchaseSummaryLabel" layoutX="-1.0" layoutY="407.0" prefHeight="190.0" prefWidth="755.0" />
+      <Label fx:id="purchaseSummaryLabel" layoutX="-1.0" layoutY="407.0" prefHeight="190.0" prefWidth="755.0" text="purchase info">
+         <font>
+            <Font name="Avenir Book" size="18.0" />
+         </font></Label>
       <Label fx:id="subtotalLabel" layoutX="795.0" layoutY="436.0" text="Subtotal:" />
       <Label fx:id="taxLabel" layoutX="795.0" layoutY="472.0" text="Tax:" />
       <Label fx:id="totalLabel" layoutX="791.0" layoutY="514.0" text="Total:" />
