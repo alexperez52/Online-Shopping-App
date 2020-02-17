@@ -11,11 +11,11 @@
          <children>
          <HBox fx:id="navBar" prefHeight="50.0" prefWidth="1000.0" visible="false" AnchorPane.bottomAnchor="-10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <Button minHeight="50.0" minWidth="100.0" mnemonicParsing="false" onAction="#handleAccount" text="Account" />
-                  <Button minHeight="50.0" minWidth="100.0" mnemonicParsing="false" onAction="#handleCatalog" text="Catalog" />
-                  <Button fx:id="checkoutBtn" minHeight="50.0" minWidth="100.0" mnemonicParsing="false" onAction="#handleCheckout" text="Checkout" />
-                  <Button minHeight="50.0" minWidth="100.0" mnemonicParsing="false" onAction="#handleSignOut" text="Sign Out" />
-                  <Button fx:id="adminLogBtn" minHeight="50.0" minWidth="100.0" mnemonicParsing="false" onAction="#handleAdminLog" text="Logs" visible="false" />
+                  <Button minHeight="40.0" minWidth="100.0" mnemonicParsing="false" onAction="#handleAccount" prefHeight="40.0" prefWidth="100.0" text="Account" />
+                  <Button minHeight="40.0" minWidth="100.0" mnemonicParsing="false" onAction="#handleCatalog" prefHeight="40.0" prefWidth="100.0" text="Catalog" />
+                  <Button fx:id="checkoutBtn" minHeight="40.0" minWidth="100.0" mnemonicParsing="false" onAction="#handleCheckout" prefHeight="40.0" prefWidth="100.0" text="Checkout" />
+                  <Button minHeight="40.0" minWidth="100.0" mnemonicParsing="false" onAction="#handleSignOut" prefHeight="40.0" prefWidth="100.0" text="Sign Out" />
+                  <Button fx:id="adminLogBtn" minHeight="40.0" minWidth="100.0" mnemonicParsing="false" onAction="#handleAdminLog" prefHeight="40.0" prefWidth="100.0" text="Logs" visible="false" />
                </children>
             </HBox>
          </children>

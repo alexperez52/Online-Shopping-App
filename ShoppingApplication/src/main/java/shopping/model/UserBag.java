@@ -18,5 +18,6 @@ public class UserBag implements Serializable { // log of users that admins can a
 	public void setUsers(TreeMap<String, User> users) {
 		this.users = users;
 	}
+	
 
 }

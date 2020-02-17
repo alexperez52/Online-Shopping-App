@@ -18,6 +18,8 @@ import shopping.model.Invoice;
 import shopping.model.Item;
 import shopping.model.User;
 import shopping.model.UserBag;
+import shopping.view.AccountController;
+import shopping.view.AdminController;
 import shopping.view.CatalogController;
 import shopping.view.CheckoutController;
 import shopping.view.InvoiceDialogController;
@@ -43,10 +45,13 @@ public class App extends Application {
 	public void start(Stage primaryStage) {
 		shopping.utils.DataSaver.restore(liveUserBag, liveInventory); // restores data on start up
 		//regenerateData();
+//		liveUserBag.getUsers().entrySet().forEach(entry -> {
+//			System.out.println(entry.getValue());
+//		});
 		
-		liveUserBag.getUsers().entrySet().forEach(entry -> {
-			System.out.println(entry.getValue());
-		});
+		liveUserBag.getUsers().get("Adnan1").setAdmin(true);
+		
+		System.out.println(liveUserBag.getUsers().get("Adnan1").isAdmin());
 		
 		initRootLayout();
 	}
@@ -58,7 +63,7 @@ public class App extends Application {
 	public void initRootLayout() {
 		try {
 			FXMLLoader loaderRoot = new FXMLLoader();
-			loaderRoot.setLocation(App.class.getClass().getResource("/shopping/view/RootLayout.fxml")); // loads root 
+			loaderRoot.setLocation(App.class.getClass().getResource("/shopping/view/RootLayout.fxml")); // loads root //
 																										// pane
 			rootLayout = (BorderPane) loaderRoot.load();
 
@@ -166,7 +171,6 @@ public class App extends Application {
 		}
 
 	}
-	
 	public void showItemDialog(Item item) {// pulls invoice dialog
 		Stage dialogStage;
 		try {
@@ -190,6 +194,36 @@ public class App extends Application {
 			e.printStackTrace();
 		}
 
+	}
+	
+	public void showAccountPage() {
+		try {
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(App.class.getResource("/shopping/view/UserProfile.fxml"));
+		Pane page = (Pane) loader.load();
+		rootLayout.setCenter(page);
+
+		AccountController accountController = loader.getController();
+		accountController.setApp(this);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void showAdminPage() {
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(App.class.getResource("/shopping/view/AdminControlPanel.fxml"));
+			Pane page = (Pane) loader.load();
+			rootLayout.setCenter(page);
+
+			AdminController adminController = loader.getController();
+			adminController.setApp(this);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 	}
 
 	public Stage getPrimaryStage() {
@@ -232,7 +266,7 @@ public class App extends Application {
 		this.currentUser = user;
 	}
 	
-	private void regenerateData() { //recreates items/users if new data is needed after model change (corrupts existing data)
+	private void regenerateData() {
 		liveInventory = shopping.utils.ItemFactory.importItemData(liveInventory);
 		liveUserBag = shopping.utils.UserFactory.importUserData(liveUserBag);
 	}
