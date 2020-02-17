@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
@@ -53,11 +54,17 @@
                   <ListView fx:id="itemsView" prefHeight="240.0" prefWidth="901.0" style="-fx-border-color: black;" />
                </children>
             </HBox>
-            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleAddToCart" prefHeight="25.0" prefWidth="116.0" style="-fx-background-color: orange; -fx-border-color: black;" text="Add to cart">
-               <VBox.margin>
-                  <Insets left="835.0" />
-               </VBox.margin>
-            </Button>
+            <ButtonBar>
+               <buttons>
+                  <Button fx:id="newItemBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleNewItemBtn" prefHeight="25.0" prefWidth="116.0" style="-fx-background-color: orange; -fx-border-color: black;" text="New Item" visible="false" />
+                  <Button fx:id="editItemBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleEditItemBtn" prefHeight="25.0" prefWidth="116.0" style="-fx-background-color: orange; -fx-border-color: black;" text="Edit Item" visible="false" />
+                  <Button fx:id="removeItemBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleRemoveBtn" prefHeight="25.0" prefWidth="116.0" style="-fx-background-color: orange; -fx-border-color: black;" text="Remove Item" visible="false" />
+                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleAddToCart" prefHeight="25.0" prefWidth="116.0" style="-fx-background-color: orange; -fx-border-color: black;" text="Add to cart" />
+               </buttons>
+               <padding>
+                  <Insets right="50.0" />
+               </padding>
+            </ButtonBar>
             <VBox prefHeight="167.0" prefWidth="1000.0" style="-fx-border-color: black;">
                <VBox.margin>
                   <Insets left="50.0" right="50.0" />

@@ -15,11 +15,13 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import shopping.model.Inventory;
 import shopping.model.Invoice;
+import shopping.model.Item;
 import shopping.model.User;
 import shopping.model.UserBag;
 import shopping.view.CatalogController;
 import shopping.view.CheckoutController;
 import shopping.view.InvoiceDialogController;
+import shopping.view.ItemDialogController;
 import shopping.view.LoginController;
 import shopping.view.RegisterController;
 import shopping.view.RootController;
@@ -41,6 +43,7 @@ public class App extends Application {
 	public void start(Stage primaryStage) {
 		shopping.utils.DataSaver.restore(liveUserBag, liveInventory); // restores data on start up
 		//regenerateData();
+		
 		liveUserBag.getUsers().entrySet().forEach(entry -> {
 			System.out.println(entry.getValue());
 		});
@@ -155,6 +158,31 @@ public class App extends Application {
 			controller.setDialogStage(dialogStage);
 			controller.setApp(this);
 			controller.setCurrentInvoice(invoice);
+
+			dialogStage.showAndWait();
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+	}
+	
+	public void showItemDialog(Item item) {// pulls invoice dialog
+		Stage dialogStage;
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(App.class.getResource("/shopping/view/ItemDialog.fxml"));
+			Pane page = (Pane) loader.load();
+
+			dialogStage = new Stage();
+			dialogStage.setTitle("Item");
+			Scene scene = new Scene(page);
+			dialogStage.setScene(scene);
+
+			ItemDialogController controller = loader.getController();
+			controller.setDialogStage(dialogStage);
+			controller.setApp(this);
+			controller.setCurrentItem(item);
 
 			dialogStage.showAndWait();
 

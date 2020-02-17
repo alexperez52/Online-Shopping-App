@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -13,6 +14,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -37,6 +40,12 @@ public class CatalogController {
 	private Label quantity;
 	@FXML
 	private Label description;
+	@FXML
+	private Button editItemBtn;
+	@FXML
+	private Button newItemBtn;
+	@FXML
+	private Button removeItemBtn;
 	@FXML
 	private ComboBox<Electronics> category = new ComboBox<Electronics>();
 
@@ -70,7 +79,15 @@ public class CatalogController {
 		ObservableList<Item> items = FXCollections.observableArrayList(app.getLiveInventory().getInventory().values());
 		itemsView.getItems().setAll(items);
 		fullItemsView.getItems().setAll(items);
-
+		if (app.getCurrentUser().isAdmin()) {
+			newItemBtn.setVisible(true);
+			editItemBtn.setVisible(true);
+			removeItemBtn.setVisible(true);
+		} else {
+			newItemBtn.setVisible(false);
+			editItemBtn.setVisible(false);
+			removeItemBtn.setVisible(false);
+		}
 	}
 
 	private void displaySubList(int startIndex, int endIndex) {
@@ -87,7 +104,7 @@ public class CatalogController {
 		int selectedIndex = itemsView.getSelectionModel().getSelectedIndex();
 		if (selectedIndex >= 0) {// if user clicks on an item
 			Item clickedItem = app.getLiveInventory().getInventory().get(selectedIndex + 1);
-			if (clickedItem.getQuantity() != 0) { //checks if item is in stock
+			if (clickedItem.getQuantity() != 0) { // checks if item is in stock
 				Integer itemId = app.getLiveInventory().getInventory().get(selectedIndex + 1).getId(); // obtains item's
 																										// id
 				ShoppingCartItem cartItem = new ShoppingCartItem(itemId, 1);// makes shopping cart item
@@ -99,7 +116,7 @@ public class CatalogController {
 					cart.getCartItems().add(cartItem);
 				}
 			}
-			
+
 			else {
 				Alert alert = new Alert(AlertType.WARNING);
 				alert.setTitle("Warning");
@@ -109,6 +126,61 @@ public class CatalogController {
 				alert.showAndWait();
 			}
 		} else {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("No Selection");
+			alert.setHeaderText("No Item Selected");
+			alert.setContentText("Please select an item in the catalog.");
+
+			alert.showAndWait();
+		}
+	}
+
+	@FXML
+	private void handleNewItemBtn() {// gives admin ability to create new item
+		app.showItemDialog(null);
+	}
+
+	@FXML
+	private void handleRemoveBtn() {// removes item from inventory
+		int selectedIndex = itemsView.getSelectionModel().getSelectedIndex();
+		if (selectedIndex >= 0) {
+			Item clickedItem = app.getLiveInventory().getInventory().get(selectedIndex + 1);
+
+			Alert alert = new Alert(AlertType.CONFIRMATION);
+			alert.setTitle("Deletion Confirmation");
+			alert.setHeaderText("Remove item from inventory?");
+			alert.setContentText("");
+
+			Optional<ButtonType> result = alert.showAndWait();
+			if (result.get() == ButtonType.OK) {
+				app.getLiveInventory().getInventory().remove(clickedItem.getId(), clickedItem);
+				app.showCatalogPage();
+
+			} else {
+				return;
+			}
+		}
+
+		else {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("No Selection");
+			alert.setHeaderText("No Item Selected");
+			alert.setContentText("Please select an item in the catalog.");
+
+			alert.showAndWait();
+		}
+
+	}
+
+	@FXML
+	private void handleEditItemBtn() {// gives admin ability to edit clicked item
+		int selectedIndex = itemsView.getSelectionModel().getSelectedIndex();
+		if (selectedIndex >= 0) {
+			Item clickedItem = app.getLiveInventory().getInventory().get(selectedIndex + 1);
+			app.showItemDialog(clickedItem);
+		}
+
+		else {
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("No Selection");
 			alert.setHeaderText("No Item Selected");
@@ -132,7 +204,7 @@ public class CatalogController {
 	private void displayItemInformation(Item item) {
 		if (item != null) {
 			name.setText("Name: " + item.getName());
-			price.setText("Price: $" + shopping.utils.DataFormatter.formatAmount(item.getPrice())); //#.00
+			price.setText("Price: $" + shopping.utils.DataFormatter.formatAmount(item.getPrice())); // #.00
 			quantity.setText("Quantity: " + String.valueOf(item.getQuantity()));
 			description.setText("Description: " + item.getDescription());
 		}

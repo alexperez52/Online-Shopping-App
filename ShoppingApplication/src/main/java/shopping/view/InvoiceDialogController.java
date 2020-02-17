@@ -73,8 +73,4 @@ public class InvoiceDialogController {
 																												// info
 	}
 
-	public double formatAmount(double amount) { // formats amounts to 2 decimal places
-		return Math.round(((amount) * 100.0) / 100.0f);
-	}
-
 }
