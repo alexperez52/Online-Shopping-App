@@ -52,7 +52,7 @@ public class App extends Application {
 		liveUserBag.getUsers().get("Adnan1").setAdmin(true);
 		
 		System.out.println(liveUserBag.getUsers().get("Adnan1").isAdmin());
-		
+		System.out.println("testing");
 		initRootLayout();
 	}
 
