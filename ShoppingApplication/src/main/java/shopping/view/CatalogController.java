@@ -193,10 +193,14 @@ public class CatalogController {
 	@FXML
 	private void handleSearchField() { // finds specific item in list by name
 		int index = -1;
+		if(searchField.getText().isEmpty()) {
+			displaySubList(0, fullItemsView.getItems().size());
+		}
 		for (Item item : fullItemsView.getItems()) {
 			index++;
-			if (item.getName() != null && item.getName().contains(searchField.getText())) {
+			if (item.getName() != null && item.getName().equalsIgnoreCase(searchField.getText())) {
 				displaySubList(index, index + 1);
+				break;
 			}
 		}
 	}
