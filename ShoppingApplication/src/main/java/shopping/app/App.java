@@ -55,7 +55,7 @@ public class App extends Application {
 	public void initRootLayout() {
 		try {
 			FXMLLoader loaderRoot = new FXMLLoader();
-			loaderRoot.setLocation(App.class.getClass().getResource("/shopping/view/RootLayout.fxml")); // loads root //
+			loaderRoot.setLocation(App.class.getClass().getResource("/shopping/view/RootLayout.fxml")); // loads root 
 																										// pane
 			rootLayout = (BorderPane) loaderRoot.load();
 
@@ -204,7 +204,7 @@ public class App extends Application {
 		this.currentUser = user;
 	}
 	
-	private void regenerateData() {
+	private void regenerateData() { //recreates items/users if new data is needed after model change (corrupts existing data)
 		liveInventory = shopping.utils.ItemFactory.importItemData(liveInventory);
 		liveUserBag = shopping.utils.UserFactory.importUserData(liveUserBag);
 	}
