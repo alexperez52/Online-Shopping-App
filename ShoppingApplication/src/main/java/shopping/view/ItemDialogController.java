@@ -1,11 +1,14 @@
 package shopping.view;
 
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ComboBox;
 import javafx.stage.Stage;
 import shopping.app.App;
+import shopping.model.Electronics;
 import shopping.model.Item;
 
 public class ItemDialogController {
@@ -13,6 +16,7 @@ public class ItemDialogController {
 	private App app;
 	private Stage dialogStage;
 	private boolean isEdit;
+	private Electronics[] itemTypes = {Electronics.CPU, Electronics.GPU, Electronics.MEMORY, Electronics.MOTHERBOARD};
 	@FXML
 	private TextField nameField;
 	@FXML
@@ -21,6 +25,8 @@ public class ItemDialogController {
 	private TextField descriptionField;
 	@FXML
 	private TextField quantityField;
+	@FXML
+	private ComboBox<Electronics> itemTypeBox;
 
 	public ItemDialogController() {
 
@@ -28,7 +34,8 @@ public class ItemDialogController {
 
 	@FXML
 	private void initialize() {
-
+		itemTypeBox.setItems(FXCollections.observableArrayList(itemTypes)); // sets electronics types
+		
 	}
 
 	@FXML
@@ -36,9 +43,8 @@ public class ItemDialogController {
 		if (fieldCheck()) {
 			if (currentItem == null) {
 				Item newItem = new Item(nameField.getText(), Double.parseDouble(priceField.getText()),
-						descriptionField.getText(), Integer.parseInt(quantityField.getText()));
+						descriptionField.getText(), Integer.parseInt(quantityField.getText()), itemTypeBox.getSelectionModel().getSelectedItem());
 				app.getLiveInventory().getInventory().put(newItem.getId(), newItem);
-				
 
 				Alert alert = new Alert(AlertType.INFORMATION);
 				alert.setTitle("Item");
@@ -46,43 +52,66 @@ public class ItemDialogController {
 				alert.setContentText("");
 
 				alert.showAndWait();
-				
+
 				dialogStage.close();
 
-				
 				app.showCatalogPage();
 			} else {
+				boolean edited = false;
 				if (!(nameField.getText().isEmpty())) {
 					currentItem.setName(nameField.getText());
 				}
-				if (!(priceField.getText().isEmpty()) && (priceField.getText().replaceAll("(\\d+\\.{1}\\d+)", "").matches("") // checks if price field has int
-																						// or
-																						// double to use
-						|| priceField.getText().replaceAll("(\\d+\\.{1}\\d+)", "").matches("[\\d]+"))) {
+				if (!(priceField.getText().isEmpty())
+						&& (priceField.getText().replaceAll("(\\d+\\.{1}\\d+)", "").matches("") // checks if price field
+																								// has int
+								// or
+								// double to use
+								|| priceField.getText().replaceAll("(\\d+\\.{1}\\d+)", "").matches("[\\d]+"))) {
 					currentItem.setPrice(Double.parseDouble(priceField.getText()));
+					edited = true;
 				}
-				if (!(quantityField.getText().isEmpty()) && quantityField.getText().replaceAll("[\\d]+", "").matches("")) { // takes int only
+				if (!(quantityField.getText().isEmpty())
+						&& quantityField.getText().replaceAll("[\\d]+", "").matches("")) { // takes int only
 					currentItem.setQuantity(Integer.parseInt(quantityField.getText()));
+					edited = true;
 				}
 				if (!(descriptionField.getText().isEmpty())) {
 					currentItem.setDescription(descriptionField.getText());
+					edited = true;
+
 				}
+
+				if (itemTypeBox.getSelectionModel().getSelectedItem() != null) {
+					currentItem.setElectronic(itemTypeBox.getSelectionModel().getSelectedItem());
+					edited = true;
+				}
+				
+				if(edited) {
 				Alert alert = new Alert(AlertType.INFORMATION);
 				alert.setTitle("Item");
 				alert.setHeaderText("Item Updated!");
 				alert.setContentText("");
 
 				alert.showAndWait();
-				
+
 				dialogStage.close();
 
-				
 				app.showCatalogPage();
+				}
+				else {
+					Alert alert = new Alert(AlertType.INFORMATION);
+					alert.setTitle("Item");
+					alert.setHeaderText("Item not updated!");
+					alert.setContentText("");
 
+					alert.showAndWait();
+
+					dialogStage.close();
+				}
 			}
 		}
 	}
-	
+
 	@FXML
 	private void handleCancel() {
 		nameField.clear();
@@ -91,7 +120,6 @@ public class ItemDialogController {
 		descriptionField.clear();
 
 	}
-
 
 	private boolean fieldCheck() { // checks if fields have appropriate information
 		if (currentItem == null) {// assumes new item
@@ -118,13 +146,21 @@ public class ItemDialogController {
 				alert.showAndWait();
 				return false;
 			}
+			if (itemTypeBox.getSelectionModel().getSelectedItem() == null) {
+				Alert alert = new Alert(AlertType.WARNING);
+				alert.setTitle("Error");
+				alert.setHeaderText("Issues with certain field(s)");
+				alert.setContentText("Please provide an item type!");
+
+				alert.showAndWait();
+				return false;
+			}
 			return true;
 		} else // assumes editing item
 			return true;
 
 	}
 
-	
 	public void setApp(App app) { // gives controller access to databases
 		this.app = app;
 

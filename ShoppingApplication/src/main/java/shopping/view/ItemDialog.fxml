@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -12,7 +13,7 @@
 
 <AnchorPane prefHeight="0.0" prefWidth="731.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="shopping.view.ItemDialogController">
    <children>
-      <ButtonBar layoutX="158.0" layoutY="269.0" prefHeight="309.0" prefWidth="358.0">
+      <ButtonBar layoutX="158.0" layoutY="269.0" prefHeight="309.0" prefWidth="358.0" AnchorPane.topAnchor="350.0">
          <buttons>
             <Button mnemonicParsing="false" onAction="#handleOk" text="OK" />
             <Button mnemonicParsing="false" onAction="#handleCancel" text="Cancel" />
@@ -58,6 +59,15 @@
                      <children>
                         <Label prefWidth="200.0" text="Quantity" />
                         <TextField fx:id="quantityField" prefWidth="200.0" />
+                     </children>
+                     <padding>
+                        <Insets left="50.0" top="10.0" />
+                     </padding>
+                  </HBox>
+                  <HBox prefHeight="136.0" prefWidth="540.0" spacing="50.0">
+                     <children>
+                        <Label prefWidth="200.0" text="Item Type" />
+                        <ComboBox fx:id="itemTypeBox" prefWidth="200.0" />
                      </children>
                      <padding>
                         <Insets left="50.0" top="10.0" />

@@ -46,16 +46,16 @@ public class App extends Application {
 	public void start(Stage primaryStage) {
 		shopping.utils.DataSaver.restore(liveUserBag, liveInventory); // restores data on start up
 		//regenerateData();
-//		liveUserBag.getUsers().entrySet().forEach(entry -> {
-//			System.out.println(entry.getValue());
-//		});
+		liveUserBag.getUsers().entrySet().forEach(entry -> {
+			System.out.println(entry.getValue());
+		});
 		
 
-		liveUserBag.getUsers().get("Adnan1").setAdmin(true);
-		liveUserBag.getUsers().get("Adnan1").getCart().clearCart();
+		liveUserBag.getUsers().get("Adnan79").setAdmin(true);
+		liveUserBag.getUsers().get("Adnan79").getCart().clearCart();
 
-		System.out.println(liveUserBag.getUsers().get("Adnan1").isAdmin());
-		System.out.println("testing");
+		System.out.println(liveUserBag.getUsers().get("Adnan79").isAdmin());
+		System.out.println(liveUserBag.getUsers().get("Adnan79").getPassword());
 
 		initRootLayout();
 	}

@@ -98,7 +98,7 @@ public class CheckoutController {
 					completePurchase();
 					return;
 				} else {
-					return;
+					completePurchase();
 				}
 			}
 			Payment userPayment = new Payment(isPaypal, isCard, extractPayment(isPaypal, isCard));
@@ -233,7 +233,7 @@ public class CheckoutController {
 	public void setApp(App app) { // gives controller access to databases
 		this.app = app;
 		double bill = calculateItemTotal();
-		totalLabel.setText("Total: $" + shopping.utils.DataFormatter.formatAmount(bill));
+		totalLabel.setText("Total: $" + shopping.utils.DataFormatter.formatAmount(bill / 1.04));
 		afterTaxLabel.setText("After Tax: $" + shopping.utils.DataFormatter.formatAmount(bill));
 	}
 }

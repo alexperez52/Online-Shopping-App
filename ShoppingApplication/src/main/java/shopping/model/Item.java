@@ -10,6 +10,9 @@ public class Item implements Serializable {// item that actually exists in inven
 	private double price; //price of 1 quantity of the item
 	private String description; //item details
 	private Integer quantity; //how many are in stock
+	private Electronics electronic;//type of electronic
+
+	
 
 	public Item(String name, double price, String description, Integer quantity) {
 		super();
@@ -18,6 +21,24 @@ public class Item implements Serializable {// item that actually exists in inven
 		this.price = price;
 		this.description = description;
 		this.quantity = quantity;
+	}
+	
+	public Item(String name, double price, String description, Integer quantity, Electronics electronic) {
+		super();
+		this.id = uniqueNumber++;
+		this.name = name;
+		this.price = price;
+		this.description = description;
+		this.quantity = quantity;
+		this.electronic = electronic;
+	}
+	
+	public Electronics getElectronic() {
+		return electronic;
+	}
+
+	public void setElectronic(Electronics electronic) {
+		this.electronic = electronic;
 	}
 
 	public String getName() {

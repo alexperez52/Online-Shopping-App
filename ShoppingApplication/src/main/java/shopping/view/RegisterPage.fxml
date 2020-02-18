@@ -161,9 +161,9 @@
       </AnchorPane>
       <Button layoutX="600.0" layoutY="503.0" mnemonicParsing="false" onAction="#handleRegister" prefHeight="25.0" prefWidth="138.0" text="Register" />
       <Label layoutX="602.0" layoutY="487.0" text="Have an account ?" />
-      <Hyperlink layoutX="699.0" layoutY="484.0" text="Log in " />
+      <Hyperlink layoutX="699.0" layoutY="484.0" onAction="#handleLogInHyperlink" text="Log in " />
       <Label layoutX="619.0" layoutY="538.0" text="I read and agree  to" />
-      <Hyperlink layoutX="724.0" layoutY="535.0" text="terms &amp; agreements." />
+      <Hyperlink layoutX="724.0" layoutY="535.0" onAction="#handleTermsAndAgreements" text="terms &amp; agreements." />
       <RadioButton fx:id="readTermBtn" layoutX="602.0" layoutY="538.0" mnemonicParsing="false" />
    </children>
 </AnchorPane>

@@ -1,4 +1,4 @@
-  
+
 package shopping.view;
 
 import java.util.ArrayList;
@@ -29,7 +29,7 @@ import shopping.model.ShoppingCartItem;
 public class CatalogController {
 	private App app;
 	private Item clickedItem;
-	private ListView<Item> fullItemsView = new ListView<Item>();
+	private ObservableList<Item> inventoryItemsList;
 	@FXML
 	private TextField searchField;
 	@FXML
@@ -60,30 +60,29 @@ public class CatalogController {
 		itemsView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
 			displayItemInformation(newValue);
 			clickedItem = newValue;
-			System.out.println(clickedItem);
+			//System.out.println(clickedItem.getElectronic());
 		});
 		category.setItems(FXCollections.observableArrayList(Electronics.values())); // sets electronics types
 		category.setOnAction((e) -> {
-			//TODO: REWORK COMBOBOX SEARCH!
+			// TODO: REWORK COMBOBOX SEARCH!
 			if (category.getSelectionModel().getSelectedItem().equals(Electronics.ALL)) {// shows all products...
-				displaySubList(0, 45);
+				displaySubList(Electronics.ALL);
 			} else if (category.getSelectionModel().getSelectedItem().equals(Electronics.CPU)) {// only shows cpus, etc.
-				displaySubList(0, 14);
+				displaySubList(Electronics.CPU);
 			} else if (category.getSelectionModel().getSelectedItem().equals(Electronics.GPU)) {
-				displaySubList(14, 28);
+				displaySubList(Electronics.GPU);
 			} else if (category.getSelectionModel().getSelectedItem().equals(Electronics.MEMORY)) {
-				displaySubList(28, 35);
+				displaySubList(Electronics.MEMORY);
 			} else {
-				displaySubList(35, 45);
+				displaySubList(Electronics.MOTHERBOARD);
 			}
 		});
 	}
 
 	public void setApp(App app) { // gives controller access to databases
 		this.app = app;
-		ObservableList<Item> items = FXCollections.observableArrayList(app.getLiveInventory().getInventory().values());
-		itemsView.getItems().setAll(items);
-		fullItemsView.getItems().setAll(items);
+		inventoryItemsList = FXCollections.observableArrayList(app.getLiveInventory().getInventory().values());
+		itemsView.getItems().setAll(inventoryItemsList);
 		if (app.getCurrentUser().isAdmin()) {
 			newItemBtn.setVisible(true);
 			editItemBtn.setVisible(true);
@@ -95,10 +94,20 @@ public class CatalogController {
 		}
 	}
 
-	private void displaySubList(int startIndex, int endIndex) { //shortens display list to specific sections
+	private void displaySubList(Electronics electronicType) { // shortens display list to specific sections
 		ArrayList<Item> items = new ArrayList<Item>(app.getLiveInventory().getInventory().values());
-		ObservableList<Item> subList = FXCollections.observableArrayList(items.subList(startIndex, endIndex));
-		itemsView.getItems().setAll(subList);
+		ArrayList<Item> subList = new ArrayList<Item>();
+		if (electronicType.compareTo(Electronics.ALL) == 0) {
+			itemsView.getItems().setAll(FXCollections.observableArrayList(items));
+			return;
+		} else {
+			for (Item item : items) {
+				if (item.getElectronic() != null && item.getElectronic().compareTo(electronicType) == 0) {
+					subList.add(item);
+				}
+			}
+		}
+		itemsView.getItems().setAll(FXCollections.observableArrayList(subList));
 	}
 
 	@FXML
@@ -110,39 +119,48 @@ public class CatalogController {
 		if (selectedIndex >= 0) {// if user clicks on an item
 			if (clickedItem.getQuantity() > 0) { // checks if item is in stock
 				ShoppingCartItem cartItem = new ShoppingCartItem(clickedItem.getId(), 1);// makes shopping cart item
-				int index = cart.getCartItems().indexOf(cartItem); //finds item in cart already
+				int index = cart.getCartItems().indexOf(cartItem); // finds item in cart already
 				ShoppingCartItem searchedItem;
 				try {
 					searchedItem = cart.getCartItems().get(index);
 				} catch (Exception e) {
-					searchedItem = null; //if not found, makes searched item null
+					searchedItem = null; // if not found, makes searched item null
 				}
-				if (searchedItem != null && ((searchedItem.getItemQuantity() + 1) <=  clickedItem.getQuantity())) {// if cart item exists already and (current amount + new) < stock
+				if (searchedItem != null && ((searchedItem.getItemQuantity() + 1) <= clickedItem.getQuantity())) {// if
+																													// cart
+																													// item
+																													// exists
+																													// already
+																													// and
+																													// (current
+																													// amount
+																													// +
+																													// new)
+																													// <
+																													// stock
 					searchedItem.setItemQuantity(searchedItem.getItemQuantity() + 1);// just increase quantity
-				} else if(searchedItem == null){
+				} else if (searchedItem == null) {
 					cart.getCartItems().add(cartItem);
-				}
-				else {
+				} else {
 					Alert alert = new Alert(AlertType.WARNING);
 					alert.setTitle("Warning");
 					alert.setHeaderText("Item not in stock anymore!");
 					alert.setContentText("Can't add to cart");
 
 					alert.showAndWait();
-					}
 				}
 			}
+		}
 
-			else {
-				Alert alert = new Alert(AlertType.WARNING);
-				alert.setTitle("Warning");
-				alert.setHeaderText("Item not in stock!");
-				alert.setContentText("Can't add to cart");
+		else {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("Warning");
+			alert.setHeaderText("Item not in stock!");
+			alert.setContentText("Can't add to cart");
 
-				alert.showAndWait();
-			}
-		} 
-	
+			alert.showAndWait();
+		}
+	}
 
 	@FXML
 	private void handleNewItemBtn() {// gives admin ability to create new item
@@ -184,7 +202,7 @@ public class CatalogController {
 	private void handleEditItemBtn() {// gives admin ability to edit clicked item
 		int selectedIndex = itemsView.getSelectionModel().getSelectedIndex();
 		if (selectedIndex >= 0) {
-			Item clickedItem = app.getLiveInventory().getInventory().get(selectedIndex + 1);
+			Item clickedItem = itemsView.getSelectionModel().getSelectedItem();
 			app.showItemDialog(clickedItem);
 		}
 
@@ -200,20 +218,19 @@ public class CatalogController {
 
 	@FXML
 	private void handleSearchField() { // finds specific item in list by name
-		int index = -1;
-		if(searchField.getText().isEmpty()) {
-			displaySubList(0, fullItemsView.getItems().size());
+		if (searchField.getText().isEmpty()) {
+			itemsView.getItems().setAll(inventoryItemsList);
 		}
-		for (Item item : fullItemsView.getItems()) {
-			index++;
+		for (Item item : ((ListView<Item>) inventoryItemsList).getItems()) {
 			if (item.getName() != null && item.getName().equalsIgnoreCase(searchField.getText())) {
-				displaySubList(index, index + 1);
+				itemsView.getItems().clear();
+				itemsView.getItems().add(item);
 				break;
 			}
 		}
 	}
 
-	private void displayItemInformation(Item item) { //displays clicked item info
+	private void displayItemInformation(Item item) { // displays clicked item info
 		if (item != null) {
 			name.setText("Name: " + item.getName());
 			price.setText("Price: $" + shopping.utils.DataFormatter.formatAmount(item.getPrice())); // #.00
