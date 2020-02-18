@@ -49,10 +49,12 @@ public class App extends Application {
 //			System.out.println(entry.getValue());
 //		});
 		
+
 		liveUserBag.getUsers().get("Adnan1").setAdmin(true);
 		
 		System.out.println(liveUserBag.getUsers().get("Adnan1").isAdmin());
 		System.out.println("testing");
+
 		initRootLayout();
 	}
 

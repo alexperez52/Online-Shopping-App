@@ -61,7 +61,8 @@ public class CatalogController {
 		});
 		category.setItems(FXCollections.observableArrayList(Electronics.values())); // sets electronics types
 		category.setOnAction((e) -> {
-			if (category.getSelectionModel().getSelectedItem().equals(Electronics.ALL)) {// shows all products
+			//TODO: REWORK COMBOBOX SEARCH!
+			if (category.getSelectionModel().getSelectedItem().equals(Electronics.ALL)) {// shows all products...
 				displaySubList(0, 45);
 			} else if (category.getSelectionModel().getSelectedItem().equals(Electronics.CPU)) {// only shows cpus, etc.
 				displaySubList(0, 14);
@@ -91,7 +92,7 @@ public class CatalogController {
 		}
 	}
 
-	private void displaySubList(int startIndex, int endIndex) {
+	private void displaySubList(int startIndex, int endIndex) { //shortens display list to specific sections
 		ArrayList<Item> items = new ArrayList<Item>(app.getLiveInventory().getInventory().values());
 		ObservableList<Item> subList = FXCollections.observableArrayList(items.subList(startIndex, endIndex));
 		itemsView.getItems().setAll(subList);
@@ -206,7 +207,7 @@ public class CatalogController {
 		}
 	}
 
-	private void displayItemInformation(Item item) {
+	private void displayItemInformation(Item item) { //displays clicked item info
 		if (item != null) {
 			name.setText("Name: " + item.getName());
 			price.setText("Price: $" + shopping.utils.DataFormatter.formatAmount(item.getPrice())); // #.00
