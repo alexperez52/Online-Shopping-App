@@ -12,16 +12,16 @@
    <children>
       <AnchorPane layoutX="-4.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="135.0" prefWidth="1010.0" style="-fx-background-color: #3D4956;">
          <children>
-            <ImageView blendMode="DARKEN" fitHeight="129.0" fitWidth="207.0" layoutX="126.0" layoutY="3.0">
+            <ImageView fx:id="settings" blendMode="DARKEN" fitHeight="129.0" fitWidth="207.0" layoutX="126.0" layoutY="3.0">
                <image>
                   <Image url="@../../images/gre.jpg" />
                </image>
             </ImageView>
-            <ImageView fitHeight="135.0" fitWidth="200.0" layoutX="405.0" pickOnBounds="true">
+            <ImageView fx:id="card" fitHeight="135.0" fitWidth="200.0" layoutX="405.0" onMouseClicked="#setCardInfo" pickOnBounds="true">
                <image>
                   <Image url="@../../images/card.png" />
                </image></ImageView>
-            <ImageView fitHeight="116.0" fitWidth="260.0" layoutX="667.0" layoutY="12.0" pickOnBounds="true">
+            <ImageView fx:id="paypal" fitHeight="116.0" fitWidth="260.0" layoutX="667.0" layoutY="12.0" onMouseClicked="#setPaypalInfo" pickOnBounds="true">
                <image>
                   <Image url="@../../images/paypal.png" />
                </image></ImageView>

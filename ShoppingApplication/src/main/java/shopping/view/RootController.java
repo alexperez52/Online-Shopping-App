@@ -30,8 +30,11 @@ public class RootController {
             @Override //updates navigation once user logs in
             public void handle(ActionEvent event) {
             	if(app.getCurrentUser() != null) { //only allows checkout if they have items
-        			if(app.getCurrentUser().isAdmin()) {
+        			if(app.getCurrentUser().isAdmin()) { //only allows admin to view the LOGS page
         				adminLogBtn.setVisible(true);
+        			}
+        			else {
+        				adminLogBtn.setVisible(false);
         			}
             		
             		navBar.setVisible(true);

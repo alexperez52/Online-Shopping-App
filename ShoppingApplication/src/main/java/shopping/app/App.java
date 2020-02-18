@@ -146,6 +146,7 @@ public class App extends Application {
 			e.printStackTrace();
 		}
 	}
+	
 
 	public void showInvoiceDialog(Invoice invoice) {// pulls invoice dialog
 		Stage dialogStage;
@@ -204,12 +205,64 @@ public class App extends Application {
 		rootLayout.setCenter(page);
 
 		AccountController accountController = loader.getController();
+
 		accountController.setApp(this);
+		accountController.showInfo();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
+	
+	public void showCardEdit() {
+		Stage dialogStage;
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(App.class.getResource("/shopping/view/EditPaymentPage.fxml"));
+			Pane page = (Pane) loader.load();
+
+			dialogStage = new Stage();
+			dialogStage.setTitle("Payment");
+			Scene scene = new Scene(page);
+			dialogStage.setScene(scene);
+
+			AccountController controller = loader.getController();
+			controller.setDialogStage(dialogStage);
+			controller.getCardVBox().setDisable(false);
+			controller.setApp(this);
+
+			dialogStage.showAndWait();
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+	}
+	public void showPaypalEdit() {
+		Stage dialogStage;
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(App.class.getResource("/shopping/view/EditPaymentPage.fxml"));
+			Pane page = (Pane) loader.load();
+
+			dialogStage = new Stage();
+			dialogStage.setTitle("Payment");
+			Scene scene = new Scene(page);
+			dialogStage.setScene(scene);
+
+			AccountController controller = loader.getController();
+			controller.setDialogStage(dialogStage);
+			controller.getPaypalPane().setDisable(false);
+			controller.setApp(this);
+
+			dialogStage.showAndWait();
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+	}
+
 	
 	public void showAdminPage() {
 		try {
@@ -220,6 +273,7 @@ public class App extends Application {
 
 			AdminController adminController = loader.getController();
 			adminController.setApp(this);
+			adminController.updateTable();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

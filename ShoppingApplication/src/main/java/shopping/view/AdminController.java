@@ -33,12 +33,16 @@ public class AdminController {
 	public void setApp(App app) {
 		
 	
+		this.app = app;
 		
+		
+	}
+	
+	public void updateTable() {
 		ObservableList<User> items = FXCollections.observableArrayList(app.getLiveUserBag().getUsers().values());
 		
 		
 		listView.getItems().setAll(items);
-		
 		
 	}
 	
