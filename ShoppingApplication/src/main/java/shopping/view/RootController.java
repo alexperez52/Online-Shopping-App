@@ -30,7 +30,14 @@ public class RootController {
             @Override //updates navigation once user logs in
             public void handle(ActionEvent event) {
             	if(app.getCurrentUser() != null) { //only allows checkout if they have items
-        			navBar.setVisible(true);
+        			if(app.getCurrentUser().isAdmin()) { //only allows admin to view the LOGS page
+        				adminLogBtn.setVisible(true);
+        			}
+        			else {
+        				adminLogBtn.setVisible(false);
+        			}
+            		
+            		navBar.setVisible(true);
         			if(!(app.getCurrentUser().getCart().getCartItems().isEmpty())){
         				checkoutBtn.setDisable(false);
         			}
@@ -46,9 +53,12 @@ public class RootController {
         });
 	}
 
+	
+	
+	
 	@FXML
 	private void handleAccount() {// pulls account info page
-		
+		app.showAccountPage();
 
 	}
 	
@@ -66,6 +76,7 @@ public class RootController {
 	@FXML
 	private void handleAdminLog() {// pulls user log
 
+		app.showAdminPage();
 	}
 	
 	@FXML

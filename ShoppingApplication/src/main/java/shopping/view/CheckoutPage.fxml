@@ -5,7 +5,6 @@
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
@@ -56,7 +55,7 @@
                         <Insets top="10.0" />
                      </padding>
                   </Label>
-                  <PasswordField fx:id="paypalPasswordField" maxWidth="200.0" />
+                  <TextField fx:id="paypalPasswordField" maxWidth="200.0" />
                </children>
                <VBox.margin>
                   <Insets left="30.0" />

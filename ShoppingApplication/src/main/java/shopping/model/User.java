@@ -110,11 +110,10 @@ public class User implements Serializable{
 		this.invoiceLog = invoiceLog;
 	}
 
+	
 	@Override
 	public String toString() {
-		return "User [name=" + name + ", address=" + address + ", username=" + username + ", email=" + email
-				+ ", password=" + password + ", payment=" + payment + ", cart=" + cart + ", isAdmin=" + isAdmin
-				+ ", invoiceLog=" + invoiceLog + "]";
+		return username;
 	}
 	
 	
