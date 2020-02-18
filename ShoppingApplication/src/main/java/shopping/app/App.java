@@ -40,6 +40,7 @@ public class App extends Application {
 	private Inventory liveInventory = new Inventory();
 	private UserBag liveUserBag = new UserBag();
 	private User currentUser;
+	private User temporaryUser;
 
 	@Override
 	public void start(Stage primaryStage) {
@@ -99,6 +100,31 @@ public class App extends Application {
 
 			LoginController loginController = loaderLogin.getController();
 			loginController.setApp(this);
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void showInfoEdit() {
+		Stage dialogStage;
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(App.class.getResource("/shopping/view/UserDetailEditDialog.fxml"));
+			Pane page = (Pane) loader.load();
+
+			dialogStage = new Stage();
+			dialogStage.setTitle("User Edit");
+			Scene scene = new Scene(page);
+			dialogStage.setScene(scene);
+
+			AccountController controller = loader.getController();
+			controller.setDialogStage(dialogStage);
+			
+			controller.setApp(this);
+
+			dialogStage.showAndWait();
+
 
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -217,6 +243,25 @@ public class App extends Application {
 		}
 	}
 	
+	public void showAccountPageAdmin(User user) {
+		try {
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(App.class.getResource("/shopping/view/UserProfile.fxml"));
+		Pane page = (Pane) loader.load();
+		rootLayout.setCenter(page);
+
+		AccountController accountController = loader.getController();
+		
+		accountController.setApp(this);
+		accountController.setUser(user);
+		accountController.showInfo();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	
 	public void showCardEdit() {
 		Stage dialogStage;
 		try {
@@ -327,6 +372,14 @@ public class App extends Application {
 	private void regenerateData() {
 		liveInventory = shopping.utils.ItemFactory.importItemData(liveInventory);
 		liveUserBag = shopping.utils.UserFactory.importUserData(liveUserBag);
+	}
+
+	public User getTemporaryUser() {
+		return temporaryUser;
+	}
+
+	public void setTemporaryUser(User temporaryUser) {
+		this.temporaryUser = temporaryUser;
 	}
 
 }
