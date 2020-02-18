@@ -25,17 +25,17 @@
                         <Insets top="10.0" />
                      </padding>
                   </Label>
-                  <TextField maxWidth="400.0" prefHeight="40.0" prefWidth="400.0" promptText="####-####-####-####" />
+                  <TextField fx:id="cardTf" maxWidth="400.0" prefHeight="40.0" prefWidth="400.0" promptText="####-####-####-####" />
                </children>
             </VBox>
             <HBox prefHeight="30.0" prefWidth="597.0" spacing="20.0">
                <children>
-                  <ComboBox prefHeight="27.0" prefWidth="95.0" promptText="Month" />
-                  <ComboBox prefHeight="27.0" prefWidth="95.0" promptText="Year" />
-                  <TextField prefHeight="27.0" prefWidth="169.0" promptText="Security Code" />
+                  <ComboBox fx:id="monthBox" prefHeight="27.0" prefWidth="95.0" promptText="Month" />
+                  <ComboBox fx:id="yearBox" prefHeight="27.0" prefWidth="95.0" promptText="Year" />
+                  <TextField fx:id="code" prefHeight="27.0" prefWidth="169.0" promptText="Security Code" />
                </children>
             </HBox>
-            <TextField maxWidth="400.0" promptText="Card Holder" />
+            <TextField fx:id="holder" maxWidth="400.0" promptText="Card Holder" />
          </children>
          <padding>
             <Insets left="30.0" right="30.0" />
@@ -48,10 +48,10 @@
             <Image url="@../../images/visa-and-mastercard-logos.png" />
          </image>
       </ImageView>
-      <Button layoutX="822.0" layoutY="493.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="119.0" style="-fx-background-color: orange;" text="Update" />
+      <Button layoutX="822.0" layoutY="493.0" mnemonicParsing="false" onAction="#handleUpdate" prefHeight="43.0" prefWidth="119.0" style="-fx-background-color: orange;" text="Update" />
       <AnchorPane fx:id="paypalPane" disable="true" layoutX="24.0" layoutY="50.0" prefHeight="499.0" prefWidth="425.0">
          <children>
-            <PasswordField layoutX="99.0" layoutY="262.0" prefHeight="25.0" prefWidth="200.0" />
+            <PasswordField fx:id="paypalPasswordTf" layoutX="99.0" layoutY="262.0" prefHeight="25.0" prefWidth="200.0" />
             <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="101.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../images/paypal.png" />
@@ -67,7 +67,7 @@
                   <Insets top="20.0" />
                </padding>
             </Label>
-            <TextField layoutX="99.0" layoutY="209.0" maxWidth="200.0" prefHeight="27.0" prefWidth="255.0" promptText="johndoe@gmail.com" />
+            <TextField fx:id="paypalTf" layoutX="99.0" layoutY="209.0" maxWidth="200.0" prefHeight="27.0" prefWidth="255.0" promptText="johndoe@gmail.com" />
          </children>
       </AnchorPane>
    </children>

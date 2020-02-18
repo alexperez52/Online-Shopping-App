@@ -228,6 +228,7 @@ public class App extends Application {
 
 			AccountController controller = loader.getController();
 			controller.setDialogStage(dialogStage);
+			controller.initComboBoxes();
 			controller.getCardVBox().setDisable(false);
 			controller.setApp(this);
 
