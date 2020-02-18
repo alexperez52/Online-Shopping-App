@@ -47,7 +47,7 @@ public class App extends Application {
 		liveUserBag.getUsers().entrySet().forEach(entry -> {
 			System.out.println(entry.getValue());
 		});
-		
+				
 		initRootLayout();
 	}
 
