@@ -15,7 +15,7 @@ import shopping.model.User;
 public class AdminController {
 
 	private App app;
-	
+	private User user;
 	@FXML 
 	ListView<User> listView;
 	
@@ -25,7 +25,9 @@ public class AdminController {
 	
 	@FXML
 	private void initialize() {
+
 		listView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+			
 			displayUserInformation(newValue);
 		});
 	}
@@ -38,12 +40,37 @@ public class AdminController {
 		
 	}
 	
+	@FXML 
+	private void handleNew() {
+		
+		app.showRegisterPage();
+		
+	}
 	
+	@FXML
+	private void handleInfo() {
+		
+		user = listView.getSelectionModel().getSelectedItem();
+		
+		
+		app.showAccountPageAdmin(user);
+		
+		
+		
+	}
+	
+	@FXML 
+	private void handleDelete() {
+		user = listView.getSelectionModel().getSelectedItem();
+		app.getLiveUserBag().getUsers().remove(user.getUsername());
+		app.showAdminPage();
+
+	}
 	
 	public void updateTable() {
 		ObservableList<User> items = FXCollections.observableArrayList(app.getLiveUserBag().getUsers().values());
 		
-		
+		listView.getItems().removeAll(items);
 		listView.getItems().setAll(items);
 		
 	}

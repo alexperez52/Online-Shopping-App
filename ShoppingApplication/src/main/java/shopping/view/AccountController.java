@@ -47,12 +47,13 @@ public class AccountController {
 	private VBox cardVBox;
 	
 	@FXML
-	private TextField paypalTf, cardTf, holder, code;
+	private TextField paypalTf, cardTf, holder, code,
+			firstNameTf, lastNameTf, middleNameTf, houseNumberTf, streetNameTf, cityTf, stateTf, countryTf, usernameTf, passwordTf;
 	@FXML 
 	private PasswordField paypalPasswordTf;
 	
+	public User user;
 
-	
 	
 
 	private Stage dialogStage;
@@ -64,6 +65,9 @@ public class AccountController {
 		return this.paypalPane;
 	}
 	
+	public void setUser(User user) {
+		this.user = user;
+	}
 	
 	public VBox getCardVBox() {
 		return this.cardVBox;
@@ -73,6 +77,30 @@ public class AccountController {
 	  public void initialize() {
 	
 	}
+	
+	
+	@FXML
+	public void handleInfoUpdate() {
+		app.getCurrentUser().getAddress().setCity(cityTf.getText());;
+		app.getCurrentUser().getAddress().setCountry(countryTf.getText());
+		app.getCurrentUser().getAddress().setHouseNumber(houseNumberTf.getText());
+		app.getCurrentUser().getAddress().setState(stateTf.getText());
+		app.getCurrentUser().getAddress().setStreetAddress(streetNameTf.getText());
+		app.getCurrentUser().getName().setFirstName(firstNameTf.getText());
+		app.getCurrentUser().getName().setMiddleName(middleNameTf.getText());
+		app.getCurrentUser().getName().setLastName(lastNameTf.getText());
+		app.getCurrentUser().setUsername(usernameTf.getText());
+		app.getCurrentUser().setPassword(passwordTf.getText());
+		app.showAccountPage();
+		dialogStage.close();
+	}
+	
+	@FXML
+	public void handleCancel() {
+		dialogStage.close();
+	}
+	
+	
 	@FXML
 	public void handleUpdate() {
 		if(cardVBox.isDisabled()) {
@@ -103,6 +131,11 @@ public class AccountController {
 	
 	
 	@FXML
+	private void setUserInfo() {
+		app.showInfoEdit();
+	}
+	
+	@FXML
 	private void setPaypalInfo() {
 		app.showPaypalEdit();
 	}
@@ -119,6 +152,7 @@ public class AccountController {
 	public void setApp(App app) {
 	
 		this.app = app;
+		user = app.getCurrentUser();
 		
 		
 	}
@@ -131,18 +165,18 @@ public class AccountController {
 
 	public void showInfo() {
 		// TODO Auto-generated method stub
-		streetName.setText(app.getCurrentUser().getAddress().getStreetAddress());
-		houseNumber.setText(app.getCurrentUser().getAddress().getHouseNumber());
-		city.setText(app.getCurrentUser().getAddress().getCity());
-		state.setText(app.getCurrentUser().getAddress().getState());
-		country.setText(app.getCurrentUser().getAddress().getCountry());
+		streetName.setText(user.getAddress().getStreetAddress());
+		houseNumber.setText(user.getAddress().getHouseNumber());
+		city.setText(user.getAddress().getCity());
+		state.setText(user.getAddress().getState());
+		country.setText(user.getAddress().getCountry());
 		
-		firstName.setText(app.getCurrentUser().getName().getFirstName());
-		lastName.setText(app.getCurrentUser().getName().getLastName());
-		username.setText(app.getCurrentUser().getUsername());
-		password.setText(app.getCurrentUser().getPassword());
-		email.setText(app.getCurrentUser().getEmail());
-		ObservableList<Invoice> items = FXCollections.observableArrayList(app.getCurrentUser().getInvoiceLog().values());
+		firstName.setText(user.getName().getFirstName());
+		lastName.setText(user.getName().getLastName());
+		username.setText(user.getUsername());
+		password.setText(user.getPassword());
+		email.setText(user.getEmail());
+		ObservableList<Invoice> items = FXCollections.observableArrayList(user.getInvoiceLog().values());
 		listView.getItems().setAll(items);
 	}
 

@@ -21,6 +21,7 @@ public class RootController {
 	public RootController() {
 		
 	}
+	
 
 	public void setApp(App app) { // gives controller access to databases
 		this.app = app;

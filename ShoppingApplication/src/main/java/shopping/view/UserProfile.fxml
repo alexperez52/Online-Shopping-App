@@ -12,7 +12,7 @@
    <children>
       <AnchorPane layoutX="-4.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="135.0" prefWidth="1010.0" style="-fx-background-color: #3D4956;">
          <children>
-            <ImageView fx:id="settings" blendMode="DARKEN" fitHeight="129.0" fitWidth="207.0" layoutX="126.0" layoutY="3.0">
+            <ImageView fx:id="settings" blendMode="DARKEN" fitHeight="129.0" fitWidth="207.0" layoutX="126.0" layoutY="3.0" onMouseClicked="#setUserInfo">
                <image>
                   <Image url="@../../images/gre.jpg" />
                </image>
