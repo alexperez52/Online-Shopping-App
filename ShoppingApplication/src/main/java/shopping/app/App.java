@@ -51,7 +51,8 @@ public class App extends Application {
 		
 
 		liveUserBag.getUsers().get("Adnan1").setAdmin(true);
-		
+		liveUserBag.getUsers().get("Adnan1").getCart().clearCart();
+
 		System.out.println(liveUserBag.getUsers().get("Adnan1").isAdmin());
 		System.out.println("testing");
 

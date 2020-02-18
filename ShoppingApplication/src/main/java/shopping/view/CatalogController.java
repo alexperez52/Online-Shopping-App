@@ -28,6 +28,7 @@ import shopping.model.ShoppingCartItem;
 
 public class CatalogController {
 	private App app;
+	private Item clickedItem;
 	private ListView<Item> fullItemsView = new ListView<Item>();
 	@FXML
 	private TextField searchField;
@@ -58,6 +59,8 @@ public class CatalogController {
 	private void initialize() {
 		itemsView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
 			displayItemInformation(newValue);
+			clickedItem = newValue;
+			System.out.println(clickedItem);
 		});
 		category.setItems(FXCollections.observableArrayList(Electronics.values())); // sets electronics types
 		category.setOnAction((e) -> {
@@ -105,17 +108,28 @@ public class CatalogController {
 		cart.setCart(app.getCurrentUser().getCart().getCartItems()); // current user's cart
 		int selectedIndex = itemsView.getSelectionModel().getSelectedIndex();
 		if (selectedIndex >= 0) {// if user clicks on an item
-			Item clickedItem = app.getLiveInventory().getInventory().get(selectedIndex + 1);
-			if (clickedItem.getQuantity() != 0) { // checks if item is in stock
-				Integer itemId = app.getLiveInventory().getInventory().get(selectedIndex + 1).getId(); // obtains item's
-																										// id
-				ShoppingCartItem cartItem = new ShoppingCartItem(itemId, 1);// makes shopping cart item
-				if (cart.getCartItems().contains(cartItem)) {// if cart item exists already
-					int index = cart.getCartItems().indexOf(cartItem);
-					ShoppingCartItem existingCartItem = cart.getCartItems().get(index);
-					existingCartItem.setItemQuantity(existingCartItem.getItemQuantity() + 1);// just increase quantity
-				} else {
+			if (clickedItem.getQuantity() > 0) { // checks if item is in stock
+				ShoppingCartItem cartItem = new ShoppingCartItem(clickedItem.getId(), 1);// makes shopping cart item
+				int index = cart.getCartItems().indexOf(cartItem); //finds item in cart already
+				ShoppingCartItem searchedItem;
+				try {
+					searchedItem = cart.getCartItems().get(index);
+				} catch (Exception e) {
+					searchedItem = null; //if not found, makes searched item null
+				}
+				if (searchedItem != null && ((searchedItem.getItemQuantity() + 1) <=  clickedItem.getQuantity())) {// if cart item exists already and (current amount + new) < stock
+					searchedItem.setItemQuantity(searchedItem.getItemQuantity() + 1);// just increase quantity
+				} else if(searchedItem == null){
 					cart.getCartItems().add(cartItem);
+				}
+				else {
+					Alert alert = new Alert(AlertType.WARNING);
+					alert.setTitle("Warning");
+					alert.setHeaderText("Item not in stock anymore!");
+					alert.setContentText("Can't add to cart");
+
+					alert.showAndWait();
+					}
 				}
 			}
 
@@ -127,15 +141,8 @@ public class CatalogController {
 
 				alert.showAndWait();
 			}
-		} else {
-			Alert alert = new Alert(AlertType.WARNING);
-			alert.setTitle("No Selection");
-			alert.setHeaderText("No Item Selected");
-			alert.setContentText("Please select an item in the catalog.");
-
-			alert.showAndWait();
-		}
-	}
+		} 
+	
 
 	@FXML
 	private void handleNewItemBtn() {// gives admin ability to create new item
@@ -146,7 +153,6 @@ public class CatalogController {
 	private void handleRemoveBtn() {// removes item from inventory
 		int selectedIndex = itemsView.getSelectionModel().getSelectedIndex();
 		if (selectedIndex >= 0) {
-			Item clickedItem = app.getLiveInventory().getInventory().get(selectedIndex + 1);
 
 			Alert alert = new Alert(AlertType.CONFIRMATION);
 			alert.setTitle("Deletion Confirmation");
