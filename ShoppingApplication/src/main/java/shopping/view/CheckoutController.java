@@ -75,6 +75,15 @@ public class CheckoutController {
 
 	}
 
+	/**
+	 * Looks up user's ShoppingCartItems' id's in inventory to get the Item object's
+	 * price and multiplies it by the amount they're purchasing. Each Item object
+	 * total price is added to a sum to be returned as the bill
+	 * 
+	 * @return totalPrice Sum of each ShoppingCartItem's (price * quantity) for
+	 *         checkout to display
+	 * @see CheckoutController
+	 */
 	private double calculateItemTotal() { // totals user's bill
 		double totalPrice = 0;
 		for (ShoppingCartItem item : app.getCurrentUser().getCart().getCartItems()) {
@@ -84,6 +93,14 @@ public class CheckoutController {
 		return totalPrice;
 	}
 
+	/**
+	 * Performs action on Checkout button click. Calls fieldCheck() to validate user
+	 * input before taking all Checkout page text field texts for creating/update
+	 * payment information. Asks user if they want to use previous payment
+	 * information, if it exists. Completes purchase by calling completePurchase().
+	 * 
+	 * @see CheckoutController
+	 */
 	@FXML
 	private void handleCheckoutButton() { // will confirm purchase, need to add invoice generation
 		if (fieldCheck()) {
@@ -108,20 +125,32 @@ public class CheckoutController {
 
 	}
 
+	/**
+	 * Called by the handleCheckoutButton(). Calls updateInventory(ShoppingCartItem
+	 * cart), generateInvoice(), and user's cart.clearCart().
+	 * 
+	 * @see CheckoutController
+	 */
 	private void completePurchase() {
 		updateInventory(app.getCurrentUser().getCart()); // updates inventory after purchase
-		generateInvoice(app.getCurrentUser().getCart());
+		generateInvoice();
 		app.getCurrentUser().getCart().clearCart();
 
-		
 	}
 
-	private void generateInvoice(ShoppingCart cart) {
+	/**
+	 * Creates a new Invoice object based on user's checkout information. It puts
+	 * the Invoice object in the user's invoiceLog and then displays it with
+	 * app.showInvoiceDialog().
+	 * 
+	 * @see CheckoutController
+	 */
+	private void generateInvoice() {
 		Invoice newInvoice = new Invoice(app.getCurrentUser(),
 				(Math.round(((calculateItemTotal() * 1.04) * 100.0) / 100.0f)), app.getLiveInventory());
 		app.getCurrentUser().getInvoiceLog().put(newInvoice.getId(), newInvoice);
 		app.showInvoiceDialog(newInvoice);
-		
+
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Checkout");
 		alert.setHeaderText("Items purchased!");
@@ -134,6 +163,14 @@ public class CheckoutController {
 		app.showCatalogPage();
 	}
 
+	/**
+	 * Subtracts the quantity of each Item object purchased by user from their
+	 * respective Item object in inventory to update the stock. Takes user's
+	 * shoppingCart as an argument to search through it.
+	 * 
+	 * @param cart user's ShoppingCart object to search through
+	 * @see CheckoutController
+	 */
 	private void updateInventory(ShoppingCart cart) { // adjust stock after purchase is made
 		for (ShoppingCartItem item : app.getCurrentUser().getCart().getCartItems()) {
 			Item inventoryItem = app.getLiveInventory().getInventory().get(item.getId());
@@ -141,11 +178,29 @@ public class CheckoutController {
 		}
 	}
 
+	/**
+	 * Performs action on Cancel button click. Cancels the checkout and takes user
+	 * back to CatalogPage.
+	 * 
+	 * @see CheckoutController
+	 */
 	@FXML
 	private void handleCancelButton() { // cancels checkout, takes user to catalog
 		app.showCatalogPage();
 	}
 
+	/**
+	 * Takes the boolean status of isPayapl and isCard as arguments. If isPaypal is
+	 * true, the paymentInfo String formats the user's payment information field to
+	 * store the information from the payPal text fields on the checkoutPage; if
+	 * isCard, does the same process, but for the card information text fields.
+	 * 
+	 * @param isPaypal, isCard boolean statuses for payment type; they will always
+	 *        be of opposite values.
+	 * @return paymentInfo A String object formatted for the boolean value that's
+	 *         true.
+	 * @see CheckoutController
+	 */
 	private String extractPayment(boolean isPaypal, boolean isCard) { // payment gets stored differently for paypal/card
 		String paymentInfo;
 		if (isPaypal) {
@@ -161,6 +216,13 @@ public class CheckoutController {
 		return paymentInfo;
 	}
 
+	/**
+	 * Performs action on payPal RadioButton click. Updates user's payment isPaypal
+	 * to true, and isCard to false. Also enables the corresponding text fields on
+	 * the CheckoutPage.
+	 * 
+	 * @see CheckoutController
+	 */
 	@FXML
 	private void handlePaypalRadio() {// paypal button will only allow payapl info
 		paypalVbox.setDisable(false);
@@ -169,6 +231,13 @@ public class CheckoutController {
 		isCard = false;
 	}
 
+	/**
+	 * Performs action on card RadioButton click. Updates user's payment isPaypal to
+	 * false, and isCard to true. Also enables the corresponding text fields on the
+	 * CheckoutPage.
+	 * 
+	 * @see CheckoutController
+	 */
 	@FXML
 	private void handleCardRadio() { // card button will only allow card info
 		paypalVbox.setDisable(true);
@@ -177,6 +246,14 @@ public class CheckoutController {
 		isCard = true;
 	}
 
+	/**
+	 * Checks all available CheckoutPage fields and checks if improper user input
+	 * exists. Only returns true if user information is correct.
+	 * 
+	 * @return isProperInformation boolean value returning true if fields are
+	 *         acceptable, false if user input exception is caught
+	 * @see CheckoutController
+	 */
 	public boolean fieldCheck() {// checks inefficient field data
 		if (app.getCurrentUser().getPayment() != null) {
 			return true;

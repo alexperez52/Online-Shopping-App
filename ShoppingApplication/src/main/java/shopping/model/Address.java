@@ -57,6 +57,13 @@ public class Address implements Serializable{ //holds user's address for shippin
 		this.country = country;
 	}
 	
+	/**
+	 * Returns String of Address object's fields. houseNumber, streetAddress, city, state, and country
+	 * are written to a string separating each by a white character.
+	 * 
+	 * @return fullAddress a string of each field in this.Address
+	 * @see Address
+	 */
 	public String getFullAddress() {
 		return houseNumber + " " + streetAddress + " " + city + " " + state + " " + country;
 	}

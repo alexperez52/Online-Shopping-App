@@ -16,7 +16,7 @@ public class ItemDialogController {
 	private App app;
 	private Stage dialogStage;
 	private boolean isEdit;
-	private Electronics[] itemTypes = {Electronics.CPU, Electronics.GPU, Electronics.MEMORY, Electronics.MOTHERBOARD};
+	private Electronics[] itemTypes = { Electronics.CPU, Electronics.GPU, Electronics.MEMORY, Electronics.MOTHERBOARD };
 	@FXML
 	private TextField nameField;
 	@FXML
@@ -35,15 +35,24 @@ public class ItemDialogController {
 	@FXML
 	private void initialize() {
 		itemTypeBox.setItems(FXCollections.observableArrayList(itemTypes)); // sets electronics types
-		
+
 	}
 
+	/**
+	 * Performs action on Ok Button click. Calls fieldCheck() to detect invalid user
+	 * input on ItemDialog. If all text fields are filled and the currentItem ==
+	 * null, a new Item object is created. If currentInvoice != null, any text field
+	 * with user input is used to update that specific field in the currentItem.
+	 * 
+	 * @see CheckoutController
+	 */
 	@FXML
 	private void handleOk() {
 		if (fieldCheck()) {
 			if (currentItem == null) {
 				Item newItem = new Item(nameField.getText(), Double.parseDouble(priceField.getText()),
-						descriptionField.getText(), Integer.parseInt(quantityField.getText()), itemTypeBox.getSelectionModel().getSelectedItem());
+						descriptionField.getText(), Integer.parseInt(quantityField.getText()),
+						itemTypeBox.getSelectionModel().getSelectedItem());
 				app.getLiveInventory().getInventory().put(newItem.getId(), newItem);
 
 				Alert alert = new Alert(AlertType.INFORMATION);
@@ -85,20 +94,19 @@ public class ItemDialogController {
 					currentItem.setElectronic(itemTypeBox.getSelectionModel().getSelectedItem());
 					edited = true;
 				}
-				
-				if(edited) {
-				Alert alert = new Alert(AlertType.INFORMATION);
-				alert.setTitle("Item");
-				alert.setHeaderText("Item Updated!");
-				alert.setContentText("");
 
-				alert.showAndWait();
+				if (edited) {
+					Alert alert = new Alert(AlertType.INFORMATION);
+					alert.setTitle("Item");
+					alert.setHeaderText("Item Updated!");
+					alert.setContentText("");
 
-				dialogStage.close();
+					alert.showAndWait();
 
-				app.showCatalogPage();
-				}
-				else {
+					dialogStage.close();
+
+					app.showCatalogPage();
+				} else {
 					Alert alert = new Alert(AlertType.INFORMATION);
 					alert.setTitle("Item");
 					alert.setHeaderText("Item not updated!");
@@ -111,7 +119,12 @@ public class ItemDialogController {
 			}
 		}
 	}
-
+	
+	/**
+	 * Performs action on Cancel Button click. Clears all text field data.
+	 * 
+	 * @see CheckoutController
+	 */
 	@FXML
 	private void handleCancel() {
 		nameField.clear();
@@ -120,7 +133,15 @@ public class ItemDialogController {
 		descriptionField.clear();
 
 	}
-
+	
+	/**
+	 * Checks all available ItemDialog fields and checks if improper user input
+	 * exists. Only returns true if user information is correct.
+	 * 
+	 * @return isProperInformation boolean value returning true if fields are
+	 *         acceptable, false if user input exception is caught
+	 * @see ItemDialogController
+	 */
 	private boolean fieldCheck() { // checks if fields have appropriate information
 		if (currentItem == null) {// assumes new item
 			if (nameField.getText().isEmpty() || priceField.getText().isEmpty() || descriptionField.getText().isEmpty()
