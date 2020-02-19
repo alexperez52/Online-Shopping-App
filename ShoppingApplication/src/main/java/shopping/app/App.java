@@ -16,6 +16,7 @@ import javafx.stage.WindowEvent;
 import shopping.model.Inventory;
 import shopping.model.Invoice;
 import shopping.model.Item;
+import shopping.model.Name;
 import shopping.model.User;
 import shopping.model.UserBag;
 import shopping.view.AccountController;
@@ -29,12 +30,13 @@ import shopping.view.RegisterController;
 import shopping.view.RootController;
 
 public class App extends Application {
-	
+
 	/*
-	 * This project was created with inspiration from current shopping apps (amazon, etc.) along with help from scene builder tutorials
-	 * by author Marco Jakob (https://code.makery.ch/library/javafx-tutorial/)
+	 * This project was created with inspiration from current shopping apps (amazon,
+	 * etc.) along with help from scene builder tutorials by author Marco Jakob
+	 * (https://code.makery.ch/library/javafx-tutorial/)
 	 */
-	
+
 	private Stage primaryStage = new Stage();
 	private BorderPane rootLayout = new BorderPane();
 	private Inventory liveInventory = new Inventory();
@@ -45,11 +47,10 @@ public class App extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		shopping.utils.DataSaver.restore(liveUserBag, liveInventory); // restores data on start up
-		//regenerateData();
+		// regenerateData();
 		liveUserBag.getUsers().entrySet().forEach(entry -> {
 			System.out.println(entry.getValue());
 		});
-		
 
 		liveUserBag.getUsers().get("Adnan79").setAdmin(true);
 		liveUserBag.getUsers().get("Adnan79").getCart().clearCart();
@@ -64,6 +65,13 @@ public class App extends Application {
 		launch(args);
 	}
 
+	/**
+	 * Starts the GUI. Sets root node to the root fxml and boots up the scene,
+	 * starting with the log in page. Changes Main stage's close request to include
+	 * backing up all data upon exit. Creates RootController object for root node.
+	 * 
+	 * @see App
+	 */
 	public void initRootLayout() {
 		try {
 			FXMLLoader loaderRoot = new FXMLLoader();
@@ -91,6 +99,12 @@ public class App extends Application {
 		}
 	}
 
+	/**
+	 * Gets Login fxml. Sets root node's center to the login fxml and creates LoginController object for
+	 * logIn page.
+	 * 
+	 * @see App
+	 */
 	public void showLoginPage() {// pulls main page
 		try {
 			FXMLLoader loaderLogin = new FXMLLoader();
@@ -120,17 +134,22 @@ public class App extends Application {
 
 			AccountController controller = loader.getController();
 			controller.setDialogStage(dialogStage);
-			
+
 			controller.setApp(this);
 
 			dialogStage.showAndWait();
-
 
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
-
+	
+	/**
+	 * Gets catalog fxml. Sets root node's center to the catalog fxml and creates CatalogController object for
+	 * catalog page.
+	 * 
+	 * @see App
+	 */
 	public void showCatalogPage() {// pulls main page
 		try {
 			FXMLLoader loader = new FXMLLoader();
@@ -145,7 +164,13 @@ public class App extends Application {
 			e.printStackTrace();
 		}
 	}
-
+	
+	/**
+	 * Gets register fxml. Sets root node's center to the register fxml and creates RegisterController object for
+	 * register page.
+	 * 
+	 * @see App
+	 */
 	public void showRegisterPage() {// pulls register page
 		try {
 			FXMLLoader loader = new FXMLLoader();
@@ -160,7 +185,13 @@ public class App extends Application {
 			e.printStackTrace();
 		}
 	}
-
+	
+	/**
+	 * Gets checkout fxml. Sets root node's center to the checkout fxml and creates CheckoutController object for
+	 * checkout page.
+	 * 
+	 * @see App
+	 */
 	public void showCheckoutPage() {// pulls checkout page
 		try {
 			FXMLLoader loader = new FXMLLoader();
@@ -176,7 +207,12 @@ public class App extends Application {
 		}
 	}
 	
-
+	/**
+	 * Gets invoice fxml. Displays a dialog with the invoice fxml and creates InvoiceDialogController object for
+	 * invoice dialog.
+	 * 
+	 * @see App
+	 */
 	public void showInvoiceDialog(Invoice invoice) {// pulls invoice dialog
 		Stage dialogStage;
 		try {
@@ -201,6 +237,14 @@ public class App extends Application {
 		}
 
 	}
+	
+	/**
+	 * Gets item fxml. Displays a dialog with the item fxml and creates ItemDialogController object for
+	 * item dialog.
+	 * 
+	 * @param item An item to be edited, or null for creating a new item
+	 * @see App
+	 */
 	public void showItemDialog(Item item) {// pulls invoice dialog
 		Stage dialogStage;
 		try {
@@ -225,43 +269,42 @@ public class App extends Application {
 		}
 
 	}
-	
+
 	public void showAccountPage() {
 		try {
-		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(App.class.getResource("/shopping/view/UserProfile.fxml"));
-		Pane page = (Pane) loader.load();
-		rootLayout.setCenter(page);
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(App.class.getResource("/shopping/view/UserProfile.fxml"));
+			Pane page = (Pane) loader.load();
+			rootLayout.setCenter(page);
 
-		AccountController accountController = loader.getController();
+			AccountController accountController = loader.getController();
 
-		accountController.setApp(this);
-		accountController.showInfo();
+			accountController.setApp(this);
+			accountController.showInfo();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void showAccountPageAdmin(User user) {
 		try {
-		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(App.class.getResource("/shopping/view/UserProfile.fxml"));
-		Pane page = (Pane) loader.load();
-		rootLayout.setCenter(page);
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(App.class.getResource("/shopping/view/UserProfile.fxml"));
+			Pane page = (Pane) loader.load();
+			rootLayout.setCenter(page);
 
-		AccountController accountController = loader.getController();
-		
-		accountController.setApp(this);
-		accountController.setUser(user);
-		accountController.showInfo();
+			AccountController accountController = loader.getController();
+
+			accountController.setApp(this);
+			accountController.setUser(user);
+			accountController.showInfo();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-	
-	
+
 	public void showCardEdit() {
 		Stage dialogStage;
 		try {
@@ -287,6 +330,7 @@ public class App extends Application {
 		}
 
 	}
+
 	public void showPaypalEdit() {
 		Stage dialogStage;
 		try {
@@ -312,7 +356,6 @@ public class App extends Application {
 
 	}
 
-	
 	public void showAdminPage() {
 		try {
 			FXMLLoader loader = new FXMLLoader();
@@ -323,10 +366,10 @@ public class App extends Application {
 			AdminController adminController = loader.getController();
 			adminController.setApp(this);
 			adminController.updateTable();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public Stage getPrimaryStage() {
@@ -369,6 +412,11 @@ public class App extends Application {
 		this.currentUser = user;
 	}
 	
+	/**
+	 * Calls both data factories with this.App's inventory and userBag to populate both with respective data.
+	 * 
+	 * @see App
+	 */
 	private void regenerateData() {
 		liveInventory = shopping.utils.ItemFactory.importItemData(liveInventory);
 		liveUserBag = shopping.utils.UserFactory.importUserData(liveUserBag);

@@ -10,7 +10,14 @@ import shopping.model.User;
 import shopping.model.UserBag;
 
 public class UserFactory {
-
+	
+	/**
+	 * Static method that takes a UserBag object to dump 100 randomly generated
+	 * User objects into. Uses addressData.txt and nameData.txt to pull information for User objects.
+	 * 
+	 * @param userBag A UserBag object to populate with generated Users
+	 * @see UserFactory
+	 */
 	public static UserBag importUserData(UserBag userBag) { // generates initial warehouse inventory
 		UserBag testUserBag = userBag;
 		Random randNumber = new Random();

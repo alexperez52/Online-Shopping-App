@@ -60,7 +60,7 @@ public class CatalogController {
 		itemsView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
 			displayItemInformation(newValue);
 			clickedItem = newValue;
-			//System.out.println(clickedItem.getElectronic());
+			// System.out.println(clickedItem.getElectronic());
 		});
 		category.setItems(FXCollections.observableArrayList(Electronics.values())); // sets electronics types
 		category.setOnAction((e) -> {
@@ -81,9 +81,12 @@ public class CatalogController {
 
 	public void setApp(App app) { // gives controller access to databases
 		this.app = app;
-		inventoryItemsList = FXCollections.observableArrayList(app.getLiveInventory().getInventory().values());
+		inventoryItemsList = FXCollections.observableArrayList(app.getLiveInventory().getInventory().values()); // loads
+																												// inventory
+																												// into
+																												// page
 		itemsView.getItems().setAll(inventoryItemsList);
-		if (app.getCurrentUser().isAdmin()) {
+		if (app.getCurrentUser().isAdmin()) {// checks if user is admin to show certain controls
 			newItemBtn.setVisible(true);
 			editItemBtn.setVisible(true);
 			removeItemBtn.setVisible(true);
@@ -94,6 +97,13 @@ public class CatalogController {
 		}
 	}
 
+	/**
+	 * Takes an Electronics value to display a sublist of only Item objects
+	 * containing that value, onto the catalog listView.
+	 * 
+	 * @param electronicType An Electronics value to sort catalog listView with
+	 * @see CatalogController
+	 */
 	private void displaySubList(Electronics electronicType) { // shortens display list to specific sections
 		ArrayList<Item> items = new ArrayList<Item>(app.getLiveInventory().getInventory().values());
 		ArrayList<Item> subList = new ArrayList<Item>();
@@ -110,6 +120,17 @@ public class CatalogController {
 		itemsView.getItems().setAll(FXCollections.observableArrayList(subList));
 	}
 
+	/**
+	 * Performs action on AddToCart button click. Creates a ShoppingCartItem with id
+	 * of clickedItem in catalog listView and quantity of 1.
+	 * <p>
+	 * If the clickedItem is in stock, the item's id is searched for in the user's
+	 * ShoppingCart; if the id is found, that ShoppingCartItem's quantity is
+	 * increased by 1, if not, the created ShoppingCartItem is placed in the
+	 * ShoppingCart
+	 * 
+	 * @see CatalogController
+	 */
 	@FXML
 	private void handleAddToCart() {// gives cart adding function. Takes item's unique info for checkout to search
 									// in inventory
@@ -162,11 +183,24 @@ public class CatalogController {
 		}
 	}
 
+	/**
+	 * Performs action on New Item button click. Calls showItemDialog(Item item)
+	 * with null argument. Admin Action. Allows a new item to be created and added
+	 * to inventory
+	 * 
+	 * @see App
+	 */
 	@FXML
 	private void handleNewItemBtn() {// gives admin ability to create new item
 		app.showItemDialog(null);
 	}
 
+	/**
+	 * Performs action on Remove button click. Removes clickedItem from catalog
+	 * listView from the inventory. Admin Action.
+	 * 
+	 * @see CatalogController
+	 */
 	@FXML
 	private void handleRemoveBtn() {// removes item from inventory
 		int selectedIndex = itemsView.getSelectionModel().getSelectedIndex();
@@ -198,8 +232,14 @@ public class CatalogController {
 
 	}
 
+	/**
+	 * Performs action on Edit Item button click. Calls showItemDialog(Item item).
+	 * Admin Action. Allows adjustment of clickedItem's fields.
+	 * 
+	 * @see App
+	 */
 	@FXML
-	private void handleEditItemBtn() {// gives admin ability to edit clicked item
+	private void handleEditItemBtn() {// gives admin ability to edit clickedItem
 		int selectedIndex = itemsView.getSelectionModel().getSelectedIndex();
 		if (selectedIndex >= 0) {
 			Item clickedItem = itemsView.getSelectionModel().getSelectedItem();
@@ -216,6 +256,13 @@ public class CatalogController {
 		}
 	}
 
+	/**
+	 * Performs action on search textField keystroke. Searches catalog listView for
+	 * item with same name as text in the search textField, ignoring case. Once
+	 * found, the item is the only object displayed in the catalog listView
+	 * 
+	 * @see App
+	 */
 	@FXML
 	private void handleSearchField() { // finds specific item in list by name
 		if (searchField.getText().isEmpty()) {
@@ -229,7 +276,13 @@ public class CatalogController {
 			}
 		}
 	}
-
+	
+	/**
+	 * Performs action on catalog listView Item click. Retrieves clickedItem's fields to display below the catalog listView.
+	 * 
+	 * @param item An Item object clicked in the catalog lsitView
+	 * @see App
+	 */
 	private void displayItemInformation(Item item) { // displays clicked item info
 		if (item != null) {
 			name.setText("Name: " + item.getName());
