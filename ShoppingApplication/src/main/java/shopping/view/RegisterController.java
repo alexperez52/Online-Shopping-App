@@ -58,7 +58,13 @@ public class RegisterController {
 			readTerms = true;
 		});
 	}
-
+	
+	/**
+	 * Performs action on Register Button click. If no user input exception is called,
+	 * the program creates a new User object and adds it to the UserBag.
+	 * 
+	 * @see LoginController
+	 */
 	@FXML
 	private void handleRegister() { // will take info and make user
 		if (fieldCheck()) {
@@ -92,10 +98,23 @@ public class RegisterController {
 
 	}
 	
+	/**
+	 * Performs action on Login Hyperlink click. Calls app.showLoginPage().
+	 * 
+	 * @see LoginController
+	 */
 	public void handleLogInHyperlink() {
 		app.showLoginPage();
 	}
-
+	
+	/**
+	 * Checks all available RegisterPage fields and checks if improper user input
+	 * exists. Only returns true if user information is correct.
+	 * 
+	 * @return isProperInformation boolean value returning true if fields are
+	 *         acceptable, false if user input exception is caught
+	 * @see RegisterController
+	 */
 	public boolean fieldCheck() {// checks inefficient field data
 
 		if (firstName.getText().isEmpty() || lastName.getText().isEmpty() || email.getText().isEmpty()

@@ -22,6 +22,12 @@ public class LoginController {
 		this.app = app;
 	}
 
+	/**
+	 * Performs action on Login Button click. If no user input exception is called,
+	 * the program's currentUser is set to the user who successfully logged in.
+	 * 
+	 * @see LoginController
+	 */
 	@FXML
 	private void handleLogin() {// gives login button function
 		if (username.getText().isEmpty() || password.getText().isEmpty()) { // if fields are empty and clicked
@@ -51,6 +57,11 @@ public class LoginController {
 
 	}
 	
+	/**
+	 * Performs action on Register Button click. Calls app.showRegisterPage().
+	 * 
+	 * @see LoginController
+	 */
 	@FXML
 	private void handleRegister() {
 		app.showRegisterPage();

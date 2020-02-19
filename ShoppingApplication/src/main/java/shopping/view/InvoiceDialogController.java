@@ -49,6 +49,13 @@ public class InvoiceDialogController {
 		return currentInvoice;
 	}
 
+	/**
+	 * Takes a Invoice object as the argument. Sets all the of the Invoice object's
+	 * fields onto the InvocieDialog for the user to read.
+	 * 
+	 * @param currentInvoice The Invoice object that the user wants to read.
+	 * @see InvoiceController
+	 */
 	public void setCurrentInvoice(Invoice currentInvoice) { // gets user's purchase information and displays onto
 															// invoice
 		this.currentInvoice = currentInvoice;
@@ -57,7 +64,8 @@ public class InvoiceDialogController {
 		addressLabel.setText(currentInvoice.getUser().getAddress().getFullAddress());
 		invoiceId.setText("Invoice ID: x0000" + currentInvoice.getId().toString());
 		invoiceDateCreatedLabel.setText("Date of purchase: " + currentInvoice.getDateCreated());
-		subtotalLabel.setText("Subtotal: $" + shopping.utils.DataFormatter.formatAmount(currentInvoice.getBill() / 1.04));
+		subtotalLabel
+				.setText("Subtotal: $" + shopping.utils.DataFormatter.formatAmount(currentInvoice.getBill() / 1.04));
 		taxLabel.setText("Tax: $" + shopping.utils.DataFormatter.formatAmount(currentInvoice.getBill() * .04));
 		totalLabel.setText("Total: $" + shopping.utils.DataFormatter.formatAmount(currentInvoice.getBill()));
 		purchaseSummaryLabel
@@ -71,10 +79,6 @@ public class InvoiceDialogController {
 																												// inventory
 																												// item
 																												// info
-	}
-
-	public double formatAmount(double amount) { // formats amounts to 2 decimal places
-		return Math.round(((amount) * 100.0) / 100.0f);
 	}
 
 }

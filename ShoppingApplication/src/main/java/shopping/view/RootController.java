@@ -22,7 +22,12 @@ public class RootController {
 		
 	}
 	
-
+	/**
+	 * Sets RootController object's App object to the App object argument. Also handles showing the navBar depending on currentUser's isAdmin status.
+	 * 
+	 * @param app An App object to give a navBar to.
+	 * @see RootController
+	 */
 	public void setApp(App app) { // gives controller access to databases
 		this.app = app;
 		this.rootLayout = app.getRootLayout();
@@ -56,30 +61,54 @@ public class RootController {
 
 	
 	
-	
+	/**
+	 * Performs action on Account Button click. Calls app.showAccountPage().
+	 * 
+	 * @see RootController
+	 */
 	@FXML
 	private void handleAccount() {// pulls account info page
 		app.showAccountPage();
 
 	}
 	
+	/**
+	 * Performs action on Catalog Button click. Calls app.showCatalogPage().
+	 * 
+	 * @see RootController
+	 */
 	@FXML
 	private void handleCatalog() {// pulls main catalog page
 			app.showCatalogPage();
 	}
 	
+	/**
+	 * Performs action on Checkout Button click. Calls app.showCheckoutPage().
+	 * 
+	 * @see RootController
+	 */
 	@FXML
 	private void handleCheckout() {// pulls checkout page
 		app.showCheckoutPage();
 
 	}
 	
+	/**
+	 * Performs action on Logs Button click. Calls app.showAdminPage().
+	 * 
+	 * @see RootController
+	 */
 	@FXML
 	private void handleAdminLog() {// pulls user log
 
 		app.showAdminPage();
 	}
 	
+	/**
+	 * Performs action on Sign Out Button click. Calls app.showLoginPage() and sets program's currentUser to null
+	 * 
+	 * @see RootController
+	 */
 	@FXML
 	private void handleSignOut() {// signs out current user and pulls login page
 		app.setCurrentUser(null);
