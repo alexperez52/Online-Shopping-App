@@ -146,7 +146,7 @@ public class App extends Application {
 	
 	/**
 	 * Gets catalog fxml. Sets root node's center to the catalog fxml and creates CatalogController object for
-	 * catalog page.
+	 * catalog page. 
 	 * 
 	 * @see App
 	 */
