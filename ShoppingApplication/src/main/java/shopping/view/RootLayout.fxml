@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
@@ -7,7 +8,7 @@
 
 <BorderPane maxHeight="668.0" maxWidth="1000.0" minHeight="40.0" prefHeight="635.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="shopping.view.RootController">
    <top>
-      <AnchorPane style="-fx-background-color: #363636;">
+      <AnchorPane style="-fx-background-color: #363636;" BorderPane.alignment="TOP_CENTER">
          <children>
          <HBox fx:id="navBar" prefHeight="50.0" prefWidth="1000.0" visible="false" AnchorPane.bottomAnchor="-10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
@@ -19,6 +20,9 @@
                </children>
             </HBox>
          </children>
+         <BorderPane.margin>
+            <Insets bottom="30.0" />
+         </BorderPane.margin>
       </AnchorPane>
    </top>
 </BorderPane>
