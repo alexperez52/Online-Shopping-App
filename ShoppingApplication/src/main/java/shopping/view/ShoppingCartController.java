@@ -48,6 +48,8 @@ public class ShoppingCartController {
 
 		if (app.getCurrentUser().getCart().getCartItems().isEmpty()) {
 			Alert alert = new Alert(AlertType.WARNING);
+			alert.dialogPaneProperty().get().getStylesheets().add("/shopping/view/dialog.css");
+
 			alert.setTitle("Warning");
 			alert.setHeaderText("Empty Cart");
 			alert.setContentText("Cart is Empty!");
@@ -95,6 +97,8 @@ public class ShoppingCartController {
 			if (quantity <= actual) {
 
 				Alert alert = new Alert(AlertType.WARNING);
+				alert.dialogPaneProperty().get().getStylesheets().add("/shopping/view/dialog.css");
+
 				alert.setTitle("Warning");
 				alert.setHeaderText("Not enough Items");
 				alert.setContentText("Can't add to cart");
@@ -109,6 +113,8 @@ public class ShoppingCartController {
 			}
 		} catch (NullPointerException e) {
 			Alert alert = new Alert(AlertType.WARNING);
+			alert.dialogPaneProperty().get().getStylesheets().add("/shopping/view/dialog.css");
+
 			alert.setTitle("Warning");
 			alert.setHeaderText("No item selected");
 			alert.setContentText("Please select an item to modify !");
@@ -136,6 +142,8 @@ public class ShoppingCartController {
 
 			if (actual < 1) {
 				Alert alert = new Alert(AlertType.WARNING);
+				alert.dialogPaneProperty().get().getStylesheets().add("/shopping/view/dialog.css");
+
 				alert.setTitle("Warning");
 				alert.setHeaderText("Quantity below 0");
 				alert.setContentText("Can't return if you don't own");
@@ -149,6 +157,8 @@ public class ShoppingCartController {
 			}
 		} catch (ArrayIndexOutOfBoundsException e) {
 			Alert alert = new Alert(AlertType.WARNING);
+			alert.dialogPaneProperty().get().getStylesheets().add("/shopping/view/dialog.css");
+
 			alert.setTitle("Warning");
 			alert.setHeaderText("No item selected");
 			alert.setContentText("Please select an item to modify!");

@@ -32,6 +32,8 @@ public class LoginController {
 	private void handleLogin() {// gives login button function
 		if (username.getText().isEmpty() || password.getText().isEmpty()) { // if fields are empty and clicked
 			Alert alert = new Alert(AlertType.WARNING);
+			alert.dialogPaneProperty().get().getStylesheets().add("/shopping/view/dialog.css");
+
 			alert.setTitle("Invalid Input");
 			alert.setHeaderText("Username/Password Field(s) empty");
 			alert.setContentText("Please enter fields properly");
@@ -48,6 +50,8 @@ public class LoginController {
 
 		else {
 			Alert alert = new Alert(AlertType.WARNING);
+			alert.dialogPaneProperty().get().getStylesheets().add("/shopping/view/dialog.css");
+
 			alert.setTitle("Account Not Found");
 			alert.setHeaderText("Username/Password is incorrect");
 			alert.setContentText("Please enter fields properly");

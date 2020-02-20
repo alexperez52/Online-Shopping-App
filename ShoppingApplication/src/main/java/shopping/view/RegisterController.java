@@ -87,6 +87,8 @@ public class RegisterController {
 			country.clear();
 
 			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.dialogPaneProperty().get().getStylesheets().add("/shopping/view/dialog.css");
+
 			alert.setTitle("Account Created");
 			alert.setHeaderText("Success!");
 			alert.setContentText("");
@@ -123,6 +125,8 @@ public class RegisterController {
 				|| state.getText().isEmpty() || country.getText().isEmpty()) {
 			
 			Alert alert = new Alert(AlertType.WARNING);
+			alert.dialogPaneProperty().get().getStylesheets().add("/shopping/view/dialog.css");
+
 			alert.setTitle("Error");
 			alert.setHeaderText("Issues with certain field(s)");
 			alert.setContentText("Please fill each field");
@@ -134,6 +138,8 @@ public class RegisterController {
 				|| lastName.getText().matches(".*\\d.*") || city.getText().matches(".*\\d.*")
 				|| state.getText().matches(".*\\d.*") || country.getText().matches(".*\\d.*")) { //handles numbers in inappropriate fields
 			Alert alert = new Alert(AlertType.WARNING);
+			alert.dialogPaneProperty().get().getStylesheets().add("/shopping/view/dialog.css");
+
 			alert.setTitle("Error");
 			alert.setHeaderText("Issues with certain field(s)");
 			alert.setContentText("Numbers in an inappropriate field!");
@@ -144,6 +150,8 @@ public class RegisterController {
 
 		if (!readTerms) { //user must agree to terms
 			Alert alert = new Alert(AlertType.WARNING);
+			alert.dialogPaneProperty().get().getStylesheets().add("/shopping/view/dialog.css");
+
 			alert.setTitle("Error");
 			alert.setHeaderText("Issues with certain field(s)");
 			alert.setContentText("Please agree to terms and conditions!");
@@ -153,6 +161,8 @@ public class RegisterController {
 		}
 		if (houseNumber.getText().matches(".*\\D.*")) {//house number must be a number
 			Alert alert = new Alert(AlertType.WARNING);
+			alert.dialogPaneProperty().get().getStylesheets().add("/shopping/view/dialog.css");
+
 			alert.setTitle("Error");
 			alert.setHeaderText("Issues with certain field(s)");
 			alert.setContentText("Please input a number for house number!");
@@ -162,6 +172,8 @@ public class RegisterController {
 		}
 		if (!(password.getText().contentEquals(confirmPassword.getText()))) {//password fields must match
 			Alert alert = new Alert(AlertType.WARNING);
+			alert.dialogPaneProperty().get().getStylesheets().add("/shopping/view/dialog.css");
+
 			alert.setTitle("Error");
 			alert.setHeaderText("Issues with certain field(s)");
 			alert.setContentText("Passwords must match!");
@@ -172,6 +184,8 @@ public class RegisterController {
 
 		if (app.getLiveUserBag().getUsers().containsKey(username.getText().trim())) {//if username exists already, can't register
 			Alert alert = new Alert(AlertType.WARNING);
+			alert.dialogPaneProperty().get().getStylesheets().add("/shopping/view/dialog.css");
+
 			alert.setTitle("Error");
 			alert.setHeaderText("Issues with certain field(s)");
 			alert.setContentText("Username is taken!");
@@ -182,6 +196,8 @@ public class RegisterController {
 		
 		if (!(email.getText().matches("([\\w]+@[\\w]+[.][\\w]+)+"))) {//if username exists already, can't register
 			Alert alert = new Alert(AlertType.WARNING);
+			alert.dialogPaneProperty().get().getStylesheets().add("/shopping/view/dialog.css");
+
 			alert.setTitle("Error");
 			alert.setHeaderText("Issues with certain field(s)");
 			alert.setContentText("Please use valid email!");
@@ -219,6 +235,7 @@ public class RegisterController {
 		URL url = null;
 		try {
 			url = new URL("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
+			
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="400.0" maxWidth="600.0" minHeight="600.0" minWidth="1000.0" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: beige;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="shopping.view.CatalogController">
+<BorderPane maxHeight="400.0" maxWidth="600.0" minHeight="600.0" minWidth="1000.0" prefHeight="400.0" prefWidth="600.0"  xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="shopping.view.CatalogController">
    <top>
       <VBox alignment="BOTTOM_LEFT" prefHeight="84.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
          <children>
@@ -29,7 +29,7 @@
             </HBox>
             <HBox prefHeight="23.0" prefWidth="1000.0">
                <children>
-                  <HBox prefHeight="27.0" prefWidth="295.0" style="-fx-border-color: black;">
+                  <HBox prefHeight="27.0" prefWidth="295.0" >
                      <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" minWidth="100.0" prefHeight="31.0" prefWidth="41.0" text="Search" />
                         <TextField fx:id="searchField" minWidth="150.0" onAction="#handleSearchField" prefHeight="25.0" prefWidth="157.0">
@@ -71,21 +71,21 @@
          <children>
             <HBox alignment="CENTER" prefHeight="276.0" prefWidth="1000.0">
                <children>
-                  <ListView fx:id="itemsView" prefHeight="240.0" prefWidth="901.0" style="-fx-border-color: black;" />
+                  <ListView fx:id="itemsView" prefHeight="240.0" prefWidth="901.0"  />
                </children>
             </HBox>
             <ButtonBar>
                <buttons>
-                  <Button fx:id="newItemBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleNewItemBtn" prefHeight="25.0" prefWidth="116.0" style="-fx-background-color: orange; -fx-border-color: black;" text="New Item" visible="false" />
-                  <Button fx:id="editItemBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleEditItemBtn" prefHeight="25.0" prefWidth="116.0" style="-fx-background-color: orange; -fx-border-color: black;" text="Edit Item" visible="false" />
-                  <Button fx:id="removeItemBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleRemoveBtn" prefHeight="25.0" prefWidth="116.0" style="-fx-background-color: orange; -fx-border-color: black;" text="Remove Item" visible="false" />
-                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleAddToCart" prefHeight="25.0" prefWidth="116.0" style="-fx-background-color: orange; -fx-border-color: black;" text="Add to cart" />
+                  <Button fx:id="newItemBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleNewItemBtn" prefHeight="25.0" prefWidth="116.0"  text="New Item" visible="false" />
+                  <Button fx:id="editItemBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleEditItemBtn" prefHeight="25.0" prefWidth="116.0"  text="Edit Item" visible="false" />
+                  <Button fx:id="removeItemBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleRemoveBtn" prefHeight="25.0" prefWidth="116.0"  text="Remove Item" visible="false" />
+                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleAddToCart" prefHeight="25.0" prefWidth="116.0"  text="Add to cart" />
                </buttons>
                <padding>
                   <Insets right="50.0" />
                </padding>
             </ButtonBar>
-            <VBox prefHeight="167.0" prefWidth="1000.0" style="-fx-border-color: black;">
+            <VBox prefHeight="167.0" prefWidth="1000.0" >
                <VBox.margin>
                   <Insets left="50.0" right="50.0" />
                </VBox.margin>

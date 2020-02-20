@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="0.0" prefWidth="731.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="shopping.view.ItemDialogController">
+<AnchorPane prefHeight="0.0" prefWidth="731.0" stylesheets="@dialog.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="shopping.view.ItemDialogController">
    <children>
       <ButtonBar layoutX="158.0" layoutY="269.0" prefHeight="309.0" prefWidth="358.0" AnchorPane.topAnchor="350.0">
          <buttons>

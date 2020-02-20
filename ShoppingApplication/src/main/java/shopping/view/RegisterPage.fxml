@@ -13,7 +13,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="shopping.view.RegisterController">
    <children>
-      <AnchorPane layoutY="-3.0" prefHeight="607.0" prefWidth="257.0" style="-fx-background-color: lightblue;">
+      <AnchorPane layoutY="-3.0" prefHeight="607.0" prefWidth="257.0" >
          <children>
             <Label layoutX="35.0" layoutY="144.0" text="Let's Get">
                <font>
@@ -32,7 +32,7 @@
             <Font name="System Bold" size="36.0" />
          </font>
       </Label>
-      <AnchorPane layoutX="280.0" layoutY="107.0" prefHeight="40.0" prefWidth="257.0" style="-fx-border-color: lightblue;">
+      <AnchorPane layoutX="280.0" layoutY="107.0" prefHeight="40.0" prefWidth="257.0" >
          <children>
             <TextField fx:id="firstName" layoutX="103.0" layoutY="8.0" />
             <Label layoutX="29.0" layoutY="2.0" prefHeight="36.0" prefWidth="74.0" text="First Name:">
@@ -47,7 +47,7 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="763.0" layoutY="107.0" prefHeight="40.0" prefWidth="204.0" style="-fx-border-color: lightblue;">
+      <AnchorPane layoutX="763.0" layoutY="107.0" prefHeight="40.0" prefWidth="204.0" >
          <children>
             <TextField fx:id="lastName" layoutX="72.0" layoutY="8.0" prefHeight="25.0" prefWidth="156.0" />
             <Label layoutX="3.0" layoutY="10.0" text="Last Name:">
@@ -57,7 +57,7 @@
             </Label>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="539.0" layoutY="107.0" prefHeight="40.0" prefWidth="223.0" style="-fx-border-color: lightblue;">
+      <AnchorPane layoutX="539.0" layoutY="107.0" prefHeight="40.0" prefWidth="223.0" >
          <children>
             <Label layoutX="7.0" layoutY="10.0" text="MiddleName:">
                <font>
@@ -67,7 +67,7 @@
             <TextField fx:id="middleName" layoutX="92.0" layoutY="8.0" prefHeight="25.0" prefWidth="128.0" />
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="280.0" layoutY="162.0" prefHeight="40.0" prefWidth="337.0" style="-fx-border-color: lightblue;">
+      <AnchorPane layoutX="280.0" layoutY="162.0" prefHeight="40.0" prefWidth="337.0" >
          <children>
             <ImageView fitHeight="29.0" fitWidth="25.0" layoutX="2.0" layoutY="6.0" pickOnBounds="true">
                <image>
@@ -78,7 +78,7 @@
             <TextField fx:id="email" layoutX="112.0" layoutY="8.0" prefHeight="25.0" prefWidth="230.0" />
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="280.0" layoutY="220.0" prefHeight="40.0" prefWidth="257.0" style="-fx-border-color: lightblue;">
+      <AnchorPane layoutX="280.0" layoutY="220.0" prefHeight="40.0" prefWidth="257.0" >
          <children>
             <Label layoutX="42.0" layoutY="12.0" text="Password:">
                <font>
@@ -88,18 +88,18 @@
             <PasswordField fx:id="password" layoutX="104.0" layoutY="8.0" />
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="539.0" layoutY="220.0" prefHeight="40.0" prefWidth="257.0" style="-fx-border-color: lightblue;">
+      <AnchorPane layoutX="539.0" layoutY="220.0" prefHeight="40.0" prefWidth="257.0" >
          <children>
             <Label layoutX="14.0" layoutY="12.0" text="Confirm Password:" />
             <PasswordField fx:id="confirmPassword" layoutX="113.0" layoutY="8.0" />
          </children>
       </AnchorPane>
-      <Label layoutX="280.0" layoutY="281.0" style="-fx-text-fill: lightblue;" text="Other Information">
+      <Label layoutX="280.0" layoutY="281.0"  text="Other Information">
          <font>
             <Font size="27.0" />
          </font>
       </Label>
-      <AnchorPane layoutX="280.0" layoutY="342.0" prefHeight="40.0" prefWidth="257.0" style="-fx-border-color: lightblue;">
+      <AnchorPane layoutX="280.0" layoutY="342.0" prefHeight="40.0" prefWidth="257.0" >
          <children>
             <Label layoutY="11.0" text="Street Name:">
                <font>
@@ -109,7 +109,7 @@
             <TextField fx:id="streetName" layoutX="85.0" layoutY="8.0" prefHeight="25.0" prefWidth="168.0" />
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="280.0" layoutY="392.0" prefHeight="40.0" prefWidth="257.0" style="-fx-border-color: lightblue;">
+      <AnchorPane layoutX="280.0" layoutY="392.0" prefHeight="40.0" prefWidth="257.0" >
          <children>
             <Label layoutX="7.0" layoutY="12.0" text="House #:">
                <font>
@@ -119,7 +119,7 @@
             <TextField fx:id="houseNumber" layoutX="83.0" layoutY="8.0" prefHeight="25.0" prefWidth="168.0" />
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="280.0" layoutY="444.0" prefHeight="40.0" prefWidth="257.0" style="-fx-border-color: lightblue;">
+      <AnchorPane layoutX="280.0" layoutY="444.0" prefHeight="40.0" prefWidth="257.0" >
          <children>
             <Label layoutX="14.0" layoutY="12.0" text="City:">
                <font>
@@ -129,7 +129,7 @@
             <TextField fx:id="city" layoutX="84.0" layoutY="8.0" prefHeight="25.0" prefWidth="168.0" />
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="280.0" layoutY="496.0" prefHeight="40.0" prefWidth="257.0" style="-fx-border-color: lightblue;">
+      <AnchorPane layoutX="280.0" layoutY="496.0" prefHeight="40.0" prefWidth="257.0" >
          <children>
             <Label layoutX="7.0" layoutY="12.0" text="State:">
                <font>
@@ -139,7 +139,7 @@
             <TextField fx:id="state" layoutX="85.0" layoutY="8.0" prefHeight="25.0" prefWidth="168.0" />
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="280.0" layoutY="546.0" prefHeight="40.0" prefWidth="257.0" style="-fx-border-color: lightblue;">
+      <AnchorPane layoutX="280.0" layoutY="546.0" prefHeight="40.0" prefWidth="257.0" >
          <children>
             <Label layoutX="7.0" layoutY="12.0" text="Country:">
                <font>
@@ -149,7 +149,7 @@
             <TextField fx:id="country" layoutX="83.0" layoutY="8.0" prefHeight="25.0" prefWidth="168.0" />
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="632.0" layoutY="162.0" prefHeight="40.0" prefWidth="361.0" style="-fx-border-color: lightblue;">
+      <AnchorPane layoutX="632.0" layoutY="162.0" prefHeight="40.0" prefWidth="361.0" >
          <children>
             <Label layoutX="7.0" layoutY="10.0" text="Username:">
                <font>

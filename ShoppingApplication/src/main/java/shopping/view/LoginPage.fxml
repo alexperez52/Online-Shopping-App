@@ -71,7 +71,7 @@
                         <Insets left="200.0" />
                      </VBox.margin>
                   </HBox>
-                  <Button mnemonicParsing="false" onAction="#handleLogin" prefHeight="21.0" prefWidth="205.0" style="-fx-background-color: orange; -fx-border-color: black;" text="Login" textFill="#612f1a">
+                  <Button mnemonicParsing="false" onAction="#handleLogin" prefHeight="21.0" prefWidth="205.0"  text="Login" >
                      <VBox.margin>
                         <Insets left="390.0" />
                      </VBox.margin>
