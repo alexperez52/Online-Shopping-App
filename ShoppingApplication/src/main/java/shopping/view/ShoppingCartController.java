@@ -1,10 +1,14 @@
 package shopping.view;
 
+import java.util.Optional;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar.ButtonData;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Alert.AlertType;
 import shopping.app.App;
@@ -134,13 +138,40 @@ public class ShoppingCartController {
 			int item = listView.getSelectionModel().getSelectedIndex();
 			int actual = app.getCurrentUser().getCart().getCartItems().get(item).getItemQuantity();
 
-			if (actual < 1) {
-				Alert alert = new Alert(AlertType.WARNING);
-				alert.setTitle("Warning");
-				alert.setHeaderText("Quantity below 0");
-				alert.setContentText("Can't return if you don't own");
+			if (actual < 2) {
+				Alert alert = new Alert(AlertType.CONFIRMATION);
+				alert.setTitle("Cart");
+				alert.setHeaderText("Quantity hit 0");
+				alert.setContentText("Would you like to remove item instead ?");
 
-				alert.showAndWait();
+				ButtonType buttonTypeOne = new ButtonType("Yes");
+				ButtonType buttonTypeTwo = new ButtonType("No");
+			
+				ButtonType buttonTypeCancel = new ButtonType("Cancel", ButtonData.CANCEL_CLOSE);
+
+				alert.getButtonTypes().setAll(buttonTypeOne, buttonTypeTwo, buttonTypeCancel);
+
+				Optional<ButtonType> result = alert.showAndWait();
+				if (result.get() == buttonTypeOne){
+				app.getCurrentUser().getCart().getCartItems().remove(listView.getSelectionModel().getSelectedItem());
+				listView.getItems().remove(item);
+				listView.refresh();
+
+				    // ... user chose "One"
+				} else if (result.get() == buttonTypeTwo) {
+					if(actual > 0) {
+					app.getCurrentUser().getCart().getCartItems().get(item)
+					.setItemQuantity(app.getCurrentUser().getCart().getCartItems().get(item).getItemQuantity() - 1);
+					listView.refresh();
+					alert.close();
+					}
+				    // ... user chose "Two"
+				} else {
+					alert.close();
+
+				    // ... user chose CANCEL or closed the dialog
+				}
+	
 			} else {
 
 				app.getCurrentUser().getCart().getCartItems().get(item)
