@@ -54,7 +54,7 @@ public class InvoiceDialogController {
 	 * fields onto the InvocieDialog for the user to read.
 	 * 
 	 * @param currentInvoice The Invoice object that the user wants to read.
-	 * @see InvoiceController
+	 * @see InvoiceDialogController
 	 */
 	public void setCurrentInvoice(Invoice currentInvoice) { // gets user's purchase information and displays onto
 															// invoice
@@ -63,13 +63,13 @@ public class InvoiceDialogController {
 		nameLabel.setText(currentInvoice.getUser().getName().getFullName());
 		addressLabel.setText(currentInvoice.getUser().getAddress().getFullAddress());
 		invoiceId.setText("Invoice ID: x0000" + currentInvoice.getId().toString());
-		invoiceDateCreatedLabel.setText("Date of purchase: " + currentInvoice.getDateCreated());
+		invoiceDateCreatedLabel.setText("Date of purchase: " + currentInvoice.getDateStamp());
 		subtotalLabel
 				.setText("Subtotal: $" + shopping.utils.DataFormatter.formatAmount(currentInvoice.getBill() / 1.04));
 		taxLabel.setText("Tax: $" + shopping.utils.DataFormatter.formatAmount(currentInvoice.getBill() * .04));
 		totalLabel.setText("Total: $" + shopping.utils.DataFormatter.formatAmount(currentInvoice.getBill()));
 		purchaseSummaryLabel
-				.setText(currentInvoice.getUser().getCart().lookUpShoppingCartItems(app.getLiveInventory())); // generate
+				.setText(currentInvoice.getInformation()); // generate
 																												// purchase
 																												// summary
 																												// based

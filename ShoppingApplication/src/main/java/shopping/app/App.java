@@ -2,6 +2,8 @@ package shopping.app;
 
 import java.io.IOException;
 
+import com.aquafx_project.AquaFx;
+
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -48,16 +50,16 @@ public class App extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		shopping.utils.DataSaver.restore(liveUserBag, liveInventory); // restores data on start up
-		 //regenerateData();
+		// regenerateData();
 		liveUserBag.getUsers().entrySet().forEach(entry -> {
 			System.out.println(entry.getValue());
 		});
 
-		liveUserBag.getUsers().get("Adnan9").setAdmin(true);
-		liveUserBag.getUsers().get("Adnan9").getCart().clearCart();
+		liveUserBag.getUsers().get("Adnan91").setAdmin(true);
+		liveUserBag.getUsers().get("Adnan91").getCart().clearCart();
 
-		System.out.println(liveUserBag.getUsers().get("Adnan9").isAdmin());
-		System.out.println(liveUserBag.getUsers().get("Adnan9").getPassword());
+		System.out.println(liveUserBag.getUsers().get("Adnan91").isAdmin());
+		System.out.println(liveUserBag.getUsers().get("Adnan91").getPassword());
 
 		initRootLayout();
 	}
@@ -240,6 +242,7 @@ public class App extends Application {
 	 * Gets invoice fxml. Displays a dialog with the invoice fxml and creates InvoiceDialogController object for
 	 * invoice dialog.
 	 * 
+	 * @param invoice AN Invoice object to be displayed on the dialog
 	 * @see App
 	 */
 	public void showInvoiceDialog(Invoice invoice) {// pulls invoice dialog

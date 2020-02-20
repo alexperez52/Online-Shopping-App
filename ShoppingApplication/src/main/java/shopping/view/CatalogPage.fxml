@@ -51,7 +51,7 @@
                         <Insets left="370.0" />
                      </HBox.margin>
                   </ImageView>
-                  <Label text="Raw Items: ">
+                  <Label text="Items: ">
                      <font>
                         <Font size="18.0" />
                      </font>

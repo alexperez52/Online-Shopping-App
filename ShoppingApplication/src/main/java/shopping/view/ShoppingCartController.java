@@ -54,7 +54,7 @@ public class ShoppingCartController {
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("Warning");
 			alert.setHeaderText("Empty Cart");
-			alert.setContentText("Cart is Empty !");
+			alert.setContentText("Cart is Empty!");
 
 			alert.showAndWait();
 		} else {
@@ -182,7 +182,7 @@ public class ShoppingCartController {
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("Warning");
 			alert.setHeaderText("No item selected");
-			alert.setContentText("Please select an item to modify !");
+			alert.setContentText("Please select an item to modify!");
 
 			alert.showAndWait();
 		}

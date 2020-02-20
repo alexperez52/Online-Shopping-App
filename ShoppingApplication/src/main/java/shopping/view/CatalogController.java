@@ -92,7 +92,7 @@ public class CatalogController {
 		inventoryItemsList = FXCollections.observableArrayList(app.getLiveInventory().getInventory().values()); // loads
 																												// inventory
 																												// into
-		counter.setText(String.valueOf(app.getCurrentUser().getCart().getCartItems().size()));
+		counter.setText(getNumItemsInCart());
 															// page
 		itemsView.getItems().setAll(inventoryItemsList);
 		if (app.getCurrentUser().isAdmin()) {// checks if user is admin to show certain controls
@@ -212,8 +212,16 @@ public class CatalogController {
 
 			alert.showAndWait();
 		}
-		counter.setText(String.valueOf(app.getCurrentUser().getCart().getCartItems().size()));  //Updates counter of unique items
+		counter.setText(getNumItemsInCart());  //Updates counter of unique items
 
+	}
+
+	private String getNumItemsInCart() {
+		int totalNumItems = 0;
+		for(ShoppingCartItem cartItem: app.getCurrentUser().getCart().getCartItems()) {
+			totalNumItems += cartItem.getItemQuantity();
+		}
+		return totalNumItems + "";
 	}
 
 	/**
