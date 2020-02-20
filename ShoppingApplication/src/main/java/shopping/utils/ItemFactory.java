@@ -15,7 +15,8 @@ public class ItemFactory {
 	 * Static method that takes an Inventory object to dump randomly generated
 	 * Item objects into. Uses itemData.txt to pull information for Item objects.
 	 * 
-	 * @param inventory An Inventory object to populate with generated Items
+	 * @param inventory An Inventory object to populate with generated Item objects
+	 * @return inventory An Inventory object filled with randomly generated Item objects
 	 * @see ItemFactory
 	 */
 	public static Inventory importItemData(Inventory inventory) { // generates initial warehouse inventory

@@ -2,6 +2,8 @@ package shopping.app;
 
 import java.io.IOException;
 
+import com.aquafx_project.AquaFx;
+
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -47,6 +49,7 @@ public class App extends Application {
 
 	@Override
 	public void start(Stage primaryStage) {
+		AquaFx.style();
 		shopping.utils.DataSaver.restore(liveUserBag, liveInventory); // restores data on start up
 		 //regenerateData();
 		liveUserBag.getUsers().entrySet().forEach(entry -> {
@@ -240,6 +243,7 @@ public class App extends Application {
 	 * Gets invoice fxml. Displays a dialog with the invoice fxml and creates InvoiceDialogController object for
 	 * invoice dialog.
 	 * 
+	 * @param invoice AN Invoice object to be displayed on the dialog
 	 * @see App
 	 */
 	public void showInvoiceDialog(Invoice invoice) {// pulls invoice dialog

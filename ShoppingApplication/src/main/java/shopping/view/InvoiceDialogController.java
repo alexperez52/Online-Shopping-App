@@ -54,7 +54,7 @@ public class InvoiceDialogController {
 	 * fields onto the InvocieDialog for the user to read.
 	 * 
 	 * @param currentInvoice The Invoice object that the user wants to read.
-	 * @see InvoiceController
+	 * @see InvoiceDialogController
 	 */
 	public void setCurrentInvoice(Invoice currentInvoice) { // gets user's purchase information and displays onto
 															// invoice
@@ -69,7 +69,7 @@ public class InvoiceDialogController {
 		taxLabel.setText("Tax: $" + shopping.utils.DataFormatter.formatAmount(currentInvoice.getBill() * .04));
 		totalLabel.setText("Total: $" + shopping.utils.DataFormatter.formatAmount(currentInvoice.getBill()));
 		purchaseSummaryLabel
-				.setText(currentInvoice.getUser().getCart().lookUpShoppingCartItems(app.getLiveInventory())); // generate
+				.setText(currentInvoice.getInformation()); // generate
 																												// purchase
 																												// summary
 																												// based

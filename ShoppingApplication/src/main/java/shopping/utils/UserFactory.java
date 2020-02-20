@@ -16,6 +16,7 @@ public class UserFactory {
 	 * User objects into. Uses addressData.txt and nameData.txt to pull information for User objects.
 	 * 
 	 * @param userBag A UserBag object to populate with generated Users
+	 * @return userBag A UserBag object filled with randomly generated User objects
 	 * @see UserFactory
 	 */
 	public static UserBag importUserData(UserBag userBag) { // generates initial warehouse inventory
