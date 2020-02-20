@@ -63,7 +63,7 @@ public class InvoiceDialogController {
 		nameLabel.setText(currentInvoice.getUser().getName().getFullName());
 		addressLabel.setText(currentInvoice.getUser().getAddress().getFullAddress());
 		invoiceId.setText("Invoice ID: x0000" + currentInvoice.getId().toString());
-		invoiceDateCreatedLabel.setText("Date of purchase: " + currentInvoice.getDateCreated());
+		invoiceDateCreatedLabel.setText("Date of purchase: " + currentInvoice.getDateStamp());
 		subtotalLabel
 				.setText("Subtotal: $" + shopping.utils.DataFormatter.formatAmount(currentInvoice.getBill() / 1.04));
 		taxLabel.setText("Tax: $" + shopping.utils.DataFormatter.formatAmount(currentInvoice.getBill() * .04));

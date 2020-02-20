@@ -14,6 +14,7 @@ public class Invoice implements Serializable {// holds user's billing informatio
 	private double bill; // total of purchased goods
 	private String information; // list of purchased goods
 	private LocalDateTime dateCreated;
+	private String dateStamp;
 	private transient DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
 
 	public Invoice(User user, double bill, Inventory inventory) {
@@ -23,11 +24,15 @@ public class Invoice implements Serializable {// holds user's billing informatio
 		this.bill = bill; // gets total from checkout controller
 		this.information = user.getCart().lookUpShoppingCartItems(inventory); // displays items purchased
 		this.dateCreated = LocalDateTime.now(); // marks time of purchase
-
+		dateStamp = dateFormatter.format(dateCreated);
 	}
 
-	public String getDateCreated() {
-		return dateFormatter.format(dateCreated);
+	public String getDateStamp() {
+		return dateStamp;
+	}
+
+	public void setDateStamp(String dateStamp) {
+		this.dateStamp = dateStamp;
 	}
 
 	public User getUser() {
