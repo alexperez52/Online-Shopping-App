@@ -39,7 +39,13 @@ public class AdminController {
 		
 		
 	}
-	
+	/**
+	 * Performs action on new user button. Changes root scene to 
+	 * register page.
+	 * 
+	 * 
+	 * @see AdminController
+	 */
 	@FXML 
 	private void handleNew() {
 		
@@ -47,6 +53,12 @@ public class AdminController {
 		
 	}
 	
+	/**
+	 * Performs action on list view cell selected.
+	 * Displays user information of cell selected into labels.
+	 * 
+	 * @see AdminController
+	 */
 	@FXML
 	private void handleInfo() {
 		
@@ -58,7 +70,14 @@ public class AdminController {
 		
 		
 	}
-	
+	/**
+	 * Performs action on new delete button. Deletes user which
+	 * corresponds to cell selected on table view. Removes user from 
+	 * database.
+	 * 
+	 * 
+	 * @see AdminController
+	 */
 	@FXML 
 	private void handleDelete() {
 		user = listView.getSelectionModel().getSelectedItem();
@@ -67,6 +86,12 @@ public class AdminController {
 
 	}
 	
+	/**
+	 * Updates table to keep live updates of users added or deleted.
+	 * 
+	 * 
+	 * @see AdminController
+	 */
 	public void updateTable() {
 		ObservableList<User> items = FXCollections.observableArrayList(app.getLiveUserBag().getUsers().values());
 		
@@ -75,6 +100,13 @@ public class AdminController {
 		
 	}
 	
+	/**
+	 * Displays user's information on labels corresponding to list view cells.
+	 * 
+	 * 
+	 * @see AdminController
+	 * @param user A user to be displayed
+	 */
 	private void displayUserInformation(User user) {
 		fullName.setText(user.getName().getFullName());
 		address.setText(user.getAddress().getFullAddress());

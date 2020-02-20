@@ -83,13 +83,13 @@ public class RootController {
 	}
 	
 	/**
-	 * Performs action on Checkout Button click. Calls app.showCheckoutPage().
+	 * Performs action on Checkout Button click. Calls app.showShoppingCartPage().
 	 * 
 	 * @see RootController
 	 */
 	@FXML
-	private void handleCheckout() {// pulls checkout page
-		app.showCheckoutPage();
+	private void handleCheckout() {// pulls Shopping cart page
+		app.showShoppingCartPage();
 
 	}
 	
