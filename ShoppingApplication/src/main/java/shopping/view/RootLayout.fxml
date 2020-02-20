@@ -14,7 +14,7 @@
                <children>
                   <Button minHeight="40.0" minWidth="100.0" mnemonicParsing="false" onAction="#handleAccount" prefHeight="40.0" prefWidth="100.0" text="Account" />
                   <Button minHeight="40.0" minWidth="100.0" mnemonicParsing="false" onAction="#handleCatalog" prefHeight="40.0" prefWidth="100.0" text="Catalog" />
-                  <Button fx:id="checkoutBtn" minHeight="40.0" minWidth="100.0" mnemonicParsing="false" onAction="#handleCheckout" prefHeight="40.0" prefWidth="100.0" text="Checkout" />
+                  <Button fx:id="checkoutBtn" minHeight="40.0" minWidth="100.0" mnemonicParsing="false" onAction="#handleCheckout" prefHeight="40.0" prefWidth="100.0" text="Cart" />
                   <Button minHeight="40.0" minWidth="100.0" mnemonicParsing="false" onAction="#handleSignOut" prefHeight="40.0" prefWidth="100.0" text="Sign Out" />
                   <Button fx:id="adminLogBtn" minHeight="40.0" minWidth="100.0" mnemonicParsing="false" onAction="#handleAdminLog" prefHeight="40.0" prefWidth="100.0" text="Logs" visible="false" />
                </children>

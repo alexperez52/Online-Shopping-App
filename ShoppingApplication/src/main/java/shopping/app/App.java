@@ -28,6 +28,7 @@ import shopping.view.ItemDialogController;
 import shopping.view.LoginController;
 import shopping.view.RegisterController;
 import shopping.view.RootController;
+import shopping.view.ShoppingCartController;
 
 public class App extends Application {
 
@@ -47,16 +48,16 @@ public class App extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		shopping.utils.DataSaver.restore(liveUserBag, liveInventory); // restores data on start up
-		// regenerateData();
+		 //regenerateData();
 		liveUserBag.getUsers().entrySet().forEach(entry -> {
 			System.out.println(entry.getValue());
 		});
 
-		liveUserBag.getUsers().get("Adnan79").setAdmin(true);
-		liveUserBag.getUsers().get("Adnan79").getCart().clearCart();
+		liveUserBag.getUsers().get("Adnan9").setAdmin(true);
+		liveUserBag.getUsers().get("Adnan9").getCart().clearCart();
 
-		System.out.println(liveUserBag.getUsers().get("Adnan79").isAdmin());
-		System.out.println(liveUserBag.getUsers().get("Adnan79").getPassword());
+		System.out.println(liveUserBag.getUsers().get("Adnan9").isAdmin());
+		System.out.println(liveUserBag.getUsers().get("Adnan9").getPassword());
 
 		initRootLayout();
 	}
@@ -120,6 +121,12 @@ public class App extends Application {
 		}
 	}
 	
+	/**
+	 * Gets User Edit fxml. Sets a dialog window which takes input to modify
+	 * existing user.
+	 * 
+	 * @see App
+	 */
 	public void showInfoEdit() {
 		Stage dialogStage;
 		try {
@@ -159,6 +166,28 @@ public class App extends Application {
 
 			CatalogController catalogController = loader.getController();
 			catalogController.setApp(this);
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Gets Shopping Cart fxml. Sets root node's center to Shopping Cart fxml and creates ShoppingCartController object
+	 * for shopping cart page.
+	 * 
+	 * @see App
+	 */
+	public void showShoppingCartPage() {
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(App.class.getResource("/shopping/view/ShoppingCart.fxml"));
+			Pane page = (Pane) loader.load();
+			rootLayout.setCenter(page);
+
+			ShoppingCartController shoppingCartController = loader.getController();
+			shoppingCartController.setApp(this);
+			shoppingCartController.showItems();
 
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -269,7 +298,12 @@ public class App extends Application {
 		}
 
 	}
-
+	/**
+	 * Gets User Profile fxml. Sets root node's center to the User Profile fxml and creates AccountController object for
+	 * User Profile page.
+	 * 
+	 * @see App
+	 */
 	public void showAccountPage() {
 		try {
 			FXMLLoader loader = new FXMLLoader();
@@ -287,6 +321,12 @@ public class App extends Application {
 		}
 	}
 
+	/**
+	 * Gets UserProfile fxml. Sets root node's center to the user profile fxml and creates AccountController object for
+	 * User Profile page.
+	 * @param user A user to be passed for viewing user profile from admin account
+	 * @see App
+	 */
 	public void showAccountPageAdmin(User user) {
 		try {
 			FXMLLoader loader = new FXMLLoader();
@@ -304,7 +344,13 @@ public class App extends Application {
 			e.printStackTrace();
 		}
 	}
-
+	/**
+	 * Gets EditPayment fxml. Sets a dialog to input payment information which is updated
+	 * to the user account currently logged in. Creates an AccountController for the EditPayment
+	 * page 
+	 * 
+	 * @see App
+	 */
 	public void showCardEdit() {
 		Stage dialogStage;
 		try {
@@ -330,7 +376,13 @@ public class App extends Application {
 		}
 
 	}
-
+	/**
+	 * Gets EditPayment fxml. Sets a dialog to input payment informtion which is updated
+	 * to the user account currently logged in. Creates an AccountController for the EditPayment
+	 * page
+	 * 
+	 * @see App
+	 */
 	public void showPaypalEdit() {
 		Stage dialogStage;
 		try {
@@ -355,7 +407,12 @@ public class App extends Application {
 		}
 
 	}
-
+	/**
+	 * Gets AdminControlPanel fxml. Sets root node's center to the Admin Control Panel fxml and creates AdminController object for
+	 * AdminControlPanel page.
+	 * 
+	 * @see App
+	 */
 	public void showAdminPage() {
 		try {
 			FXMLLoader loader = new FXMLLoader();

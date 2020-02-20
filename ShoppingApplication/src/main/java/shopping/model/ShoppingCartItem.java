@@ -6,11 +6,28 @@ public class ShoppingCartItem implements Serializable{ // holds the id and amoun
 								// for reference to inventory at checkout
 	private Integer id = 0;
 	private Integer itemQuantity = 0;
+	private String description;
+	private double price;
 
+	public ShoppingCartItem(Integer id, Integer itemQuantity, String description, double price) {
+		super();
+		this.id = id;
+		this.itemQuantity = itemQuantity;
+		this.setDescription(description);
+		this.setPrice(price);
+	}
+	
+	public double getPrice() {
+		return price;
+	}
+	public void setPrice(double price) {
+		this.price = price;
+	}
 	public ShoppingCartItem(Integer id, Integer itemQuantity) {
 		super();
 		this.id = id;
 		this.itemQuantity = itemQuantity;
+		this.description = null;
 	}
 
 	public Integer getId() {
@@ -25,12 +42,18 @@ public class ShoppingCartItem implements Serializable{ // holds the id and amoun
 		this.itemQuantity = itemQuantity;
 	}
 	
-	
-	
+
+	//padding for formatting the toString to be viewed properly in listView
+	private String rightpad(String text, int length) {
+	    return String.format("%-" + length + "." + length + "s", text);
+	}
 
 	@Override
 	public String toString() {
-		return "ShoppingCartItem [id=" + id + ", itemQuantity=" + itemQuantity + "]";
+		String quant = rightpad(String.valueOf(this.itemQuantity), 25);
+		String desc = rightpad(this.description, 50);
+		String pric = rightpad(shopping.utils.DataFormatter.formatAmount(this.price), 45);
+		return "\t\t" + quant + pric + desc;
 	}
 
 	@Override
@@ -57,6 +80,14 @@ public class ShoppingCartItem implements Serializable{ // holds the id and amoun
 			return false;
 		return true;
 	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	
+	
 	
 
 

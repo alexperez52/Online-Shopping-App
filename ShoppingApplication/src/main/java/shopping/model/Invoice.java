@@ -62,4 +62,10 @@ public class Invoice implements Serializable {// holds user's billing informatio
 		return uniqueNumber;
 	}
 
+	@Override
+	public String toString() {
+		return id + ".     " + user + "     " + dateCreated;
+	}
+	
+
 }

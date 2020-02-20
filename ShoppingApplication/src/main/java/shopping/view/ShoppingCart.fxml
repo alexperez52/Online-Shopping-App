@@ -9,15 +9,15 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="shopping.view.ShoppingCartController">
    <children>
-      <Button layoutX="849.0" layoutY="523.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="137.0" style="-fx-background-color: orange;" text="Order" />
-      <Button layoutX="453.0" layoutY="534.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="35.0" text="+">
+      <Button fx:id="orderButton" layoutX="849.0" layoutY="523.0" mnemonicParsing="false" onAction="#showCheckOut" prefHeight="53.0" prefWidth="137.0" style="-fx-background-color: orange;" text="Order" />
+      <Button fx:id="plusButton" layoutX="453.0" layoutY="534.0" mnemonicParsing="false" onAction="#add" prefHeight="32.0" prefWidth="35.0" text="+">
          <font>
             <Font size="19.0" />
          </font>
       </Button>
-      <Button layoutX="494.0" layoutY="534.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="39.0" text="-">
+      <Button fx:id="minusButton" layoutX="494.0" layoutY="534.0" mnemonicParsing="false" onAction="#minus" prefHeight="42.0" prefWidth="39.0" text="-">
          <font>
             <Font size="19.0" />
          </font>
@@ -67,13 +67,14 @@
             <Font size="14.0" />
          </font>
       </Hyperlink>
-      <ListView layoutX="460.0" layoutY="72.0" prefHeight="438.0" prefWidth="512.0" />
+      <ListView fx:id="listView" layoutX="460.0" layoutY="72.0" prefHeight="438.0" prefWidth="512.0" />
       <AnchorPane layoutX="460.0" layoutY="14.0" prefHeight="53.0" prefWidth="512.0" style="-fx-background-color: orange;">
          <children>
-            <Label layoutX="43.0" layoutY="18.0" text="Label" />
-            <Label layoutX="228.0" layoutY="18.0" text="Label" />
-            <Label layoutX="426.0" layoutY="18.0" text="Label" />
+            <Label layoutX="43.0" layoutY="18.0" text="Quantity" />
+            <Label layoutX="352.0" layoutY="18.0" text="Item" />
+            <Label layoutX="145.0" layoutY="18.0" text="Price" />
          </children>
       </AnchorPane>
+      <Button fx:id="cancelButton" layoutX="701.0" layoutY="523.0" mnemonicParsing="false" onAction="#emptyCart" prefHeight="53.0" prefWidth="137.0" text="Empty Cart / Cancel" />
    </children>
 </AnchorPane>

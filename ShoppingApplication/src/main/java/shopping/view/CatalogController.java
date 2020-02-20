@@ -14,6 +14,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -50,7 +51,11 @@ public class CatalogController {
 	private Button removeItemBtn;
 	@FXML
 	private ComboBox<Electronics> category = new ComboBox<Electronics>();
-
+	@FXML
+	private Label counter;
+	@FXML
+	private ImageView cartView;
+	
 	public CatalogController() {
 
 	}
@@ -62,6 +67,9 @@ public class CatalogController {
 			clickedItem = newValue;
 			// System.out.println(clickedItem.getElectronic());
 		});
+		
+
+
 		category.setItems(FXCollections.observableArrayList(Electronics.values())); // sets electronics types
 		category.setOnAction((e) -> {
 			// TODO: REWORK COMBOBOX SEARCH!
@@ -84,7 +92,8 @@ public class CatalogController {
 		inventoryItemsList = FXCollections.observableArrayList(app.getLiveInventory().getInventory().values()); // loads
 																												// inventory
 																												// into
-																												// page
+		counter.setText(String.valueOf(app.getCurrentUser().getCart().getCartItems().size()));
+															// page
 		itemsView.getItems().setAll(inventoryItemsList);
 		if (app.getCurrentUser().isAdmin()) {// checks if user is admin to show certain controls
 			newItemBtn.setVisible(true);
@@ -139,7 +148,7 @@ public class CatalogController {
 		int selectedIndex = itemsView.getSelectionModel().getSelectedIndex();
 		if (selectedIndex >= 0) {// if user clicks on an item
 			if (clickedItem.getQuantity() > 0) { // checks if item is in stock
-				ShoppingCartItem cartItem = new ShoppingCartItem(clickedItem.getId(), 1);// makes shopping cart item
+				ShoppingCartItem cartItem = new ShoppingCartItem(clickedItem.getId(), 1, clickedItem.getName() + " " + clickedItem.getDescription(), clickedItem.getPrice());// makes shopping cart item
 				int index = cart.getCartItems().indexOf(cartItem); // finds item in cart already
 				ShoppingCartItem searchedItem;
 				try {
@@ -159,14 +168,15 @@ public class CatalogController {
 																													// new)
 																													// <
 																													// stock
+
 					searchedItem.setItemQuantity(searchedItem.getItemQuantity() + 1);// just increase quantity
-					
 					Alert alert = new Alert(AlertType.INFORMATION);
 					alert.setTitle("Information");
 					alert.setHeaderText("Item added to cart!");
 					alert.setContentText("Quantity of this item in cart: " + searchedItem.getItemQuantity());
 					
 					alert.showAndWait();
+					
 				} else if (searchedItem == null) {
 					cart.getCartItems().add(cartItem);
 					Alert alert = new Alert(AlertType.INFORMATION);
@@ -184,6 +194,14 @@ public class CatalogController {
 					alert.showAndWait();
 				}
 			}
+			else {
+				Alert alert = new Alert(AlertType.WARNING);
+				alert.setTitle("Warning");
+				alert.setHeaderText("Item not in stock anymore!");
+				alert.setContentText("Can't add to cart");
+
+				alert.showAndWait();
+			}
 		}
 
 		else {
@@ -194,6 +212,8 @@ public class CatalogController {
 
 			alert.showAndWait();
 		}
+		counter.setText(String.valueOf(app.getCurrentUser().getCart().getCartItems().size()));  //Updates counter of unique items
+
 	}
 
 	/**
@@ -304,4 +324,8 @@ public class CatalogController {
 		}
 	}
 
+	@FXML
+	private void showCartPage() {
+		app.showShoppingCartPage();
+	}
 }
