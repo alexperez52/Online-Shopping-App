@@ -160,8 +160,21 @@ public class CatalogController {
 																													// <
 																													// stock
 					searchedItem.setItemQuantity(searchedItem.getItemQuantity() + 1);// just increase quantity
+					
+					Alert alert = new Alert(AlertType.INFORMATION);
+					alert.setTitle("Information");
+					alert.setHeaderText("Item added to cart!");
+					alert.setContentText("Quantity of this item in cart: " + searchedItem.getItemQuantity());
+					
+					alert.showAndWait();
 				} else if (searchedItem == null) {
 					cart.getCartItems().add(cartItem);
+					Alert alert = new Alert(AlertType.INFORMATION);
+					alert.setTitle("Information");
+					alert.setHeaderText("Item added to cart!");
+					alert.setContentText("");
+
+					alert.showAndWait();
 				} else {
 					Alert alert = new Alert(AlertType.WARNING);
 					alert.setTitle("Warning");
@@ -268,13 +281,12 @@ public class CatalogController {
 		if (searchField.getText().isEmpty()) {
 			itemsView.getItems().setAll(inventoryItemsList);
 		}
-		for (Item item : ((ListView<Item>) inventoryItemsList).getItems()) {
-			if (item.getName() != null && item.getName().equalsIgnoreCase(searchField.getText())) {
+		app.getLiveInventory().getInventory().forEach((k, v) ->{
+			if (v.getName() != null && v.getName().equalsIgnoreCase(searchField.getText())) {
 				itemsView.getItems().clear();
-				itemsView.getItems().add(item);
-				break;
+				itemsView.getItems().add(v);
 			}
-		}
+		});
 	}
 	
 	/**

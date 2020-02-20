@@ -104,7 +104,7 @@ public class CheckoutController {
 	@FXML
 	private void handleCheckoutButton() { // will confirm purchase, need to add invoice generation
 		if (fieldCheck()) {
-			if (app.getCurrentUser().getPayment() != null) {
+			if (!(app.getCurrentUser().getPayment() == null)) {
 				Alert alert = new Alert(AlertType.CONFIRMATION);
 				alert.setTitle("Payment Confirmation");
 				alert.setHeaderText("You have existing payment information");
@@ -115,12 +115,17 @@ public class CheckoutController {
 					completePurchase();
 					return;
 				} else {
-					completePurchase();
+					if (fieldCheckNewPayment()) {
+						Payment userPayment = new Payment(isPaypal, isCard, extractPayment(isPaypal, isCard));
+						app.getCurrentUser().setPayment(userPayment);
+						completePurchase();
+					}
 				}
+			} else {
+				Payment userPayment = new Payment(isPaypal, isCard, extractPayment(isPaypal, isCard));
+				app.getCurrentUser().setPayment(userPayment);
+				completePurchase();
 			}
-			Payment userPayment = new Payment(isPaypal, isCard, extractPayment(isPaypal, isCard));
-			app.getCurrentUser().setPayment(userPayment);
-			completePurchase();
 		}
 
 	}
@@ -157,8 +162,6 @@ public class CheckoutController {
 		alert.setContentText("");
 
 		alert.showAndWait();
-
-		System.out.println(app.getCurrentUser().getPayment());
 
 		app.showCatalogPage();
 	}
@@ -313,4 +316,63 @@ public class CheckoutController {
 		totalLabel.setText("Total: $" + shopping.utils.DataFormatter.formatAmount(bill / 1.04));
 		afterTaxLabel.setText("After Tax: $" + shopping.utils.DataFormatter.formatAmount(bill));
 	}
+	
+	/**
+	 * Checks all available CheckoutPage fields and checks if improper user input
+	 * exists, except for updating user payment. Only returns true if user information is correct.
+	 * 
+	 * @return isProperInformation boolean value returning true if fields are
+	 *         acceptable, false if user input exception is caught
+	 * @see CheckoutController
+	 */
+	public boolean fieldCheckNewPayment() {// checks inefficient field data
+
+		if (!(paypalEmailField.getText().isEmpty()) && !(paypalPasswordField.getText().isEmpty())) {
+			if (paypalEmailField.getText().matches("([\\w]+@[\\w]+[.][\\w]+)+")) { // checks if email is invalid
+				return true;
+			} else {
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setTitle("Warning");
+				alert.setHeaderText("Please enter a valid email!");
+				alert.setContentText("");
+
+				alert.showAndWait();
+
+				return false;
+			}
+		}
+		if (!(cardNumberField.getText().isEmpty()) && !(cardSecurityField.getText().isEmpty()) // first checks if fields
+																								// aren't empty
+				&& !(cardHolderField.getText().isEmpty()) && monthBox.getSelectionModel().getSelectedItem() != null
+				&& yearBox.getSelectionModel().getSelectedItem() != null) {
+			if (cardNumberField.getText().replaceAll("[^\\d]+", "").matches("[\\d]{16}")
+					&& cardSecurityField.getText().matches("[\\d]{3}")
+					&& cardHolderField.getText().matches("[a-zA-Z\\s]+")) {
+				return true;
+				// extracts digits
+				// from card #, and cvv and extracts letters from card holder
+				// checks if there's
+				// proper amount of digits, or valid input for a name
+			} else {
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setTitle("Warning");
+				alert.setHeaderText("Please enter a valid input for field(s)");
+				alert.setContentText("");
+
+				alert.showAndWait();
+
+				return false;
+			}
+		}
+
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle("Warning");
+		alert.setHeaderText("Certain Field(s) incomplete!");
+		alert.setContentText("");
+
+		alert.showAndWait();
+
+		return false;
+	}
+
 }

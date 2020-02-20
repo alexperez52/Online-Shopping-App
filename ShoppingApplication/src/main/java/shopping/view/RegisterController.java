@@ -179,6 +179,16 @@ public class RegisterController {
 			alert.showAndWait();
 			return false;
 		}
+		
+		if (!(email.getText().matches("([\\w]+@[\\w]+[.][\\w]+)+"))) {//if username exists already, can't register
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("Error");
+			alert.setHeaderText("Issues with certain field(s)");
+			alert.setContentText("Please use valid email!");
+
+			alert.showAndWait();
+			return false;
+		}
 
 		return true;
 	}

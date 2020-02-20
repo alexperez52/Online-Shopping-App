@@ -5,19 +5,17 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane minHeight="600.0" minWidth="1000.0" prefHeight="390.0" prefWidth="433.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="shopping.view.LoginController">
+<BorderPane minHeight="600.0" minWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="shopping.view.LoginController">
    <center>
-      <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-         <top>
-            <Label prefHeight="154.0" prefWidth="97.0" text="LOGO GOES HERE" BorderPane.alignment="CENTER" />
-         </top>
-         <center>
-            <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+      <AnchorPane maxHeight="600.0" maxWidth="1000.0" BorderPane.alignment="CENTER">
+         <children>
+            <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="150.0">
                <children>
                   <HBox prefHeight="35.0" prefWidth="600.0">
                      <children>
@@ -36,7 +34,8 @@
                         <Label alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" prefHeight="25.0" prefWidth="270.0" text="Username">
                            <HBox.margin>
                               <Insets left="283.0" />
-                           </HBox.margin></Label>
+                           </HBox.margin>
+                        </Label>
                      </children>
                   </HBox>
                   <HBox prefHeight="28.0" prefWidth="600.0">
@@ -56,7 +55,8 @@
                         <Label alignment="CENTER" contentDisplay="CENTER" graphicTextGap="50.0" prefHeight="39.0" prefWidth="292.0" text="Password">
                            <HBox.margin>
                               <Insets left="270.0" />
-                           </HBox.margin></Label>
+                           </HBox.margin>
+                        </Label>
                      </children>
                   </HBox>
                   <HBox prefHeight="63.0" prefWidth="600.0">
@@ -93,8 +93,8 @@
                   </Button>
                </children>
             </VBox>
-         </center>
-      </BorderPane>
+         </children>
+      </AnchorPane>
    </center>
 
-</BorderPane>
+      </BorderPane>
