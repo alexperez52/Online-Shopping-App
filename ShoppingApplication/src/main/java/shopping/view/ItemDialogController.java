@@ -56,6 +56,8 @@ public class ItemDialogController {
 				app.getLiveInventory().getInventory().put(newItem.getId(), newItem);
 
 				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.dialogPaneProperty().get().getStylesheets().add("/shopping/view/dialog.css");
+
 				alert.setTitle("Item");
 				alert.setHeaderText("New item added to inventory!");
 				alert.setContentText("");
@@ -97,6 +99,8 @@ public class ItemDialogController {
 
 				if (edited) {
 					Alert alert = new Alert(AlertType.INFORMATION);
+					alert.dialogPaneProperty().get().getStylesheets().add("/shopping/view/dialog.css");
+
 					alert.setTitle("Item");
 					alert.setHeaderText("Item Updated!");
 					alert.setContentText("");
@@ -108,6 +112,8 @@ public class ItemDialogController {
 					app.showCatalogPage();
 				} else {
 					Alert alert = new Alert(AlertType.INFORMATION);
+					alert.dialogPaneProperty().get().getStylesheets().add("/shopping/view/dialog.css");
+
 					alert.setTitle("Item");
 					alert.setHeaderText("Item not updated!");
 					alert.setContentText("");
@@ -131,6 +137,7 @@ public class ItemDialogController {
 		priceField.clear();
 		quantityField.clear();
 		descriptionField.clear();
+		dialogStage.close();
 
 	}
 	
@@ -147,6 +154,8 @@ public class ItemDialogController {
 			if (nameField.getText().isEmpty() || priceField.getText().isEmpty() || descriptionField.getText().isEmpty()
 					|| quantityField.getText().isEmpty()) { // any field empty, false
 				Alert alert = new Alert(AlertType.WARNING);
+				alert.dialogPaneProperty().get().getStylesheets().add("/shopping/view/dialog.css");
+
 				alert.setTitle("Error");
 				alert.setHeaderText("Issues with certain field(s)");
 				alert.setContentText("Please fill each field");
@@ -160,6 +169,8 @@ public class ItemDialogController {
 																								// decimal), and non
 																								// ints in quant
 				Alert alert = new Alert(AlertType.WARNING);
+				alert.dialogPaneProperty().get().getStylesheets().add("/shopping/view/dialog.css");
+
 				alert.setTitle("Error");
 				alert.setHeaderText("Issues with certain field(s)");
 				alert.setContentText("Please provide only digits for price and/ or quantity!");
@@ -169,6 +180,8 @@ public class ItemDialogController {
 			}
 			if (itemTypeBox.getSelectionModel().getSelectedItem() == null) {
 				Alert alert = new Alert(AlertType.WARNING);
+				alert.dialogPaneProperty().get().getStylesheets().add("/shopping/view/dialog.css");
+
 				alert.setTitle("Error");
 				alert.setHeaderText("Issues with certain field(s)");
 				alert.setContentText("Please provide an item type!");

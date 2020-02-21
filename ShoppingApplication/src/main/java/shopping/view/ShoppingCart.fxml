@@ -11,7 +11,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="shopping.view.ShoppingCartController">
    <children>
-      <Button fx:id="orderButton" layoutX="849.0" layoutY="523.0" mnemonicParsing="false" onAction="#showCheckOut" prefHeight="53.0" prefWidth="137.0" style="-fx-background-color: orange;" text="Order" />
+      <Button fx:id="orderButton" layoutX="849.0" layoutY="523.0" mnemonicParsing="false" onAction="#showCheckOut" prefHeight="53.0" prefWidth="137.0"  text="Order" />
       <Button fx:id="plusButton" layoutX="453.0" layoutY="534.0" mnemonicParsing="false" onAction="#add" prefHeight="32.0" prefWidth="35.0" text="+">
          <font>
             <Font size="19.0" />
@@ -22,7 +22,7 @@
             <Font size="19.0" />
          </font>
       </Button>
-      <Label layoutX="121.0" layoutY="71.0" text="Shopping Cart" textFill="#ff5100">
+      <Label layoutX="121.0" layoutY="71.0" text="Shopping Cart" >
          <font>
             <Font size="36.0" />
          </font>
@@ -37,7 +37,7 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <Label layoutX="159.0" layoutY="381.0" text="order" textFill="#4139d6">
+      <Label layoutX="159.0" layoutY="381.0" text="order" >
          <font>
             <Font size="14.0" />
          </font>
@@ -47,7 +47,7 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <Label layoutX="214.0" layoutY="381.0" text="modify quantity" textFill="#4139d6">
+      <Label layoutX="214.0" layoutY="381.0" text="modify quantity" >
          <font>
             <Font size="14.0" />
          </font>
@@ -68,7 +68,7 @@
          </font>
       </Hyperlink>
       <ListView fx:id="listView" layoutX="460.0" layoutY="72.0" prefHeight="438.0" prefWidth="512.0" />
-      <AnchorPane layoutX="460.0" layoutY="14.0" prefHeight="53.0" prefWidth="512.0" style="-fx-background-color: orange;">
+      <AnchorPane layoutX="460.0" layoutY="14.0" prefHeight="53.0" prefWidth="512.0" >
          <children>
             <Label layoutX="43.0" layoutY="18.0" text="Quantity" />
             <Label layoutX="352.0" layoutY="18.0" text="Item" />

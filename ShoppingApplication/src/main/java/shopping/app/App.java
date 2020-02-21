@@ -2,7 +2,7 @@ package shopping.app;
 
 import java.io.IOException;
 
-import com.aquafx_project.AquaFx;
+import org.aerofx.AeroFX;
 
 import javafx.application.Application;
 import javafx.event.EventHandler;
@@ -10,6 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.DialogPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
@@ -49,6 +50,7 @@ public class App extends Application {
 
 	@Override
 	public void start(Stage primaryStage) {
+		
 		shopping.utils.DataSaver.restore(liveUserBag, liveInventory); // restores data on start up
 		// regenerateData();
 		liveUserBag.getUsers().entrySet().forEach(entry -> {
@@ -86,6 +88,7 @@ public class App extends Application {
 			rootController.setApp(this);
 
 			Scene scene = new Scene(rootLayout);
+			scene.getStylesheets().add("/shopping/app/app.css");
 			showLoginPage();
 
 			primaryStage.setScene(scene);

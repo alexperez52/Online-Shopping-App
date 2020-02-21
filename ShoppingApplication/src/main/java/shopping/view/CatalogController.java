@@ -171,6 +171,7 @@ public class CatalogController {
 
 					searchedItem.setItemQuantity(searchedItem.getItemQuantity() + 1);// just increase quantity
 					Alert alert = new Alert(AlertType.INFORMATION);
+					alert.dialogPaneProperty().get().getStylesheets().add("/shopping/view/dialog.css");
 					alert.setTitle("Information");
 					alert.setHeaderText("Item added to cart!");
 					alert.setContentText("Quantity of this item in cart: " + searchedItem.getItemQuantity());
@@ -180,6 +181,7 @@ public class CatalogController {
 				} else if (searchedItem == null) {
 					cart.getCartItems().add(cartItem);
 					Alert alert = new Alert(AlertType.INFORMATION);
+					alert.dialogPaneProperty().get().getStylesheets().add("/shopping/view/dialog.css");
 					alert.setTitle("Information");
 					alert.setHeaderText("Item added to cart!");
 					alert.setContentText("");
@@ -187,6 +189,7 @@ public class CatalogController {
 					alert.showAndWait();
 				} else {
 					Alert alert = new Alert(AlertType.WARNING);
+					alert.dialogPaneProperty().get().getStylesheets().add("/shopping/view/dialog.css");
 					alert.setTitle("Warning");
 					alert.setHeaderText("Item not in stock anymore!");
 					alert.setContentText("Can't add to cart");
@@ -196,6 +199,7 @@ public class CatalogController {
 			}
 			else {
 				Alert alert = new Alert(AlertType.WARNING);
+				alert.dialogPaneProperty().get().getStylesheets().add("/shopping/view/dialog.css");
 				alert.setTitle("Warning");
 				alert.setHeaderText("Item not in stock anymore!");
 				alert.setContentText("Can't add to cart");
@@ -206,6 +210,8 @@ public class CatalogController {
 
 		else {
 			Alert alert = new Alert(AlertType.WARNING);
+			alert.dialogPaneProperty().get().getStylesheets().add("/shopping/view/dialog.css");
+
 			alert.setTitle("Warning");
 			alert.setHeaderText("Item not in stock!");
 			alert.setContentText("Can't add to cart");
@@ -248,6 +254,8 @@ public class CatalogController {
 		if (selectedIndex >= 0) {
 
 			Alert alert = new Alert(AlertType.CONFIRMATION);
+			alert.dialogPaneProperty().get().getStylesheets().add("/shopping/view/dialog.css");
+
 			alert.setTitle("Deletion Confirmation");
 			alert.setHeaderText("Remove item from inventory?");
 			alert.setContentText("");
@@ -264,6 +272,8 @@ public class CatalogController {
 
 		else {
 			Alert alert = new Alert(AlertType.WARNING);
+			alert.dialogPaneProperty().get().getStylesheets().add("/shopping/view/dialog.css");
+
 			alert.setTitle("No Selection");
 			alert.setHeaderText("No Item Selected");
 			alert.setContentText("Please select an item in the catalog.");
@@ -289,6 +299,8 @@ public class CatalogController {
 
 		else {
 			Alert alert = new Alert(AlertType.WARNING);
+			alert.dialogPaneProperty().get().getStylesheets().add("/shopping/view/dialog.css");
+
 			alert.setTitle("No Selection");
 			alert.setHeaderText("No Item Selected");
 			alert.setContentText("Please select an item in the catalog.");

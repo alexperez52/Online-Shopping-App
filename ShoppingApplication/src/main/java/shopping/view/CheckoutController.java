@@ -106,6 +106,8 @@ public class CheckoutController {
 		if (fieldCheck()) {
 			if (!(app.getCurrentUser().getPayment() == null)) {
 				Alert alert = new Alert(AlertType.CONFIRMATION);
+				alert.dialogPaneProperty().get().getStylesheets().add("/shopping/view/dialog.css");
+
 				alert.setTitle("Payment Confirmation");
 				alert.setHeaderText("You have existing payment information");
 				alert.setContentText("Use current payment method?");
@@ -157,6 +159,8 @@ public class CheckoutController {
 		app.showInvoiceDialog(newInvoice);
 
 		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.dialogPaneProperty().get().getStylesheets().add("/shopping/view/dialog.css");
+
 		alert.setTitle("Checkout");
 		alert.setHeaderText("Items purchased!");
 		alert.setContentText("");
@@ -267,6 +271,8 @@ public class CheckoutController {
 				return true;
 			} else {
 				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.dialogPaneProperty().get().getStylesheets().add("/shopping/view/dialog.css");
+
 				alert.setTitle("Warning");
 				alert.setHeaderText("Please enter a valid email!");
 				alert.setContentText("");
@@ -290,6 +296,8 @@ public class CheckoutController {
 				// proper amount of digits, or valid input for a name
 			} else {
 				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.dialogPaneProperty().get().getStylesheets().add("/shopping/view/dialog.css");
+
 				alert.setTitle("Warning");
 				alert.setHeaderText("Please enter a valid input for field(s)");
 				alert.setContentText("");
@@ -301,6 +309,8 @@ public class CheckoutController {
 		}
 
 		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.dialogPaneProperty().get().getStylesheets().add("/shopping/view/dialog.css");
+
 		alert.setTitle("Warning");
 		alert.setHeaderText("Certain Field(s) incomplete!");
 		alert.setContentText("");
@@ -332,6 +342,8 @@ public class CheckoutController {
 				return true;
 			} else {
 				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.dialogPaneProperty().get().getStylesheets().add("/shopping/view/dialog.css");
+
 				alert.setTitle("Warning");
 				alert.setHeaderText("Please enter a valid email!");
 				alert.setContentText("");
@@ -355,6 +367,8 @@ public class CheckoutController {
 				// proper amount of digits, or valid input for a name
 			} else {
 				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.dialogPaneProperty().get().getStylesheets().add("/shopping/view/dialog.css");
+
 				alert.setTitle("Warning");
 				alert.setHeaderText("Please enter a valid input for field(s)");
 				alert.setContentText("");
@@ -366,6 +380,8 @@ public class CheckoutController {
 		}
 
 		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.dialogPaneProperty().get().getStylesheets().add("/shopping/view/dialog.css");
+
 		alert.setTitle("Warning");
 		alert.setHeaderText("Certain Field(s) incomplete!");
 		alert.setContentText("");

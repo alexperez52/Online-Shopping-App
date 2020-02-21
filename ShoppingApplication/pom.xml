@@ -19,8 +19,8 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>com.aquafx-project</groupId>
-			<artifactId>aquafx</artifactId>
+			<groupId>org.aerofx</groupId>
+			<artifactId>aerofx</artifactId>
 			<version>0.2</version>
 		</dependency>
 		<dependency>

@@ -13,7 +13,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="shopping.view.AccountController">
    <children>
-      <AnchorPane layoutX="-4.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="135.0" prefWidth="1010.0" style="-fx-background-color: #3D4956;">
+      <AnchorPane layoutX="-4.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="135.0" prefWidth="1010.0">
          <children>
             <ImageView fx:id="settings" blendMode="DARKEN" fitHeight="129.0" fitWidth="207.0" layoutX="126.0" layoutY="3.0" onMouseClicked="#setUserInfo">
                <image>
@@ -30,66 +30,72 @@
                </image></ImageView>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="-4.0" layoutY="134.0" prefHeight="465.0" prefWidth="1010.0" style="-fx-background-color: #3D4956;">
+      <AnchorPane layoutX="-4.0" layoutY="134.0" prefHeight="465.0" prefWidth="1010.0">
          <children>
             <Separator layoutY="-2.0" prefHeight="0.0" prefWidth="1010.0" />
-            <ImageView fitHeight="84.0" fitWidth="178.0" layoutX="66.0" layoutY="75.0" pickOnBounds="true">
+            <ImageView fitHeight="84.0" fitWidth="130.0" layoutX="90.0" layoutY="88.0" pickOnBounds="true">
                <image>
                   <Image url="@../../images/shipping.png" />
                </image>
             </ImageView>
-            <Label layoutX="69.0" layoutY="40.0" text="Shipping Details" textFill="#f56b09">
+            <Label layoutX="69.0" layoutY="40.0" text="Shipping Details">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
-            <Separator layoutX="307.0" layoutY="3.0" orientation="VERTICAL" prefHeight="452.0" prefWidth="4.0" />
-            <Label layoutX="15.0" layoutY="207.0" prefHeight="29.0" prefWidth="127.0" text="Street Name:" textFill="#ffd000">
+
+            <Separator layoutX="309.0" layoutY="18.0" orientation="VERTICAL" prefHeight="452.0" prefWidth="4.0" />
+            <Label layoutX="15.0" layoutY="207.0" prefHeight="29.0" prefWidth="130.0" text="Street Name:">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label layoutX="14.0" layoutY="250.0" text="House Number:" textFill="#ffd000">
+            <Label layoutX="14.0" layoutY="250.0" text="House Number:">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label layoutX="15.0" layoutY="294.0" prefHeight="29.0" prefWidth="73.0" text="City: " textFill="#ffd000">
+            <Label layoutX="15.0" layoutY="294.0" prefHeight="29.0" prefWidth="73.0" text="City: ">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label layoutX="14.0" layoutY="338.0" prefHeight="17.0" prefWidth="60.0" text="State: " textFill="#ffd000">
+            <Label layoutX="14.0" layoutY="338.0" prefHeight="17.0" prefWidth="60.0" text="State: ">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label layoutX="16.0" layoutY="385.0" text="Country: " textFill="#ffd000">
+            <Label layoutX="16.0" layoutY="385.0" text="Country: ">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label fx:id="streetName" layoutX="175.0" layoutY="208.0" prefHeight="21.0" prefWidth="127.0" text="empty" textFill="#ffd000">
+
+            <Label fx:id="streetName" layoutX="175.0" layoutY="207.0" prefHeight="21.0" prefWidth="130.0" text="empty">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label fx:id="houseNumber" layoutX="175.0" layoutY="250.0" prefHeight="21.0" prefWidth="127.0" text="empty" textFill="#ffd000">
+
+            <Label fx:id="houseNumber" layoutX="175.0" layoutY="253.0" prefHeight="21.0" prefWidth="130.0" text="empty">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label fx:id="city" layoutX="175.0" layoutY="295.0" prefHeight="21.0" prefWidth="127.0" text="empty" textFill="#ffd000">
+
+            <Label fx:id="city" layoutX="175.0" layoutY="295.0" prefHeight="21.0" prefWidth="130.0" text="empty">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label fx:id="state" layoutX="175.0" layoutY="338.0" prefHeight="21.0" prefWidth="127.0" text="empty" textFill="#ffd000">
+
+            <Label fx:id="state" layoutX="175.0" layoutY="338.0" prefHeight="21.0" prefWidth="130.0" text="empty">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label fx:id="country" layoutX="175.0" layoutY="385.0" prefHeight="21.0" prefWidth="127.0" text="empty" textFill="#ffd000">
+
+            <Label fx:id="country" layoutX="175.0" layoutY="385.0" prefHeight="21.0" prefWidth="130.0" text="empty">
                <font>
                   <Font size="18.0" />
                </font>
@@ -99,59 +105,63 @@
                   <Image url="@../../images/newuer.png" />
                </image>
             </ImageView>
-            <Label layoutX="526.0" layoutY="30.0" text="First Name:" textFill="#ffd000">
+
+            <Label layoutX="526.0" layoutY="45.0" text="First Name:">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label layoutX="527.0" layoutY="78.0" text="Last Name:" textFill="#ffd000">
+
+            <Label layoutX="527.0" layoutY="88.0" text="Last Name:">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label layoutX="527.0" layoutY="128.0" text="Username: " textFill="#ffd000">
+
+            <Label layoutX="527.0" layoutY="138.0" text="Username: ">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label layoutX="348.0" layoutY="242.0" text="Email: " textFill="#ffd000">
+            <Label layoutX="317.0" layoutY="243.0" text="Email: ">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label layoutX="348.0" layoutY="282.0" text="Password:" textFill="#ffd000">
+            <Label layoutX="317.0" layoutY="283.0" text="Password:">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Separator layoutX="327.0" layoutY="322.0" prefHeight="3.0" prefWidth="228.0" />
-            <Label fx:id="firstName" layoutX="691.0" layoutY="31.0" prefHeight="20.0" prefWidth="119.0" text="empty" textFill="#ffd000">
+
+            <Separator layoutX="327.0" layoutY="322.0" prefHeight="3.0" prefWidth="232.0" />
+            <Label fx:id="firstName" layoutX="692.0" layoutY="48.0" prefHeight="20.0" prefWidth="119.0" text="empty">
                <font>
                   <Font size="14.0" />
                </font></Label>
-            <Label fx:id="lastName" layoutX="692.0" layoutY="79.0" prefHeight="20.0" prefWidth="104.0" text="empty" textFill="#ffd000">
+            <Label fx:id="lastName" layoutX="692.0" layoutY="89.0" prefHeight="20.0" prefWidth="104.0" text="empty">
                <font>
                   <Font size="14.0" />
                </font></Label>
-            <Label fx:id="username" layoutX="693.0" layoutY="129.0" prefHeight="20.0" prefWidth="116.0" text="empty" textFill="#ffd000">
+            <Label fx:id="username" layoutX="694.0" layoutY="139.0" prefHeight="20.0" prefWidth="116.0" text="empty">
                <font>
                   <Font size="14.0" />
                </font></Label>
-            <Label fx:id="email" layoutX="464.0" layoutY="244.0" prefHeight="18.0" prefWidth="150.0" text="empty" textFill="#ffd000">
+            <Label fx:id="email" layoutX="421.0" layoutY="244.0" prefHeight="18.0" prefWidth="156.0" text="empty">
                <font>
                   <Font size="14.0" />
                </font></Label>
-            <Label fx:id="password" layoutX="464.0" layoutY="284.0" prefHeight="18.0" prefWidth="150.0" text="empty" textFill="#ffd000">
+            <Label fx:id="password" layoutX="421.0" layoutY="286.0" prefHeight="18.0" prefWidth="156.0" text="empty">
                <font>
                   <Font size="14.0" />
                </font></Label>
-            <ListView fx:id="listView" layoutX="630.0" layoutY="201.0" prefHeight="183.0" prefWidth="333.0" />
-            <Label layoutX="731.0" layoutY="167.0" text="Order History" textFill="#ff9500">
+            <ListView fx:id="listView" layoutX="579.0" layoutY="217.0" prefHeight="183.0" prefWidth="398.0" />
+            <Label layoutX="658.0" layoutY="186.0" text="Order History">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <Button fx:id="viewInvoiceButton" layoutX="863.0" layoutY="393.0" mnemonicParsing="false" onAction="#showInvoice" prefHeight="41.0" prefWidth="100.0" text="View Invoice" />
+            <Button fx:id="viewInvoiceButton" layoutX="876.0" layoutY="406.0" mnemonicParsing="false" onAction="#showInvoice" prefHeight="41.0" prefWidth="100.0" text="View Invoice" />
          </children></AnchorPane>
    </children>
 </AnchorPane>

@@ -116,8 +116,8 @@
       </VBox>
       <ButtonBar layoutX="577.0" layoutY="359.0">
          <buttons>
-            <Button fx:id="checkoutBtn" mnemonicParsing="false" onAction="#handleCheckoutButton" prefHeight="37.0" style="-fx-background-color: orange;" text="Checkout" />
-            <Button fx:id="cancelBtn" mnemonicParsing="false" onAction="#handleCancelButton" prefHeight="35.0" prefWidth="72.0" style="-fx-background-color: pink;" text="Cancel" />
+            <Button fx:id="checkoutBtn" mnemonicParsing="false" onAction="#handleCheckoutButton" prefHeight="37.0"  text="Checkout" />
+            <Button fx:id="cancelBtn" mnemonicParsing="false" onAction="#handleCancelButton" prefHeight="35.0" prefWidth="72.0"  text="Cancel" />
          </buttons>
       </ButtonBar>
    </children>

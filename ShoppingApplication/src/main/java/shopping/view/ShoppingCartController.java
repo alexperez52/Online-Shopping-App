@@ -52,6 +52,8 @@ public class ShoppingCartController {
 
 		if (app.getCurrentUser().getCart().getCartItems().isEmpty()) {
 			Alert alert = new Alert(AlertType.WARNING);
+			alert.dialogPaneProperty().get().getStylesheets().add("/shopping/view/dialog.css");
+
 			alert.setTitle("Warning");
 			alert.setHeaderText("Empty Cart");
 			alert.setContentText("Cart is Empty!");
@@ -99,6 +101,8 @@ public class ShoppingCartController {
 			if (quantity <= actual) {
 
 				Alert alert = new Alert(AlertType.WARNING);
+				alert.dialogPaneProperty().get().getStylesheets().add("/shopping/view/dialog.css");
+
 				alert.setTitle("Warning");
 				alert.setHeaderText("Not enough Items");
 				alert.setContentText("Can't add to cart");
@@ -113,6 +117,8 @@ public class ShoppingCartController {
 			}
 		} catch (NullPointerException e) {
 			Alert alert = new Alert(AlertType.WARNING);
+			alert.dialogPaneProperty().get().getStylesheets().add("/shopping/view/dialog.css");
+
 			alert.setTitle("Warning");
 			alert.setHeaderText("No item selected");
 			alert.setContentText("Please select an item to modify !");
@@ -138,11 +144,13 @@ public class ShoppingCartController {
 			int item = listView.getSelectionModel().getSelectedIndex();
 			int actual = app.getCurrentUser().getCart().getCartItems().get(item).getItemQuantity();
 
-			if (actual < 2) {
-				Alert alert = new Alert(AlertType.CONFIRMATION);
-				alert.setTitle("Cart");
-				alert.setHeaderText("Quantity hit 0");
-				alert.setContentText("Would you like to remove item instead ?");
+			if (actual < 1) {
+				Alert alert = new Alert(AlertType.WARNING);
+				alert.dialogPaneProperty().get().getStylesheets().add("/shopping/view/dialog.css");
+
+				alert.setTitle("Warning");
+				alert.setHeaderText("Quantity below 0");
+				alert.setContentText("Can't return if you don't own");
 
 				ButtonType buttonTypeOne = new ButtonType("Yes");
 				ButtonType buttonTypeTwo = new ButtonType("No");
@@ -180,6 +188,8 @@ public class ShoppingCartController {
 			}
 		} catch (ArrayIndexOutOfBoundsException e) {
 			Alert alert = new Alert(AlertType.WARNING);
+			alert.dialogPaneProperty().get().getStylesheets().add("/shopping/view/dialog.css");
+
 			alert.setTitle("Warning");
 			alert.setHeaderText("No item selected");
 			alert.setContentText("Please select an item to modify!");

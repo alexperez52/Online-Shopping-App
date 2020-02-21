@@ -33,7 +33,7 @@
                      <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" prefHeight="25.0" prefWidth="270.0" text="Username">
                            <HBox.margin>
-                              <Insets left="283.0" />
+                              <Insets left="291.0" />
                            </HBox.margin>
                         </Label>
                      </children>
@@ -54,7 +54,7 @@
                      <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" graphicTextGap="50.0" prefHeight="39.0" prefWidth="292.0" text="Password">
                            <HBox.margin>
-                              <Insets left="270.0" />
+                              <Insets left="276.0" />
                            </HBox.margin>
                         </Label>
                      </children>
@@ -71,7 +71,7 @@
                         <Insets left="200.0" />
                      </VBox.margin>
                   </HBox>
-                  <Button mnemonicParsing="false" onAction="#handleLogin" prefHeight="21.0" prefWidth="205.0" style="-fx-background-color: orange; -fx-border-color: black;" text="Login" textFill="#612f1a">
+                  <Button mnemonicParsing="false" onAction="#handleLogin" prefHeight="21.0" prefWidth="205.0" text="Login">
                      <VBox.margin>
                         <Insets left="390.0" />
                      </VBox.margin>
