@@ -85,6 +85,8 @@ public class AccountController {
 	}
 		catch(NullPointerException e) {
 			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.dialogPaneProperty().get().getStylesheets().add("/shopping/view/dialog.css");
+
 			alert.setTitle("Selection");
 			alert.setHeaderText("No invoice selected");
 			alert.setContentText("Please Select an invoice");
@@ -182,17 +184,17 @@ public class AccountController {
 
 			app.getCurrentUser().getPayment().setIsPaypal(true);
 			app.getCurrentUser().getPayment().setIsCard(false);
-			app.getCurrentUser().getPayment().setInformation(paypalTf.getText() + "\n" + paypalPasswordTf.getText());
+			app.getCurrentUser().getPayment().setInformation("Paypal Email: " + paypalTf.getText() + "\nPayPal Password: "
+					+ paypalPasswordTf.getText());
 		}
 		if (paypalPane.isDisabled()) {
 			app.getCurrentUser().getPayment().setIsPaypal(false);
 			app.getCurrentUser().getPayment().setIsCard(true);
 			app.getCurrentUser().getPayment()
 					.setInformation("Card Number: " + cardTf.getText() + "\nExpires: "
-							+ monthBox.getSelectionModel().getSelectedIndex() + "/"
+							+ (monthBox.getSelectionModel().getSelectedIndex() + 1) + "/"
 							+ yearBox.getSelectionModel().getSelectedItem() + "\nCVV: " + code.getText()
 							+ "\nCard Holder: " + holder.getText());
-
 		}
 
 		dialogStage.close();

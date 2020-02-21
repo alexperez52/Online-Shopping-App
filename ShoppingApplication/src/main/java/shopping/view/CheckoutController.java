@@ -215,7 +215,7 @@ public class CheckoutController {
 					+ paypalPasswordField.getText();
 		} else {
 			paymentInfo = "Card Number: " + cardNumberField.getText() + "\nExpires: "
-					+ monthBox.getSelectionModel().getSelectedIndex() + "/"
+					+ (monthBox.getSelectionModel().getSelectedIndex() + 1) + "/"
 					+ yearBox.getSelectionModel().getSelectedItem() + "\nCVV: " + cardSecurityField.getText()
 					+ "\nCard Holder: " + cardHolderField.getText();
 		}
