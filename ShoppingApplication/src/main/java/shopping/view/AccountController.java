@@ -3,11 +3,14 @@ package shopping.view;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
@@ -47,6 +50,9 @@ public class AccountController {
 			streetNameTf, cityTf, stateTf, countryTf, usernameTf, passwordTf;
 	@FXML
 	private PasswordField paypalPasswordTf;
+	@FXML
+	private Button viewInvoiceButton;
+	
 
 	public User user;
 
@@ -68,6 +74,25 @@ public class AccountController {
 		return this.cardVBox;
 	}
 
+	@FXML
+	public void showInvoice() {
+	
+		try {
+		Invoice invoice = listView.getSelectionModel().getSelectedItem();
+		
+		
+		app.showInvoiceDialog(invoice);
+	}
+		catch(NullPointerException e) {
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("Selection");
+			alert.setHeaderText("No invoice selected");
+			alert.setContentText("Please Select an invoice");
+
+			alert.showAndWait();
+		}
+	}
+	
 	@FXML
 	public void initialize() {
 
