@@ -57,11 +57,7 @@ public class App extends Application {
 			System.out.println(entry.getValue());
 		});
 
-		liveUserBag.getUsers().get("Adnan92").setAdmin(true);
-		liveUserBag.getUsers().get("Adnan92").getCart().clearCart();
-
-		System.out.println(liveUserBag.getUsers().get("Adnan92").isAdmin());
-		System.out.println(liveUserBag.getUsers().get("Adnan92").getPassword());
+		System.out.println(liveUserBag.getUsers().get("Alayah83").getPassword());
 
 		initRootLayout();
 	}

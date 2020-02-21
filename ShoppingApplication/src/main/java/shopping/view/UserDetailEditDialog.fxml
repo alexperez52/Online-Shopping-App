@@ -117,10 +117,10 @@
             </VBox>
          </content>
       </ScrollPane>
-      <ButtonBar layoutX="548.0" layoutY="325.0" prefHeight="112.0" prefWidth="180.0">
+      <ButtonBar layoutX="548.0" layoutY="325.0" prefHeight="112.0" prefWidth="191.0">
         <buttons>
             <Button fx:id="confirmBtn" mnemonicParsing="false" onAction="#handleInfoUpdate" text="OK" />
-          <Button mnemonicParsing="false" onAction="#handleCancel" text="Cancel" />
+          <Button mnemonicParsing="false" onAction="#handleCancel" prefHeight="42.0" prefWidth="114.0" text="Cancel" />
         </buttons>
       </ButtonBar>
       <Label text="Personal Details:" underline="true" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="10.0">

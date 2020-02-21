@@ -30,8 +30,8 @@
             </VBox>
             <HBox prefHeight="30.0" prefWidth="597.0" spacing="20.0">
                <children>
-                  <ComboBox fx:id="monthBox" prefHeight="27.0" prefWidth="95.0" promptText="Month" />
-                  <ComboBox fx:id="yearBox" prefHeight="27.0" prefWidth="95.0" promptText="Year" />
+                  <ComboBox fx:id="monthBox" prefHeight="27.0" prefWidth="150.0" promptText="Month" />
+                  <ComboBox fx:id="yearBox" prefHeight="27.0" prefWidth="150.0" promptText="Year" />
                   <TextField fx:id="code" prefHeight="27.0" prefWidth="169.0" promptText="Security Code" />
                </children>
             </HBox>

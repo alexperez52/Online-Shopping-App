@@ -144,13 +144,13 @@ public class ShoppingCartController {
 			int item = listView.getSelectionModel().getSelectedIndex();
 			int actual = app.getCurrentUser().getCart().getCartItems().get(item).getItemQuantity();
 
-			if (actual < 1) {
+			if ((actual - 1) < 1) {
 				Alert alert = new Alert(AlertType.WARNING);
 				alert.dialogPaneProperty().get().getStylesheets().add("/shopping/view/dialog.css");
 
 				alert.setTitle("Warning");
-				alert.setHeaderText("Quantity below 0");
-				alert.setContentText("Can't return if you don't own");
+				alert.setHeaderText("Quantity below 1");
+				alert.setContentText("Remove from cart?");
 
 				ButtonType buttonTypeOne = new ButtonType("Yes");
 				ButtonType buttonTypeTwo = new ButtonType("No");
@@ -168,8 +168,6 @@ public class ShoppingCartController {
 				    // ... user chose "One"
 				} else if (result.get() == buttonTypeTwo) {
 					if(actual > 0) {
-					app.getCurrentUser().getCart().getCartItems().get(item)
-					.setItemQuantity(app.getCurrentUser().getCart().getCartItems().get(item).getItemQuantity() - 1);
 					listView.refresh();
 					alert.close();
 					}

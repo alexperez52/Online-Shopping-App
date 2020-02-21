@@ -33,7 +33,7 @@
       <AnchorPane layoutX="-4.0" layoutY="134.0" prefHeight="465.0" prefWidth="1010.0">
          <children>
             <Separator layoutY="-2.0" prefHeight="0.0" prefWidth="1010.0" />
-            <ImageView fitHeight="84.0" fitWidth="130.0" layoutX="90.0" layoutY="88.0" pickOnBounds="true">
+            <ImageView fitHeight="100.0" fitWidth="130.0" layoutX="90.0" layoutY="72.0" pickOnBounds="true">
                <image>
                   <Image url="@../../images/shipping.png" />
                </image>
@@ -100,7 +100,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <ImageView blendMode="MULTIPLY" fitHeight="150.0" fitWidth="200.0" layoutX="324.0" layoutY="58.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView blendMode="SRC_ATOP" fitHeight="150.0" fitWidth="200.0" layoutX="324.0" layoutY="58.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../images/newuer.png" />
                </image>
@@ -161,7 +161,7 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <Button fx:id="viewInvoiceButton" layoutX="876.0" layoutY="406.0" mnemonicParsing="false" onAction="#showInvoice" prefHeight="41.0" prefWidth="100.0" text="View Invoice" />
+            <Button fx:id="viewInvoiceButton" layoutX="826.0" layoutY="406.0" mnemonicParsing="false" onAction="#showInvoice" prefHeight="41.0" prefWidth="150.0" text="View Invoice" />
          </children></AnchorPane>
    </children>
 </AnchorPane>

@@ -1,14 +1,23 @@
 package shopping.view;
 
 import java.awt.Desktop;
+import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.Group;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
+import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.RadioButton;
 import shopping.app.App;
@@ -58,10 +67,10 @@ public class RegisterController {
 			readTerms = true;
 		});
 	}
-	
+
 	/**
-	 * Performs action on Register Button click. If no user input exception is called,
-	 * the program creates a new User object and adds it to the UserBag.
+	 * Performs action on Register Button click. If no user input exception is
+	 * called, the program creates a new User object and adds it to the UserBag.
 	 * 
 	 * @see LoginController
 	 */
@@ -99,7 +108,7 @@ public class RegisterController {
 		}
 
 	}
-	
+
 	/**
 	 * Performs action on Login Hyperlink click. Calls app.showLoginPage().
 	 * 
@@ -108,7 +117,7 @@ public class RegisterController {
 	public void handleLogInHyperlink() {
 		app.showLoginPage();
 	}
-	
+
 	/**
 	 * Checks all available RegisterPage fields and checks if improper user input
 	 * exists. Only returns true if user information is correct.
@@ -123,7 +132,7 @@ public class RegisterController {
 				|| username.getText().isEmpty() || password.getText().isEmpty() || confirmPassword.getText().isEmpty()
 				|| streetName.getText().isEmpty() || houseNumber.getText().isEmpty() || city.getText().isEmpty()
 				|| state.getText().isEmpty() || country.getText().isEmpty()) {
-			
+
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.dialogPaneProperty().get().getStylesheets().add("/shopping/view/dialog.css");
 
@@ -136,7 +145,9 @@ public class RegisterController {
 		}
 		if (firstName.getText().matches(".*\\d.*") || middleName.getText().matches(".*\\d.*")
 				|| lastName.getText().matches(".*\\d.*") || city.getText().matches(".*\\d.*")
-				|| state.getText().matches(".*\\d.*") || country.getText().matches(".*\\d.*")) { //handles numbers in inappropriate fields
+				|| state.getText().matches(".*\\d.*") || country.getText().matches(".*\\d.*")) { // handles numbers in
+																									// inappropriate
+																									// fields
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.dialogPaneProperty().get().getStylesheets().add("/shopping/view/dialog.css");
 
@@ -148,7 +159,7 @@ public class RegisterController {
 			return false;
 		}
 
-		if (!readTerms) { //user must agree to terms
+		if (!readTerms) { // user must agree to terms
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.dialogPaneProperty().get().getStylesheets().add("/shopping/view/dialog.css");
 
@@ -159,7 +170,7 @@ public class RegisterController {
 			alert.showAndWait();
 			return false;
 		}
-		if (houseNumber.getText().matches(".*\\D.*")) {//house number must be a number
+		if (houseNumber.getText().matches(".*\\D.*")) {// house number must be a number
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.dialogPaneProperty().get().getStylesheets().add("/shopping/view/dialog.css");
 
@@ -170,7 +181,7 @@ public class RegisterController {
 			alert.showAndWait();
 			return false;
 		}
-		if (!(password.getText().contentEquals(confirmPassword.getText()))) {//password fields must match
+		if (!(password.getText().contentEquals(confirmPassword.getText()))) {// password fields must match
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.dialogPaneProperty().get().getStylesheets().add("/shopping/view/dialog.css");
 
@@ -182,7 +193,8 @@ public class RegisterController {
 			return false;
 		}
 
-		if (app.getLiveUserBag().getUsers().containsKey(username.getText().trim())) {//if username exists already, can't register
+		if (app.getLiveUserBag().getUsers().containsKey(username.getText().trim())) {// if username exists already,
+																						// can't register
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.dialogPaneProperty().get().getStylesheets().add("/shopping/view/dialog.css");
 
@@ -193,8 +205,8 @@ public class RegisterController {
 			alert.showAndWait();
 			return false;
 		}
-		
-		if (!(email.getText().matches("([\\w]+@[\\w]+[.][\\w]+)+"))) {//if username exists already, can't register
+
+		if (!(email.getText().matches("([\\w]+@[\\w]+[.][\\w]+)+"))) {// if username exists already, can't register
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.dialogPaneProperty().get().getStylesheets().add("/shopping/view/dialog.css");
 
@@ -208,39 +220,32 @@ public class RegisterController {
 
 		return true;
 	}
-	
-	public static boolean openWebpage(URI uri) {
-	    Desktop desktop = Desktop.isDesktopSupported() ? Desktop.getDesktop() : null;
-	    if (desktop != null && desktop.isSupported(Desktop.Action.BROWSE)) {
-	        try {
-	            desktop.browse(uri);
-	            return true;
-	        } catch (Exception e) {
-	            e.printStackTrace();
-	        }
-	    }
-	    return false;
-	}
 
-	public static boolean openWebpage(URL url) {
-	    try {
-	        return openWebpage(url.toURI());
-	    } catch (URISyntaxException e) {
-	        e.printStackTrace();
-	    }
-	    return false;
-	}
-	
-	public void handleTermsAndAgreements(){
-		URL url = null;
-		try {
-			url = new URL("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
-			
-		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		openWebpage(url);
-			
+	public void handleTermsAndAgreements() {
+		Stage mediaStage = new Stage();
+		
+		String path = "src/main/java/images/rick.mp4";
+
+		Media media = new Media(new File(path).toURI().toString());
+
+		MediaPlayer mediaPlayer = new MediaPlayer(media);
+
+		MediaView mediaView = new MediaView(mediaPlayer);
+
+		mediaPlayer.setAutoPlay(true);
+		
+		Group root = new Group();  
+        root.getChildren().add(mediaView);  
+        Scene scene = new Scene(root,500,400);  
+        mediaStage.setScene(scene);  
+        mediaStage.show();
+        mediaStage.setOnCloseRequest(new EventHandler<WindowEvent>() { // saves bags on exit
+			public void handle(WindowEvent we) {
+				mediaPlayer.stop();
+			}
+        	
+        });
+
+
 	}
 }

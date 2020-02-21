@@ -79,7 +79,7 @@
                   <HBox prefHeight="17.0" prefWidth="600.0" />
                   <HBox prefHeight="29.0" prefWidth="600.0">
                      <children>
-                        <Label contentDisplay="CENTER" opacity="0.71" prefHeight="17.0" prefWidth="188.0" text="New to COMPANY_NAME_HERE ?">
+                        <Label contentDisplay="CENTER" opacity="0.71" prefHeight="29.0" prefWidth="224.0" text="New to Merge Conflicts R Us?">
                            <HBox.margin>
                               <Insets left="398.0" />
                            </HBox.margin>

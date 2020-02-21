@@ -74,11 +74,11 @@
                         <TextField fx:id="cardNumberField" maxWidth="400.0" prefHeight="40.0" prefWidth="400.0" promptText="####-####-####-####" />
                      </children>
                   </VBox>
-                  <HBox prefHeight="30.0" prefWidth="597.0" spacing="20.0">
+                  <HBox prefHeight="30.0" prefWidth="392.0" spacing="20.0">
                      <children>
-                        <ComboBox fx:id="monthBox" prefHeight="27.0" prefWidth="95.0" promptText="Month" />
+                        <ComboBox fx:id="monthBox" prefHeight="29.0" prefWidth="117.0" promptText="Month" />
                         <ComboBox fx:id="yearBox" prefHeight="27.0" prefWidth="95.0" promptText="Year" />
-                        <TextField fx:id="cardSecurityField" prefHeight="27.0" prefWidth="169.0" promptText="CVV" />
+                        <TextField fx:id="cardSecurityField" prefHeight="27.0" prefWidth="157.0" promptText="CVV" />
                      </children>
                   </HBox>
                   <TextField fx:id="cardHolderField" maxWidth="400.0" promptText="Card Holder" />
@@ -116,8 +116,8 @@
       </VBox>
       <ButtonBar layoutX="577.0" layoutY="359.0">
          <buttons>
-            <Button fx:id="checkoutBtn" mnemonicParsing="false" onAction="#handleCheckoutButton" prefHeight="37.0"  text="Checkout" />
-            <Button fx:id="cancelBtn" mnemonicParsing="false" onAction="#handleCancelButton" prefHeight="35.0" prefWidth="72.0"  text="Cancel" />
+            <Button fx:id="checkoutBtn" maxWidth="90.0" minHeight="37.0" minWidth="90.0" mnemonicParsing="false" onAction="#handleCheckoutButton" prefHeight="37.0" prefWidth="90.0" text="Checkout" />
+            <Button fx:id="cancelBtn" maxWidth="90.0" minHeight="37.0" minWidth="90.0" mnemonicParsing="false" onAction="#handleCancelButton" prefHeight="37.0" prefWidth="90.0" text="Cancel" />
          </buttons>
       </ButtonBar>
    </children>
