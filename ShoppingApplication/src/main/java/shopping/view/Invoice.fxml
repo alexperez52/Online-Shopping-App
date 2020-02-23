@@ -13,11 +13,11 @@
    <children>
       <AnchorPane prefHeight="190.0" prefWidth="1000.0">
          <children>
-            <Label layoutX="47.0" layoutY="14.0" prefHeight="89.0" prefWidth="114.0" text="LOGO HERE">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
+            <ImageView fitHeight="113.0" fitWidth="124.0" layoutX="14.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../images/program_logo.png" />
+               </image>
+            </ImageView>
             <Label layoutX="771.0" layoutY="33.0" style="-fx-background-color: #DF5B5B#DF5B5B;" text="INVOICE">
                <font>
                   <Font size="48.0" />
