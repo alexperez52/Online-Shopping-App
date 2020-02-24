@@ -1,28 +1,31 @@
 package shopping.view;
 
-import java.util.ArrayList;
 import java.util.Optional;
-import java.util.Map.Entry;
+import java.util.function.Predicate;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import shopping.app.App;
-import shopping.model.Invoice;
 import shopping.model.User;
 
 public class AdminController {
-
 	private App app;
+	private ObservableList<User> items;
 	private User user;
 	@FXML 
 	ListView<User> listView;
 	
+	@FXML 
+	private TextField searchField;
 	@FXML 
 	private Label fullName, address, username,password, email,payment;
 	
@@ -42,6 +45,35 @@ public class AdminController {
 		this.app = app;
 		
 		
+	}
+	/**
+	 * Performs action on the search Function.
+	 * Updates users based on user names typed.
+	 * 
+	 * 
+	 * @see AdminController
+	 */
+	
+	@FXML
+	private void handleSearch() {
+		FilteredList<User> filteredData = new FilteredList<>(items, e -> true);
+		
+		searchField.setOnKeyTyped(e -> {
+			searchField.textProperty().addListener((observableValue, oldValue, newValue) ->{
+				filteredData.setPredicate((Predicate<? super User>) item ->{
+					if(newValue == null || newValue.isEmpty()) {
+						return true;
+					}
+					if(item.getUsername().contains(newValue)) {
+						return true;
+					}
+					return false;
+				});
+			});
+			SortedList<User> sortedData = new SortedList<>(filteredData);
+			
+			listView.setItems(sortedData);
+		});
 	}
 	/**
 	 * Performs action on new user button. Changes root scene to 
@@ -112,7 +144,7 @@ public class AdminController {
 	 * @see AdminController
 	 */
 	public void updateTable() {
-		ObservableList<User> items = FXCollections.observableArrayList(app.getLiveUserBag().getUsers().values());
+		 items = FXCollections.observableArrayList(app.getLiveUserBag().getUsers().values());
 		
 		listView.getItems().removeAll(items);
 		listView.getItems().setAll(items);
