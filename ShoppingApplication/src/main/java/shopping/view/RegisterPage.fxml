@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
@@ -38,12 +39,12 @@
                <children>
                   <HBox spacing="10.0">
                      <children>
-                        <Label maxHeight="50.0" maxWidth="100.0" minWidth="100.0" prefHeight="27.0" prefWidth="76.0" text="First Name:">
+                        <Label maxHeight="50.0" maxWidth="100.0" minWidth="87.0" prefHeight="30.0" prefWidth="87.0" text="First Name:">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="firstName" minHeight="30.0" minWidth="0.0" prefWidth="128.0" />
+                        <TextField fx:id="firstName" minHeight="30.0" minWidth="0.0" prefHeight="30.0" prefWidth="135.0" />
                      </children>
                   </HBox>
                   <HBox spacing="10.0">
@@ -72,11 +73,11 @@
                <children>
                   <HBox spacing="10.0">
                      <children>
-                        <Label maxWidth="100.0" minHeight="25.0" minWidth="100.0" prefHeight="24.0" prefWidth="81.0" text="Email Address:">
+                        <Label maxWidth="109.0" minHeight="25.0" minWidth="100.0" prefHeight="25.0" prefWidth="109.0" text="Email Address:">
                            <font>
                               <Font size="14.0" />
                            </font></Label>
-                        <TextField fx:id="email" minHeight="30.0" minWidth="0.0" prefHeight="25.0" prefWidth="230.0" />
+                        <TextField fx:id="email" minHeight="30.0" minWidth="0.0" prefHeight="30.0" prefWidth="242.0" />
                      </children>
                   </HBox>
                   <HBox spacing="10.0">
@@ -100,7 +101,7 @@
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <PasswordField fx:id="password" minHeight="30.0" minWidth="0.0" />
+                        <PasswordField fx:id="password" minHeight="30.0" minWidth="0.0" prefHeight="30.0" prefWidth="141.0" />
                      </children>
                   </HBox>
                   <HBox spacing="10.0">
@@ -110,7 +111,7 @@
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <PasswordField fx:id="confirmPassword" minHeight="30.0" minWidth="0.0" />
+                        <PasswordField fx:id="confirmPassword" minHeight="30.0" minWidth="0.0" prefHeight="30.0" prefWidth="226.0" />
                      </children>
                   </HBox>
                </children>
@@ -202,10 +203,10 @@
       </VBox>
       <VBox layoutX="595.0" layoutY="409.0" spacing="8.0">
          <children>
-            <HBox prefHeight="25.0" prefWidth="199.0">
+            <HBox prefHeight="25.0" prefWidth="348.0">
                <children>
-                  <Label prefHeight="25.0" prefWidth="150.0" text="Have an account ?" />
-                  <Hyperlink onAction="#handleLogInHyperlink" prefHeight="0.0" prefWidth="75.0" text="Log in " />
+                  <Label prefHeight="25.0" prefWidth="168.0" text="Have an account ?" />
+                  <Hyperlink onAction="#handleLogInHyperlink" prefHeight="24.0" prefWidth="76.0" text="Log in " />
                </children>
             </HBox>
             <Button mnemonicParsing="false" onAction="#handleRegister" prefHeight="25.0" prefWidth="138.0" text="Register" />
@@ -222,5 +223,6 @@
             </HBox>
          </children>
       </VBox>
+      <Separator layoutX="229.0" layoutY="7.0" orientation="VERTICAL" prefHeight="587.0" prefWidth="18.0" />
    </children>
 </AnchorPane>

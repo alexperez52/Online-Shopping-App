@@ -79,9 +79,9 @@
                   <HBox prefHeight="17.0" prefWidth="600.0" />
                   <HBox prefHeight="29.0" prefWidth="600.0">
                      <children>
-                        <Label contentDisplay="CENTER" opacity="0.71" prefHeight="29.0" prefWidth="224.0" text="New to Merge Conflicts R Us?">
+                        <Label contentDisplay="CENTER" opacity="0.71" prefHeight="29.0" prefWidth="294.0" text="New to Merge Conflicts R Us?">
                            <HBox.margin>
-                              <Insets left="398.0" />
+                              <Insets left="390.0" />
                            </HBox.margin>
                         </Label>
                      </children>
