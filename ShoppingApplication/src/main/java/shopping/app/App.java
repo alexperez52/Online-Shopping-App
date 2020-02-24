@@ -52,13 +52,6 @@ public class App extends Application {
 	public void start(Stage primaryStage) {
 		
 		shopping.utils.DataSaver.restore(liveUserBag, liveInventory); // restores data on start up
-		// regenerateData();
-		liveUserBag.getUsers().entrySet().forEach(entry -> {
-			System.out.println(entry.getValue());
-		});
-
-		System.out.println(liveUserBag.getUsers().get("Alayah83").getPassword());
-
 		initRootLayout();
 	}
 
