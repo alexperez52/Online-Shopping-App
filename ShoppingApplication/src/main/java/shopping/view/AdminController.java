@@ -1,13 +1,17 @@
 package shopping.view;
 
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.Map.Entry;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.Alert.AlertType;
 import shopping.app.App;
 import shopping.model.Invoice;
 import shopping.model.User;
@@ -81,9 +85,24 @@ public class AdminController {
 	@FXML 
 	private void handleDelete() {
 		user = listView.getSelectionModel().getSelectedItem();
+
+		Alert alert = new Alert(AlertType.CONFIRMATION);
+		alert.dialogPaneProperty().get().getStylesheets().add("/shopping/view/dialog.css");
+
+		alert.setTitle("Deletion Confirmation");
+		alert.setHeaderText("Remove user from list?");
+		alert.setContentText("");
+
+		Optional<ButtonType> result = alert.showAndWait();
+		if (result.get() == ButtonType.OK) {
+			
 		app.getLiveUserBag().getUsers().remove(user.getUsername());
 		app.showAdminPage();
-
+		}
+		
+		else {
+			alert.close();
+		}
 	}
 	
 	/**

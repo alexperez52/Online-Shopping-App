@@ -8,9 +8,12 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Predicate;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
@@ -55,6 +58,8 @@ public class CatalogController {
 	private Label counter;
 	@FXML
 	private ImageView cartView;
+	@FXML
+	private Button searchButton;
 	
 	public CatalogController() {
 
@@ -72,10 +77,12 @@ public class CatalogController {
 
 		category.setItems(FXCollections.observableArrayList(Electronics.values())); // sets electronics types
 		category.setOnAction((e) -> {
+			
 			// TODO: REWORK COMBOBOX SEARCH!
 			if (category.getSelectionModel().getSelectedItem().equals(Electronics.ALL)) {// shows all products...
 				displaySubList(Electronics.ALL);
 			} else if (category.getSelectionModel().getSelectedItem().equals(Electronics.CPU)) {// only shows cpus, etc.
+				
 				displaySubList(Electronics.CPU);
 			} else if (category.getSelectionModel().getSelectedItem().equals(Electronics.GPU)) {
 				displaySubList(Electronics.GPU);
@@ -86,7 +93,7 @@ public class CatalogController {
 			}
 		});
 	}
-
+	
 	public void setApp(App app) { // gives controller access to databases
 		this.app = app;
 		inventoryItemsList = FXCollections.observableArrayList(app.getLiveInventory().getInventory().values()); // loads
@@ -114,6 +121,9 @@ public class CatalogController {
 	 * @see CatalogController
 	 */
 	private void displaySubList(Electronics electronicType) { // shortens display list to specific sections
+
+		inventoryItemsList = FXCollections.observableArrayList(app.getLiveInventory().getInventory().values()); // loads
+		itemsView.refresh();
 		ArrayList<Item> items = new ArrayList<Item>(app.getLiveInventory().getInventory().values());
 		ArrayList<Item> subList = new ArrayList<Item>();
 		if (electronicType.compareTo(Electronics.ALL) == 0) {
@@ -318,15 +328,34 @@ public class CatalogController {
 	 */
 	@FXML
 	private void handleSearchField() { // finds specific item in list by name
-		if (searchField.getText().isEmpty()) {
-			itemsView.getItems().setAll(inventoryItemsList);
-		}
-		app.getLiveInventory().getInventory().forEach((k, v) ->{
-			if (v.getName() != null && v.getName().equalsIgnoreCase(searchField.getText())) {
-				itemsView.getItems().clear();
-				itemsView.getItems().add(v);
-			}
+	FilteredList<Item> filteredData = new FilteredList<>(inventoryItemsList, e -> true);
+		
+		searchField.setOnKeyTyped(e -> {
+			searchField.textProperty().addListener((observableValue, oldValue, newValue) ->{
+				filteredData.setPredicate((Predicate<? super Item>) item ->{
+					if(newValue == null || newValue.isEmpty()) {
+						return true;
+					}
+					if(item.getName().contains(newValue)) {
+						return true;
+					}
+					return false;
+				});
+			});
+			SortedList<Item> sortedData = new SortedList<>(filteredData);
+			
+			itemsView.setItems(sortedData);
 		});
+		
+//		if (searchField.getText().isEmpty()) {
+//			itemsView.getItems().setAll(inventoryItemsList);
+//		}
+//		app.getLiveInventory().getInventory().forEach((k, v) ->{
+//			if (v.getName() != null && v.getName().equalsIgnoreCase(searchField.getText())) {
+//				itemsView.getItems().clear();
+//				itemsView.getItems().add(v);
+//			}
+//		});
 	}
 	
 	/**

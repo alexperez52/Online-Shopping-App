@@ -2,16 +2,10 @@ package shopping.app;
 
 import java.io.IOException;
 
-import org.aerofx.AeroFX;
-
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.DialogPane;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -19,7 +13,6 @@ import javafx.stage.WindowEvent;
 import shopping.model.Inventory;
 import shopping.model.Invoice;
 import shopping.model.Item;
-import shopping.model.Name;
 import shopping.model.User;
 import shopping.model.UserBag;
 import shopping.view.AccountController;
