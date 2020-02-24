@@ -79,7 +79,9 @@ public class CatalogController {
 		category.setOnAction((e) -> {
 			
 			// TODO: REWORK COMBOBOX SEARCH!
+			try {
 			if (category.getSelectionModel().getSelectedItem().equals(Electronics.ALL)) {// shows all products...
+
 				displaySubList(Electronics.ALL);
 			} else if (category.getSelectionModel().getSelectedItem().equals(Electronics.CPU)) {// only shows cpus, etc.
 				
@@ -90,6 +92,11 @@ public class CatalogController {
 				displaySubList(Electronics.MEMORY);
 			} else {
 				displaySubList(Electronics.MOTHERBOARD);
+			}
+			}
+			catch(UnsupportedOperationException ee) {
+				app.showCatalogPage();
+
 			}
 		});
 	}
