@@ -104,7 +104,14 @@ public class RegisterController {
 
 			alert.showAndWait();
 
+			if(app.getCurrentUser().isAdmin()) {
+				app.showAdminPage();
+			}
+			else {
+				
+			
 			app.showLoginPage();
+			}
 		}
 
 	}
